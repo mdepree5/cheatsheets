@@ -41,9 +41,9 @@ def get_all_cheatsheets():
   
   return {"all_cheatsheets": [cheatsheet.to_dict() for cheatsheet in all_cheatsheets]}
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@cheatsheets_router.route("/<int:cheatsheetId>", methods=["GET"])
-def get_one_cheatsheet(id):
-  one_cheatsheet = Cheatsheet.query.get(id)
+@cheatsheets_router.route("/<int:id>", methods=["GET"])
+def get_one_cheatsheet(cheatsheetId):
+  one_cheatsheet = Cheatsheet.query.get(cheatsheetId)
   # all_comments_by_cheatsheet_id = Comment.query.get(id)
   # all_steps_by_cheatsheet_id = Step.query.get(id)
   

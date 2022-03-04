@@ -1,0 +1,29 @@
+.wrapper-class{
+  padding: 10px;
+  border: solid black 1px;
+}
+.editor-class{
+  border: solid black 1px;
+  height: 200px;
+}
+
+
+.step-container{
+  /* width: 600px; */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  border: solid black 1px;
+}
+
+.step-placeholder{
+  padding: 10px;
+  border: solid black 1px;
+  height: 50px;
+  text-align: left;
+}
+
+.step-buttons{
+  display: flex;
+  flex-direction: column;
+}
