@@ -9,6 +9,6 @@ class CheatsheetForm(FlaskForm):
   title = StringField('Title', v)
   description = StringField('Description')
   dependencies = StringField('Dependencies')
-  mediaURL = StringField('mediaURL')
+  media_url = StringField('media_url')
   
   submit = SubmitField("Submit")

@@ -8,6 +8,6 @@ class StepForm(FlaskForm):
   cheatsheet_id = IntegerField('cheatsheet_id')
   title = StringField('title', v)
   content = StringField('content', v)
-  mediaURL = StringField('mediaURL')
+  media_url = StringField('media_url')
 
   submit = SubmitField("Submit")

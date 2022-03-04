@@ -6,7 +6,7 @@ class Step(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String(255), nullable=False)
   content = db.Column(db.Text, nullable=False)
-  mediaURL = db.Column(db.String(255), nullable=False)
+  media_url = db.Column(db.String(255), nullable=False)
   
   # # one to many with cheatsheets
   cheatsheet_id = db.Column(db.Integer, db.ForeignKey("cheatsheets.id"), nullable=False)
@@ -18,6 +18,6 @@ class Step(db.Model):
       "cheatsheet_id": self.cheatsheet_id,
       "title": self.title,
       "content": self.content,
-      "mediaURL": self.mediaURL
+      "media_url": self.media_url,
     }
     

@@ -5,7 +5,9 @@ class Comment(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   content = db.Column(db.Text, nullable=False)
-
+  created_at = db.Column(db.DateTime(), nullable=False, default=datetime.now())
+  updated_at = db.Column(db.DateTime(), nullable=True, default=datetime.now())
+  
   # one to many with users
   writer_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
   writer = db.relationship("User", back_populates="comments")
@@ -20,4 +22,6 @@ class Comment(db.Model):
       "writer_id": self.writer_id,
       "cheatsheet_id": self.cheatsheet_id,
       "content": self.content,
+      "created_at": self.created_at,
+      "updated_at": self.updated_at,
     }

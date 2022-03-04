@@ -15,10 +15,10 @@ def create_step():
   if form.validate_on_submit():
     print(f'form data: {form.data}')
     new_step = Step(
-      writer_id = form.data['writer_id'],                    #! => request Json userId????
       cheatsheet_id = form.data['cheatsheet_id'],
       title = form.data['title'],
-      content = form.data['content']
+      content = form.data['content'],
+      media_url = form.data['media_url']
       )
     
     db.session.add(new_step)
@@ -35,10 +35,10 @@ def update_step(id):
   
   if form.validate_on_submit():
     step = Step.query.get(id)
-    step.writer_id = form.data['writer_id']
     step.cheatsheet_id = form.data['cheatsheet_id']
     step.title = form.data['title']
     step.content = form.data['content']
+    step.media_url = form.data['media_url']
     db.session.commit()
     
     print(f'updated step: {step}')                                               # * print

@@ -19,7 +19,7 @@ def create_cheatsheet():
       title = form.data['title'],
       description = form.data['description'],
       dependencies = form.data['dependencies'],
-      mediaURL = form.data['mediaURL']
+      media_url = form.data['media_url']
     )
     
     db.session.add(new_cheatsheet)
@@ -63,7 +63,7 @@ def update_cheatsheet(id):
     cheatsheet.title = form.data['title']
     cheatsheet.description = form.data['description']
     cheatsheet.dependencies = form.data['dependencies']
-    cheatsheet.mediaURL = form.data['mediaURL']
+    cheatsheet.media_url = form.data['media_url']
     db.session.commit()
     
     print(f'updated cheatsheet: {cheatsheet}')                                   # * print
