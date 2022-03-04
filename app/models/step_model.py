@@ -4,13 +4,13 @@ class Step(db.Model):
   __tablename__ = "steps"
 
   id = db.Column(db.Integer, primary_key=True)
+  cheatsheet_id = db.Column(db.Integer, db.ForeignKey("cheatsheets.id"), nullable=False)
   title = db.Column(db.String(255), nullable=False)
   content = db.Column(db.Text, nullable=False)
   media_url = db.Column(db.String(255), nullable=False)
-  
+
   # # one to many with cheatsheets
-  cheatsheet_id = db.Column(db.Integer, db.ForeignKey("cheatsheets.id"), nullable=False)
-  cheatsheet = db.relationship("Cheatsheet", back_populates="steps")
+  cheatsheets = db.relationship("Cheatsheet", back_populates="steps")
 
   def to_dict(self):
     return {
@@ -20,4 +20,3 @@ class Step(db.Model):
       "content": self.content,
       "media_url": self.media_url,
     }
-    

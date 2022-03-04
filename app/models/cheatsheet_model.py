@@ -5,6 +5,7 @@ class Cheatsheet(db.Model):
   __tablename__ = "cheatsheets"
 
   id = db.Column(db.Integer, primary_key=True)
+  owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
   title = db.Column(db.String(50), nullable=False)
   description = db.Column(db.String(255), nullable=False)
   dependencies = db.Column(db.Text, nullable=False)
@@ -13,8 +14,7 @@ class Cheatsheet(db.Model):
   updated_at = db.Column(db.DateTime(), nullable=True, default=datetime.now())
 
   # one to many with users
-  owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-  owner = db.relationship("User", back_populates="cheatsheets")
+  users = db.relationship("User", back_populates="cheatsheets")
 
   comments = db.relationship("Comment", back_populates="cheatsheets")
   steps = db.relationship("Step", back_populates="cheatsheets")
