@@ -9,7 +9,7 @@ class Cheatsheet(db.Model):
   title = db.Column(db.String(50), nullable=False)
   description = db.Column(db.String(255), nullable=False)
   dependencies = db.Column(db.Text, nullable=False)
-  media_url = db.Column(db.String(255), nullable=False)
+  media_url = db.Column(db.String(255), nullable=True)
   created_at = db.Column(db.DateTime(), nullable=False, default=datetime.now())
   updated_at = db.Column(db.DateTime(), nullable=True, default=datetime.now())
 

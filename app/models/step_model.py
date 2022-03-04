@@ -7,7 +7,7 @@ class Step(db.Model):
   cheatsheet_id = db.Column(db.Integer, db.ForeignKey("cheatsheets.id"), nullable=False)
   title = db.Column(db.String(255), nullable=False)
   content = db.Column(db.Text, nullable=False)
-  media_url = db.Column(db.String(255), nullable=False)
+  media_url = db.Column(db.String(255), nullable=True)
 
   # # one to many with cheatsheets
   cheatsheets = db.relationship("Cheatsheet", back_populates="steps")
