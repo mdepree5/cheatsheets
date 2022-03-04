@@ -4,18 +4,42 @@ from app.models import db, Step
 # Adds a demo user, you can add other steps here if you want
 def seed_steps():
     python_itself_step_1 = Step(
-        writer_id=2,
         cheatsheet_id=1,
-        content='This was a great tutorial. I would like to hire the engineers who made this.',
+        title='Step 1',
+        content='Run this command: pyenv install 3.9.4',
+        media_url=''
         )
     python_itself_step_2 = Step(
-        writer_id=3,
         cheatsheet_id=1,
-        content='Now I know how to set up python.',
+        title='Step 2',
+        content='Run this command: pyenv global 3.9.4',
+        media_url=''
         )
+    python_itself_step_3 = Step(
+        cheatsheet_id=1,
+        title='Step 3',
+        content='Run this command: python --version',
+        media_url=''
+        )
+    python_itself_step_4 = Step(
+        cheatsheet_id=1,
+        title='Step 4',
+        content='Run this command: python3 --version',
+        media_url=''
+        )
+    python_itself_step_5 = Step(
+        cheatsheet_id=1,
+        title='Step 5',
+        content='Both of these commands should show 3.9.4',
+        media_url=''
+        )
+    
 
     db.session.add(python_itself_step_1)
     db.session.add(python_itself_step_2)
+    db.session.add(python_itself_step_3)
+    db.session.add(python_itself_step_4)
+    db.session.add(python_itself_step_5)
 
     db.session.commit()
 
