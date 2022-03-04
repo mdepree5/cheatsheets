@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect
 import psycopg2
 from app.forms.cheatsheet_form import CheatsheetForm
-from app.models import Cheatsheet, User, db
+from app.models import Cheatsheet, Comment, User, db
 
 cheatsheets_router = Blueprint('cheatsheets', __name__, url_prefix='/cheatsheets')
 
@@ -25,7 +25,7 @@ def create_cheatsheet():
     db.session.add(new_cheatsheet)
     db.session.commit()
     
-    return new_cheatsheet.to_dict()
+    return {new_cheatsheet.to_dict()}
 
   if form.errors:
     return form.errors
@@ -41,10 +41,15 @@ def get_all_cheatsheets():
   
   return {"all_cheatsheets": [cheatsheet.to_dict() for cheatsheet in all_cheatsheets]}
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@cheatsheets_router.route("/<int:id>", methods=["GET"])
+@cheatsheets_router.route("/<int:cheatsheetId>", methods=["GET"])
 def get_one_cheatsheet(id):
   one_cheatsheet = Cheatsheet.query.get(id)
+  # all_comments_by_cheatsheet_id = Comment.query.get(id)
+  # all_steps_by_cheatsheet_id = Step.query.get(id)
+  
   print(f'get one cheatsheet: {one_cheatsheet}')                                  #* print
+  # print(f'get all comments for one cheatsheet: {all_comments_by_cheatsheet_id}')  #* print                                  #* print
+  # print(f'get all steps for one cheatsheet: {all_steps_by_cheatsheet_id}')        #* print                                  #* print
 
   return {"cheatsheet": one_cheatsheet.to_dict()}
 # todo ——————————————————————————————————————————————————————————————————————————————————
@@ -62,7 +67,7 @@ def update_cheatsheet(id):
     db.session.commit()
     
     print(f'updated cheatsheet: {cheatsheet}')                                   # * print
-    return cheatsheet.to_dict()
+    return {cheatsheet.to_dict()}
 
   return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————

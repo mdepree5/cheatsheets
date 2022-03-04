@@ -23,37 +23,10 @@ def new_comment():
     db.session.add(new_comment)
     db.session.commit()
     
-    return new_comment.to_dict()
+    return {new_comment.to_dict()}
 
   if form.errors:
     return form.errors
-# todo ——————————————————————————————————————————————————————————————————————————————————
-# => We might need to access Comments via GET cheatsheet so we can pass in the cheatsheet id
-
-# @comments_router.route("/all", methods=["GET"])
-# def all_comments():
-#   all_comments = Comment.query.all()
-#   print(f'all comments: {all_comments}')                                         # * print
-  
-#   return {"all_comments": [comment.to_dict() for comment in all_comments]}
-# todo ——————————————————————————————————————————————————————————————————————————————————
-# => Get one comment might not be realistic/functional
-
-# @comments_router.route("/<int:id>", methods=["GET"])
-# def get_comment_by_id(id):
-#   one_comment = Comment.query.get(id)
-#   print(f'get one comment: {one_comment}')                                        #* print
-
-#   # ! ———————————————————————————————
-#   comment_dict = {
-#     "id": one_comment.id,
-#     "writerId": one_comment.writerId,
-#     "cheatsheetId": one_comment.cheatsheetId,
-#     "content": one_comment.content,
-#   }
-#   # ! ———————————————————————————————
-
-#   return {"comment": comment_dict}
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @comments_router.route("/<int:commentId>", methods=['PUT'])
 def update_comment(id):
@@ -67,7 +40,7 @@ def update_comment(id):
     db.session.commit()
     
     print(f'updated comment: {comment}')                                      # * print  
-    return comment.to_dict()
+    return {comment.to_dict()}
 
   return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
