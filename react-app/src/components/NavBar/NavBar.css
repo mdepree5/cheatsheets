@@ -1,0 +1,31 @@
+* {
+    font-family: 'helvetica-neue';
+}
+
+.navbar {
+    background-color: #555555;
+    margin: -8px 0px 0px -10px;
+    padding: 10px 20px;
+    width: 100%;
+    list-style: none;
+}
+
+.navbar li {
+    display: inline;
+    margin-left: 5px;
+}
+
+.navbar li a {
+    color: #CCCCCC;
+    list-style: none;
+    text-decoration: none;
+}
+
+.session-links {
+    float: right;
+    margin-right: 20px;
+}
+
+.session-links a {
+    margin-right: 10px;
+}
