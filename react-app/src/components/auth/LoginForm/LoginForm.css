@@ -1,0 +1,48 @@
+.form-container {
+    background: rgba(34, 34, 34, .25);
+    min-height: 100%;
+    min-width: 30%;
+    position: fixed;
+    top: 105px;
+    left: 50px;
+}
+
+.logo-div {
+    background-color: #EEEEEE;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    margin: 0px 0px 0px -10px;
+}
+
+.logo-div h2 {
+    margin-left: 150px;
+}
+
+.login-form div {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+}
+
+.email-input, .password-input {
+    background-color: white;
+    border-radius: 5px;
+    width: 350px;
+    height: 30px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+}
+
+.submit-button {
+    width: 350px;
+    margin-top: 20px;
+    background-color: #faac18;
+    border-radius: 5px;
+    border: 1px solid #e5991e;
+    color: white;
+    padding: 10px;
+}
