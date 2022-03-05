@@ -33,13 +33,57 @@ def seed_steps():
         content='Both of these commands should show 3.9.4',
         media_url=''
         )
-    
+
+    deploy_heroku_step_1 = Step(
+        cheatsheet_id=2,
+        title='Step 1',
+        content='Log into Heroku',
+        media_url=''
+        )
+    deploy_heroku_step_2 = Step(
+        cheatsheet_id=2,
+        title='Step 2',
+        content='After creating your Heroku app, navigate to the Resources tab and set up a Heroku Postgres database for your application. Select Hobby Dev - Free plan.',
+        media_url=''
+        )
+    deploy_heroku_step_3 = Step(
+        cheatsheet_id=2,
+        title='Step 3',
+        content='Go to settings, click `Reveal Config Vars`, and input in JWT_SECRET in the key then input in your secret key into the value.',
+        media_url=''
+        )
+    deploy_heroku_step_4 = Step(
+        cheatsheet_id=2,
+        title='Step 4',
+        content='Configure your app to use the Heroku Postgres database',
+        media_url=''
+        )
+    deploy_heroku_step_5 = Step(
+        cheatsheet_id=2,
+        title='Step 5',
+        content='In your root directory of your app, run `heroku login` -> `heroku git:remote -a «your-app-name»` -> `git commit -am <<your commit message>>` -> `git push heroku`',
+        media_url=''
+        )
+    deploy_heroku_step_6 = Step(
+        cheatsheet_id=2,
+        title='Step 6',
+        content='Run migrations on Heroku with `heroku run npx sequelize-cli db:migrate` -> `heroku run npx sequelize-cli db:seed:all`',
+        media_url=''
+        )
 
     db.session.add(python_itself_step_1)
     db.session.add(python_itself_step_2)
     db.session.add(python_itself_step_3)
     db.session.add(python_itself_step_4)
     db.session.add(python_itself_step_5)
+
+    db.session.add(deploy_heroku_step_1)
+    db.session.add(deploy_heroku_step_2)
+    db.session.add(deploy_heroku_step_3)
+    db.session.add(deploy_heroku_step_4)
+    db.session.add(deploy_heroku_step_5)
+    db.session.add(deploy_heroku_step_6)
+
 
     db.session.commit()
 
