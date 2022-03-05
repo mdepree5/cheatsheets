@@ -5,13 +5,7 @@ import { useEffect, useState } from 'react';
 
 import './Cheatsheet.css';
 
-export const SpacedLine = ({width, margin=null}) => (
-  <>
-    <br />
-    <div style={{width:`${width}`, margin:`${margin}`}} className="line" />
-    <br />
-  </>
-)
+export const SpacedLine = ({width, margin=null}) => (<><br /><div style={{width:`${width}`, margin:`${margin}`}} className="line" /><br /></>)
 
 
 const CheatsheetPage = () => { 
