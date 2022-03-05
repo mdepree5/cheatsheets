@@ -10,9 +10,16 @@ def seed_cheatsheets():
         dependencies='Have pyenv pre-installed.',
         media_url='https://portswigger.net/cms/images/cc/df/f173-article-211203-python-body-text.png'
         )
+    deploy_heroku = Cheatsheet(
+        owner_id=2,
+        title='Deploying to Heroku',
+        description='We will be deploying an app with an Express backend',
+        dependencies='Have Heroku CLI installed, and a heroku account',
+        media_url='https://www.fullstackpython.com/img/logos/heroku.png'
+        )
 
     db.session.add(python_itself)
-
+    db.session.add(deploy_heroku)
     db.session.commit()
 
 
