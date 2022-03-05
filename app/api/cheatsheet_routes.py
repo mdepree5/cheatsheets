@@ -3,12 +3,12 @@ import psycopg2
 from app.forms.cheatsheet_form import CheatsheetForm
 from app.models import Cheatsheet, Comment, User, db
 
-cheatsheets_router = Blueprint('cheatsheets', __name__, url_prefix='/cheatsheets')
+cheatsheet_routes = Blueprint('cheatsheets', __name__)
 
 # todo ——————————————————————————————————————————————————————————————————————————————————
 # todo                               Cheatsheet Routes
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@cheatsheets_router.route("/new_cheatsheet", methods=["GET", "POST"])
+@cheatsheet_routes.route("/new_cheatsheet", methods=["GET", "POST"])
 def create_cheatsheet():
   form = CheatsheetForm()
   print(f'form: {form}')                                                         # * print
@@ -30,7 +30,7 @@ def create_cheatsheet():
   if form.errors:
     return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@cheatsheets_router.route("/all", methods=["GET"])
+@cheatsheet_routes.route("/all", methods=["GET"])
 def get_all_cheatsheets():
   all_cheatsheets = Cheatsheet.query.all()
   print(f'all cheatsheets: {all_cheatsheets}')                                   # * print
@@ -41,19 +41,15 @@ def get_all_cheatsheets():
   
   return {"all_cheatsheets": [cheatsheet.to_dict() for cheatsheet in all_cheatsheets]}
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@cheatsheets_router.route("/<int:cheatsheetId>", methods=["GET"])
-def get_one_cheatsheet(id):
-  one_cheatsheet = Cheatsheet.query.get(id)
-  # all_comments_by_cheatsheet_id = Comment.query.get(id)
-  # all_steps_by_cheatsheet_id = Step.query.get(id)
+@cheatsheet_routes.route("/<int:cheatsheetId>", methods=["GET"])
+def get_one_cheatsheet(cheatsheetId):
+  one_cheatsheet = Cheatsheet.query.get(cheatsheetId)
   
-  print(f'get one cheatsheet: {one_cheatsheet}')                                  #* print
-  # print(f'get all comments for one cheatsheet: {all_comments_by_cheatsheet_id}')  #* print                                  #* print
-  # print(f'get all steps for one cheatsheet: {all_steps_by_cheatsheet_id}')        #* print                                  #* print
+  print(f'get one cheatsheet: {one_cheatsheet}')                                  #* print                                  #* print
 
   return {"cheatsheet": one_cheatsheet.to_dict()}
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@cheatsheets_router.route("/<int:cheatsheetId>", methods=['PUT'])
+@cheatsheet_routes.route("/<int:cheatsheetId>", methods=['PUT'])
 def update_cheatsheet(id):
   form = CheatsheetForm()
 
@@ -71,7 +67,7 @@ def update_cheatsheet(id):
 
   return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@cheatsheets_router.route("/<int:cheatsheetId>", methods=['DELETE'])
+@cheatsheet_routes.route("/<int:cheatsheetId>", methods=['DELETE'])
 def delete_cheatsheet(id):
   cheatsheet = Cheatsheet.query.get(id)
   db.session.delete(cheatsheet)
