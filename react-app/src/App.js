@@ -43,13 +43,16 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/upload' exact={true} >
-          <UploadPicture />
-        </Route>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
           <CheatsheetPage/>
         </ProtectedRoute>
+
+
+        {/* test route to check if we are able to upload to aws */}
+        <Route path='/upload' >
+          <UploadPicture />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
