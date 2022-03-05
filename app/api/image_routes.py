@@ -1,5 +1,4 @@
 from flask import Blueprint, request
-from app.models import db, Image
 from flask_login import current_user, login_required
 from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
 
@@ -18,10 +17,8 @@ def upload_image():
         return {"errors": "file type not permitted"}, 400
 
     image.filename = get_unique_filename(image.filename)
-    print('@@@@@', image.filename)
 
     upload = upload_file_to_s3(image)
-    print('&&&&&&&&&&&&&&&&&&&',upload)
 
     if "url" not in upload:
         # if the dictionary doesn't have a filename key
@@ -29,16 +26,11 @@ def upload_image():
         # so we send back that error message
         return upload, 400
 
-    url = upload["url"]
-  
-    new_image = Image(user=current_user, url=url)
-    db.session.add(new_image)
-    db.session.commit()
 
-    return {"url": url}
+    return {"url": upload["url"]}
 
 
-@image_routes.route("")
-def get_all_images():
-    images = Image.query.order_by(Image.id.desc()).all()
-    return {"images": [image.to_dict() for image in images]}
+# @image_routes.route("")
+# def get_all_images():
+#     images = Image.query.order_by(Image.id.desc()).all()
+#     return {"images": [image.to_dict() for image in images]}
