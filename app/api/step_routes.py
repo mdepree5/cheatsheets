@@ -1,16 +1,16 @@
 from flask import Blueprint, render_template, redirect
 import psycopg2
-from app.forms.step_form import NewStepForm
+from app.forms.step_form import StepForm
 from app.models import Step, User, db
 
-steps_router = Blueprint('steps', __name__, url_prefix='/steps')
+step_routes = Blueprint('steps', __name__)
 
 # todo ——————————————————————————————————————————————————————————————————————————————————
 # todo                               steps Routes
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@steps_router.route("/new_step", methods=["GET", "POST"])
+@step_routes.route("/new_step", methods=["GET", "POST"])
 def create_step():
-  form = NewStepForm()
+  form = StepForm()
   print(f'form: {form}')                                                         # * print
   if form.validate_on_submit():
     print(f'form data: {form.data}')
@@ -29,9 +29,9 @@ def create_step():
   if form.errors:
     return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@steps_router.route("/<int:stepId>", methods=['PUT'])
+@step_routes.route("/<int:stepId>", methods=['PUT'])
 def update_step(id):
-  form = NewStepForm()
+  form = StepForm()
   
   if form.validate_on_submit():
     step = Step.query.get(id)
@@ -46,7 +46,7 @@ def update_step(id):
 
   return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@steps_router.route("/<int:stepId>", methods=['DELETE'])
+@step_routes.route("/<int:stepId>", methods=['DELETE'])
 def delete_step(id):
   step = Step.query.get(id)
   db.session.delete(step)

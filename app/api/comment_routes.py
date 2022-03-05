@@ -3,12 +3,12 @@ import psycopg2
 from app.forms.comment_form import CommentForm
 from app.models import Comment, User, db
 
-comments_router = Blueprint('comments', __name__, url_prefix='/comments')
+comment_routes = Blueprint('comments', __name__)
 
 # todo ——————————————————————————————————————————————————————————————————————————————————
 # todo                               Comments Routes
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@comments_router.route("/new_comment", methods=["GET", "POST"])
+@comment_routes.route("/new_comment", methods=["GET", "POST"])
 def new_comment():
   form = CommentForm()
   print(f'form: {form}')                                                         # * print
@@ -28,7 +28,7 @@ def new_comment():
   if form.errors:
     return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@comments_router.route("/<int:commentId>", methods=['PUT'])
+@comment_routes.route("/<int:commentId>", methods=['PUT'])
 def update_comment(id):
   form = CommentForm()
 
@@ -44,7 +44,7 @@ def update_comment(id):
 
   return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@comments_router.route("/<int:commentId>", methods=['DELETE'])
+@comment_routes.route("/<int:commentId>", methods=['DELETE'])
 def delete_comment(id):
   comment = Comment.query.get(id)
   db.session.delete(comment)
