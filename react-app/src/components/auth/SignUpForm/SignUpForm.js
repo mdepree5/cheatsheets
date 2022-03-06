@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../../store/session';
+import { Redirect, useHistory } from 'react-router-dom';
+import { signUp, login } from '../../../store/session';
 import './SignUpForm.css'
 
 const SignUpForm = () => {
@@ -12,6 +12,15 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory()
+  const demoUser = { email: 'demo@aa.io', password: 'password' };
+
+  const handleDemo = (demo) => {
+    const { email, password } = demo
+    dispatch(login(email, password));
+    history.push('/');
+  }
+
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -89,6 +98,7 @@ const SignUpForm = () => {
               required={true}
             ></input>
           <button className='submit-button' type='submit'>Sign Up</button>
+          <button className='signup-demo-button' onClick={() => handleDemo(demoUser)}>Demo</button>
         </form>
       </div>
     </div>

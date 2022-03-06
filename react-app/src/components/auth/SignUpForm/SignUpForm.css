@@ -46,10 +46,22 @@
     border: 1px solid #e5991e;
     color: white;
     padding: 10px;
+    cursor: pointer;
 }
 
 input[type=text], input[type=email], input[type=password] {
     color: grey;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 400;
+}
+
+.signup-demo-button {
+    width: 360px;
+    margin-top: 20px;
+    background-color: #faac18;
+    border-radius: 5px;
+    border: 1px solid #e5991e;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
 }

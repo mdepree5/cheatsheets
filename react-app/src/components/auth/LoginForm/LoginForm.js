@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { login } from '../../../store/session';
 import './LoginForm.css'
 
@@ -10,6 +10,14 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const demoUser = { email: 'demo@aa.io', password: 'password' };
+
+  const handleDemo = (demo) => {
+    const { email, password } = demo
+    dispatch(login(email, password));
+    history.push('/');
+  }
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -61,6 +69,7 @@ const LoginForm = () => {
               onChange={updatePassword}
             />
             <button className='submit-button' type='submit'>Login</button>
+            <button className='login-demo-button' onClick={() => handleDemo(demoUser)}>Demo</button>
           </div>
         </form>
       </div>

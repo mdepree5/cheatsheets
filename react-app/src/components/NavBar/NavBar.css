@@ -1,5 +1,5 @@
 * {
-    font-family: 'helvetica-neue';
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .navbar {
@@ -12,13 +12,18 @@
 
 .navbar li {
     display: inline;
-    margin-left: 5px;
+    margin-left: 100px;
 }
 
 .navbar li a {
     color: #CCCCCC;
     list-style: none;
     text-decoration: none;
+}
+
+.login-signup-links {
+    margin-right: 60px;
+    margin-top: 3px;
 }
 
 .session-links {
