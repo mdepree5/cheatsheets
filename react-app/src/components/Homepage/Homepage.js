@@ -25,7 +25,7 @@ const Homepage = () => {
             </div>
 
             <div id="explore_container">
-
+                <h2>Explore Cheatsheets</h2>
             </div>
         </>
     )
