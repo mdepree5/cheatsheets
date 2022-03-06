@@ -29,7 +29,6 @@ def get_unique_filename(filename):
 
 def upload_file_to_s3(file, acl="public-read"):
     try:
-        print('from upload function try: part')
         s3.upload_fileobj(
             file,
             BUCKET_NAME,
@@ -39,9 +38,9 @@ def upload_file_to_s3(file, acl="public-read"):
                 "ContentType": file.content_type
             }
         )
-        print('after try segment')
+
     except Exception as e:
         # in case the our s3 upload fails
-        return {"errors": str(e) + ' something went wrong'}
+        return {"errors": str(e)}
 
     return {"url": f"{S3_LOCATION}{file.filename}"}
