@@ -57,9 +57,12 @@ const SignUpForm = () => {
       <div className='logo-div'>
         <h2>Cheatsheets</h2>
       </div>
+      <div className='img-container'>
+        <img className='background-img' src='https://www.multidots.com/wp-content/uploads/2020/01/code-quality-standard.png?quality=90' alt='coding-img'/>
+      </div>
       <div className='form-container'>
         <form className='signup-form' onSubmit={onSignUp}>
-          <div>
+          <div className='errors-div'>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}

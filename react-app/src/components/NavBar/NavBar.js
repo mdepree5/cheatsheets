@@ -24,7 +24,7 @@ const NavBar = () => {
 
   }
   return (
-    <nav>
+    <nav className='nav-container'>
       <ul className='navbar'>
         <li className='home'>
           <NavLink to='/' exact={true} activeClassName='active'>

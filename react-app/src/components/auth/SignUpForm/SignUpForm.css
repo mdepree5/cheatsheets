@@ -13,6 +13,7 @@
     position: fixed;
     width: 100%;
     margin: 0px 0px 0px -10px;
+    z-index: 4;
 }
 
 .logo-div h2 {
@@ -38,7 +39,7 @@
     padding: 5px;
 }
 
-.submit-button {
+.submit-button, .signup-demo-button {
     width: 360px;
     margin-top: 20px;
     background-color: #faac18;
@@ -47,6 +48,7 @@
     color: white;
     padding: 10px;
     cursor: pointer;
+    font-size: 18px;
 }
 
 input[type=text], input[type=email], input[type=password] {
@@ -55,13 +57,19 @@ input[type=text], input[type=email], input[type=password] {
     font-weight: 400;
 }
 
-.signup-demo-button {
-    width: 360px;
-    margin-top: 20px;
-    background-color: #faac18;
-    border-radius: 5px;
-    border: 1px solid #e5991e;
-    color: white;
-    padding: 10px;
-    cursor: pointer;
+.errors-div div {
+    margin-top: 10px;
+    color: red;
+}
+
+.errors-div {
+    padding: 30px;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.background-img {
+    height: 1000px;
+    position: fixed;
+    width: 100%;
 }
