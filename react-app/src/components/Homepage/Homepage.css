@@ -1,0 +1,35 @@
+.carousel{
+   display: flex;
+   height: 400px;
+   justify-content: center;
+
+}
+
+.carousel_img{
+    background-position: center;
+    height: 400px;
+    width: 100%;
+}
+
+.home_content_text_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.text_box{
+    flex-direction: column;
+    width: 20%;
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+
+.seperator{
+    border-top-color: #ccc;
+    margin: 15px 2.5vw 30px;
+}
+
+.explore_container {
+
+}
