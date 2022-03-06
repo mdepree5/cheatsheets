@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import Homepage from './components/Homepage/Homepage.js';
 
 
 import CheatsheetPage from './components/Cheatsheet';
@@ -34,19 +35,28 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
+
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
+
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
           <CheatsheetPage/>
         </ProtectedRoute>
+
+        <Route path='/home'>
+          <Homepage />
+        </Route>
+
       </Switch>
     </BrowserRouter>
   );
