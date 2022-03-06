@@ -24,3 +24,12 @@
     padding-top: 30px;
     margin-bottom: 30px;
 }
+
+.seperator{
+    border-top-color: #ccc;
+    margin: 15px 2.5vw 30px;
+}
+
+.explore_container {
+
+}

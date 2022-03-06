@@ -24,6 +24,8 @@ const Homepage = () => {
                 </div>
             </div>
 
+            <hr className="seperator"/>
+
             <div id="explore_container">
                 <h2>Explore Cheatsheets</h2>
             </div>
