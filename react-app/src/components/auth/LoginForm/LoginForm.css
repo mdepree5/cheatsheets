@@ -25,7 +25,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 150px;
+    margin-top: 180px;
 }
 
 .email-input, .password-input {
@@ -35,14 +35,22 @@
     height: 30px;
     margin-top: 20px;
     border: 1px solid #ccc;
+    padding: 5px;
 }
 
 .submit-button {
-    width: 350px;
+    width: 360px;
     margin-top: 20px;
     background-color: #faac18;
     border-radius: 5px;
     border: 1px solid #e5991e;
     color: white;
     padding: 10px;
+}
+
+
+input[type=text], input[type=email], input[type=password] {
+    color: grey;
+    font-family: 'helvetica';
+    font-weight: 400;
 }
