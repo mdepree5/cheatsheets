@@ -8,7 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-
+import UploadPicture from './components/test_uploadPicture/test_uploadPicture.js';
 
 import CheatsheetPage from './components/Cheatsheet';
 
@@ -47,6 +47,12 @@ function App() {
           <h1>My Home Page</h1>
           <CheatsheetPage/>
         </ProtectedRoute>
+
+
+        {/* test route to check if we are able to upload to aws */}
+        <Route path='/upload' >
+          <UploadPicture />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
