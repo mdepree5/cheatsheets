@@ -42,6 +42,9 @@ app.register_blueprint(image_routes, url_prefix='/api/images')
 db.init_app(app)
 Migrate(app, db)
 
+
+
+
 # Application Security
 CORS(app)
 
