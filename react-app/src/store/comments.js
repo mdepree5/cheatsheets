@@ -47,8 +47,8 @@ export const addComment = (payload) => async (dispatch) => {
     }
 }
 
-export const deleteComment = (commentId) => async (dispatch) => {
-    const response = await fetch(`/api/comments/${commentId}`, {
+export const deleteComment = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/${payload.cheatsheetId}/comments/${payload.commentId}`, {
         method: 'DELETE'
     })
 
