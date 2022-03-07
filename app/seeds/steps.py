@@ -70,7 +70,27 @@ def seed_steps():
         content='Run migrations on Heroku with `heroku run npx sequelize-cli db:migrate` -> `heroku run npx sequelize-cli db:seed:all`',
         media_url=''
         )
-
+    
+    install_postgresql_12_mac_step_1 = Step(
+        cheatsheet_id=2,
+        title='Step 1',
+        content="Update Homebrew installation with 'brew update'",
+        media_url=''
+        )
+    install_postgresql_12_mac_step_2 = Step(
+        cheatsheet_id=2,
+        title='Step 2',
+        content="Run 'brew info postgresql' and verify the output displays some version of 'postgresql 12.'",
+        media_url=''
+        )
+    install_postgresql_12_mac_step_3 = Step(
+        cheatsheet_id=2,
+        title='Step 3',
+        content="Install by running 'brew install postgresql'",
+        media_url=''
+        )
+    
+    
     db.session.add(python_itself_step_1)
     db.session.add(python_itself_step_2)
     db.session.add(python_itself_step_3)
@@ -84,6 +104,10 @@ def seed_steps():
     db.session.add(deploy_heroku_step_5)
     db.session.add(deploy_heroku_step_6)
 
+    db.session.add(install_postgresql_12_mac_step_1)
+    db.session.add(install_postgresql_12_mac_step_2)
+    db.session.add(install_postgresql_12_mac_step_3)
+    
 
     db.session.commit()
 
