@@ -28,6 +28,18 @@ const Homepage = () => {
 
             <div id="explore_container">
                 <h2>Explore Cheatsheets</h2>
+                <div className="cheatsheets_container">
+                    <div className="cheatsheet_box">some project</div>
+                    <div className="cheatsheet_box">some project</div>
+                    <div className="cheatsheet_box">some project</div>
+                    <div className="cheatsheet_box">some project</div>
+                    <div className="cheatsheet_box">some project</div>
+                    <div className="cheatsheet_box">some project</div>
+                    <div className="cheatsheet_box">some project</div>
+                    <div className="cheatsheet_box">some project</div>
+                    <div className="cheatsheet_box">some project</div>
+                    <div className="cheatsheet_box">some project</div>
+                </div>
             </div>
         </>
     )
