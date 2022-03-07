@@ -50,12 +50,11 @@ function App() {
         </ProtectedRoute>
 
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-          <CheatsheetPage/>
+          <Homepage />
         </ProtectedRoute>
 
-        <Route path='/home'>
-          <Homepage />
+        <Route path='/cheatsheets/:cheatsheetId'>
+          <CheatsheetPage/>
         </Route>
 
         {/* test route to check if we are able to upload to aws */}
