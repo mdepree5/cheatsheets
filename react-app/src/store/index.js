@@ -1,13 +1,14 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
+import cheatsheet from './cheatsheet'
 import commentReducer from './comments';
 
 const rootReducer = combineReducers({
   session,
   commentState: commentReducer,
+  cheatsheet,
 });
-
 
 let enhancer;
 

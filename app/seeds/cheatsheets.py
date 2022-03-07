@@ -39,3 +39,4 @@ def seed_cheatsheets():
 def undo_cheatsheets():
     db.session.execute('TRUNCATE cheatsheets RESTART IDENTITY CASCADE;')
     db.session.commit()
+
