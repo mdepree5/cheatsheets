@@ -85,8 +85,7 @@ const cheatsheetReducer = (state = initialState, action) => {
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case GET_ONE: {
       const newState = {...state};
-      newState[action.cheatsheet.cheatsheet.id] = action.cheatsheet.cheatsheet;
-      console.log('id', action.cheatsheet.cheatsheet.id);
+      newState[action.cheatsheet.id] = action.cheatsheet;
       return newState;
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————

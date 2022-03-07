@@ -47,8 +47,7 @@ def get_all_cheatsheets():
 def get_one_cheatsheet(cheatsheetId):
   one_cheatsheet = Cheatsheet.query.get(cheatsheetId)
 
-  return {"cheatsheet": one_cheatsheet.to_dict()}
-  # return {"cheatsheet": one_cheatsheet.to_dict()}
+  return {**one_cheatsheet.to_dict()}
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=['PUT'])
 @login_required
