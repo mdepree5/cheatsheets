@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css';
+import logo from '../../images/logo-no-bg .png';
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -38,7 +39,9 @@ const NavBar = () => {
 
       <ul className='navbar_bottom'>
         <li className='logo'>
-          <NavLink to='/'>CheatSheets</NavLink>
+
+          <NavLink to='/'><img src={logo} alt='logo' style={{height:'40px'}}/></NavLink>
+//           <NavLink to='/'>CheatSheets</NavLink>
         </li>
         <li className='navbar_right'>
           <button className='publish_btn'>publish</button>
