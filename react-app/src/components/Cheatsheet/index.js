@@ -18,6 +18,9 @@ const CheatsheetPage = () => {
 
   const cheatsheet = useSelector(state => state?.cheatsheet[cheatsheetId]);
   useEffect(() => {dispatch(getCheatsheet(cheatsheetId))}, [dispatch, cheatsheetId])
+  
+  console.log('hey')
+  console.log(cheatsheet)
 
   return (
     <div>
