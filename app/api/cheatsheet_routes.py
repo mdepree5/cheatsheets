@@ -9,7 +9,7 @@ cheatsheet_routes = Blueprint('cheatsheets', __name__)
 # todo ——————————————————————————————————————————————————————————————————————————————————
 # todo                               Cheatsheet Routes
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@cheatsheet_routes.route("/new_cheatsheet", methods=["GET", "POST"])
+@cheatsheet_routes.route("/new_cheatsheet", methods=["POST"])
 @login_required
 def create_cheatsheet():
   form = CheatsheetForm()
@@ -17,7 +17,7 @@ def create_cheatsheet():
   if form.validate_on_submit():
     print(f'form data: {form.data}')
     new_cheatsheet = Cheatsheet(
-      owner_id = current_user.id,
+      owner_id = form.data['owner_id'],
       title = form.data['title'],
       description = form.data['description'],
       dependencies = form.data['dependencies'],
