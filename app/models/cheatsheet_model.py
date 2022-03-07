@@ -13,11 +13,10 @@ class Cheatsheet(db.Model):
   created_at = db.Column(db.DateTime(), nullable=False, default=datetime.now())
   updated_at = db.Column(db.DateTime(), nullable=True, default=datetime.now())
 
-  # one to many with users
+  # one to many with users, steps, comments
   users = db.relationship("User", back_populates="cheatsheets")
-
-  comments = db.relationship("Comment", back_populates="cheatsheets")
   steps = db.relationship("Step", back_populates="cheatsheets")
+  comments = db.relationship("Comment", back_populates="cheatsheets")
 
   def to_dict(self):
     return {
@@ -29,4 +28,6 @@ class Cheatsheet(db.Model):
       "media_url": self.media_url,
       "created_at": self.created_at,
       "updated_at": self.updated_at,
+      'comments': {comment.id: comment.to_dict() for comment in self.comments},
+      'steps': {step.id: step.to_dict() for step in self.steps},
     }
