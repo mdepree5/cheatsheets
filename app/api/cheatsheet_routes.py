@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, redirect
+from flask_login import login_required, current_user
 import psycopg2
 from app.forms.cheatsheet_form import CheatsheetForm
 from app.models import Cheatsheet, Comment, User, db
@@ -9,13 +10,14 @@ cheatsheet_routes = Blueprint('cheatsheets', __name__)
 # todo                               Cheatsheet Routes
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/new_cheatsheet", methods=["GET", "POST"])
+@login_required
 def create_cheatsheet():
   form = CheatsheetForm()
   print(f'form: {form}')                                                         # * print
   if form.validate_on_submit():
     print(f'form data: {form.data}')
     new_cheatsheet = Cheatsheet(
-      owner_id = form.data['owner_id'],                      #! => request Json userId????
+      owner_id = current_user.id,
       title = form.data['title'],
       description = form.data['description'],
       dependencies = form.data['dependencies'],
@@ -44,18 +46,17 @@ def get_all_cheatsheets():
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=["GET"])
 def get_one_cheatsheet(cheatsheetId):
   one_cheatsheet = Cheatsheet.query.get(cheatsheetId)
-  
-  print(f'get one cheatsheet: {one_cheatsheet}')                                  #* print
 
-  return {"cheatsheet": one_cheatsheet.to_dict()}
+  return {**one_cheatsheet.to_dict()}
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=['PUT'])
+@login_required
 def update_cheatsheet(id):
   form = CheatsheetForm()
 
   if form.validate_on_submit():
     cheatsheet = Cheatsheet.query.get(id)
-    cheatsheet.owner_id = form.data['owner_id']
+    # cheatsheet.owner_id = form.data['owner_id']
     cheatsheet.title = form.data['title']
     cheatsheet.description = form.data['description']
     cheatsheet.dependencies = form.data['dependencies']
@@ -68,6 +69,7 @@ def update_cheatsheet(id):
   return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=['DELETE'])
+@login_required
 def delete_cheatsheet(id):
   cheatsheet = Cheatsheet.query.get(id)
   db.session.delete(cheatsheet)
