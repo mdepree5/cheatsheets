@@ -38,7 +38,7 @@ const NavBar = () => {
 
       <ul className='navbar_bottom'>
         <li className='logo'>
-          <NavLink to='/'>CheatSheets logo</NavLink>
+          <NavLink to='/'>CheatSheets</NavLink>
         </li>
         <li className='navbar_right'>
           <button className='publish_btn'>publish</button>
