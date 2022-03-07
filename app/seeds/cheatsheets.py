@@ -17,9 +17,17 @@ def seed_cheatsheets():
         dependencies='Have Heroku CLI installed, and a heroku account',
         media_url='https://www.fullstackpython.com/img/logos/heroku.png'
         )
+    install_postgresql_12_mac = Cheatsheet(
+        owner_id=3,
+        title='Installing PostgreSQL 12',
+        description='We will install PostgreSQL 12 on macOS',
+        dependencies='Own a machine capable of running macOS',
+        media_url='https://s3-us-east-2.amazonaws.com/blog-ghost-prod/2021/02/why-use-postgresql-database68__1_.jpg'
+        )
 
     db.session.add(python_itself)
     db.session.add(deploy_heroku)
+    db.session.add(install_postgresql_12_mac)
     db.session.commit()
 
 

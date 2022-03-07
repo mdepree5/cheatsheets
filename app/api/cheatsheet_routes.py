@@ -45,7 +45,7 @@ def get_all_cheatsheets():
 def get_one_cheatsheet(cheatsheetId):
   one_cheatsheet = Cheatsheet.query.get(cheatsheetId)
   
-  print(f'get one cheatsheet: {one_cheatsheet}')                                  #* print                                  #* print
+  print(f'get one cheatsheet: {one_cheatsheet}')                                  #* print
 
   return {"cheatsheet": one_cheatsheet.to_dict()}
 # todo ——————————————————————————————————————————————————————————————————————————————————

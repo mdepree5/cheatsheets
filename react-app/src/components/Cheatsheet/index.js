@@ -23,6 +23,7 @@ const CheatsheetPage = () => {
     })();
   }, []);
 
+  
 
   const [editorState, setEditorState]= useState('')
   const CheatsheetPage = ({children}) => <div className='page-container'>{children}</div>
@@ -40,6 +41,8 @@ const CheatsheetPage = () => {
     <CheatsheetPage>
       
       <SpacedLine width='75%'/>
+
+      <div>{}</div>
 
       <StepPlaceholder>Step 1: Git clone </StepPlaceholder>
       <StepPlaceholder>Step 2: Install dependencies </StepPlaceholder>
