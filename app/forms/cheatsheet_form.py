@@ -6,9 +6,9 @@ v = [DataRequired()]
 
 class CheatsheetForm(FlaskForm):
   owner_id = IntegerField('owner_id')
-  title = StringField('Title', v)
-  description = StringField('Description')
-  dependencies = StringField('Dependencies')
+  title = StringField('title', v)
+  description = StringField('description')
+  dependencies = StringField('dependencies')
   media_url = StringField('media_url')
   
-  submit = SubmitField("Submit")
+  submit = SubmitField("submit")
