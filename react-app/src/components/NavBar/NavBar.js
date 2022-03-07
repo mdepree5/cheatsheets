@@ -12,7 +12,7 @@ const NavBar = () => {
     sessionLinks = <LogoutButton />;
   } else {
     sessionLinks = (
-      <div>
+      <div className='login-signup-links'>
         <NavLink to='/login' exact={true} activeClassName='active'>
           Login
         </NavLink>
@@ -24,7 +24,7 @@ const NavBar = () => {
 
   }
   return (
-    <nav>
+    <nav className='nav-container'>
       <ul className='navbar'>
         <li className='home'>
           <NavLink to='/' exact={true} activeClassName='active'>
