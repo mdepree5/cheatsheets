@@ -14,8 +14,15 @@ def seed_comments():
         content='Now I know how to set up python.',
         )
 
+    git_comment_1 = Comment(
+        writer_id=1,
+        cheatsheet_id=4,
+        content='THat helped me to get started, thank you!',
+        )
+
     db.session.add(python_itself_comment_1)
     db.session.add(python_itself_comment_2)
+    db.session.add(git_comment_1)
 
     db.session.commit()
 

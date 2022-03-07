@@ -24,10 +24,19 @@ def seed_cheatsheets():
         dependencies='Own a machine capable of running macOS',
         media_url='https://s3-us-east-2.amazonaws.com/blog-ghost-prod/2021/02/why-use-postgresql-database68__1_.jpg'
         )
+    simple_git = Cheatsheet(
+        owner_id=4,
+        title='Simple Git',
+        description='Here is a simple Git',
+        dependencies='Have a GitHub account',
+        media_url='https://miro.medium.com/max/1400/1*jxvFpD7E00qsfY7PQzd5aA.png'
+        )
+
 
     db.session.add(python_itself)
     db.session.add(deploy_heroku)
     db.session.add(install_postgresql_12_mac)
+    db.session.add(simple_git)
     db.session.commit()
 
 
