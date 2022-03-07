@@ -34,7 +34,6 @@ const CheatsheetForm = () => {
       if(data && data.errors) setErrors(data.errors)
     })
     
-    alert('cheatsheet successfully created');
     console.log(newCheatsheet);
 
     return newCheatsheet;
