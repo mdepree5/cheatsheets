@@ -26,6 +26,12 @@ const CheatsheetPage = () => {
   console.log('hey')
   console.log(cheatsheet)
 
+  const comments = cheatsheet?.comments
+  const steps = cheatsheet?.steps
+
+  console.log(comments)
+  console.log(steps)
+
   return (
     <div>
       <div style={{height: '200px'}}></div>
@@ -35,7 +41,10 @@ const CheatsheetPage = () => {
       <h2>Title: {cheatsheet?.title}</h2>
       <div>Description: {cheatsheet?.description}</div>
       <div>Dependencies: {cheatsheet?.dependencies}</div>
-      <img src={cheatsheet?.media_url} alt="cheatsheet" />
+      <img style={{height:'100px', width:'150px'}} src={cheatsheet?.media_url} alt="cheatsheet" />
+      {/* <div>{comments?.map(comment => (<div key={comment?.id} >{comment?.content}</div>))}</div>
+      <div>{steps?.map(step => (<div key={step?.id} >{step?.title} {step?.content}</div>))}</div> */}
+      
 
       <div style={{height: '200px', border:'solid 1px black' }}>Steps go here:</div>
 
