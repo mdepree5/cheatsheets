@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 // import { Editor } from "react-draft-wysiwyg";
 // import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { useEffect, useState } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {getCheatsheet} from '../../store/cheatsheet';
 
 import './Cheatsheet.css';
 
@@ -9,19 +11,27 @@ export const SpacedLine = ({width, margin=null}) => (<><br /><div style={{width:
 
 
 const CheatsheetPage = () => { 
+  const dispatch = useDispatch();
+  const {cheatsheetId} = useParams();
 
-  const cheatsheetId = 1;
+  const cheatsheet = useSelector(state => state?.cheatsheet);
+  useEffect(() => {dispatch(getCheatsheet(cheatsheetId))}, [dispatch, cheatsheetId])
 
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(`/api/cheatsheets/${cheatsheetId}`);
-      console.log(response);
-      const cheatsheet = await response.json();
-      console.log('cheatsheet');
-      console.log(cheatsheet);
-      alert(cheatsheet);
-    })();
-  }, []);
+  console.log('debugger');
+  console.log(cheatsheet);
+
+  
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const response = await fetch(`/api/cheatsheets/${cheatsheetId}`);
+  //     console.log(response);
+  //     const cheatsheet = await response.json();
+  //     console.log('cheatsheet');
+  //     console.log(cheatsheet);
+  //     alert(cheatsheet);
+  //   })();
+  // }, []);
 
   
 
@@ -33,7 +43,7 @@ const CheatsheetPage = () => {
 
 
   const addStep = () => {
-    alert('Step added')
+    
     setEditorState('')
   }
 
@@ -60,7 +70,7 @@ const CheatsheetPage = () => {
         /> */}
         <StepButtons>
           <br />
-          <button style={{color:'red'}} onClick={addStep}>Add Image Here</button>
+          <button style={{color:'red'}} onClick={(addStep)}>Add Image Here</button>
           <br />
           <button style={{color:'green'}} onClick={addStep}>Add Step</button>
         </StepButtons>
