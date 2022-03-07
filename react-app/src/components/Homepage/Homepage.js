@@ -4,7 +4,7 @@ import './Homepage.css'
 
 const Homepage = () => {
     return (
-        <>
+        <div className="homepage_body">
             <ImageCarousel />
 
             <div className="home_content_text_container">
@@ -41,7 +41,7 @@ const Homepage = () => {
                     <div className="cheatsheet_box">some project</div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
