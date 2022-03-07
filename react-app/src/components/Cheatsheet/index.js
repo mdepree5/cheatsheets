@@ -18,15 +18,9 @@ const CheatsheetPage = () => {
 
   const cheatsheet = useSelector(state => state?.cheatsheet[cheatsheetId]);
   useEffect(() => {dispatch(getCheatsheet(cheatsheetId))}, [dispatch, cheatsheetId])
-  
-  console.log('hey')
-  console.log(cheatsheet)
 
-  const comments = cheatsheet?.comments
-  const steps = cheatsheet?.steps
-
-  console.log(comments)
-  console.log(steps)
+  const comments = cheatsheet && Object.values(cheatsheet?.comments)
+  const steps = cheatsheet && Object.values(cheatsheet?.steps)
 
   return (
     <div>
@@ -38,11 +32,12 @@ const CheatsheetPage = () => {
       <div>Description: {cheatsheet?.description}</div>
       <div>Dependencies: {cheatsheet?.dependencies}</div>
       <img style={{height:'100px', width:'150px'}} src={cheatsheet?.media_url} alt="cheatsheet" />
-      {/* <div>{comments?.map(comment => (<div key={comment?.id} >{comment?.content}</div>))}</div>
-      <div>{steps?.map(step => (<div key={step?.id} >{step?.title} {step?.content}</div>))}</div> */}
+      <div>{comments?.map(comment => (<div key={comment?.id} >{comment?.content}</div>))}</div>
       
+      <div style={{height: '500px', border:'solid 1px black', color:'red'}}>TEMPORARY FORMAT FOR RENDER STEPS
+        <div>{steps?.map(step => (<div key={step?.id} >{step?.title} {step?.content}</div>))}</div>
+      </div>
 
-      <div style={{height: '200px', border:'solid 1px black' }}>Steps go here:</div>
 
       {/* <Comments /> */}
     </div>
