@@ -8,9 +8,7 @@ import './Cheatsheet.css';
 
 // import { Editor } from "react-draft-wysiwyg";
 // import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useEffect, useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {getCheatsheet} from '../../store/cheatsheet';
+
 
 const CheatsheetPage = () => {
   // const dispatch = useDispatch();
@@ -25,5 +23,6 @@ const CheatsheetPage = () => {
     </div>
   );
 
+}
 
 export default CheatsheetPage;

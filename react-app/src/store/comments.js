@@ -1,7 +1,7 @@
-const LOAD = '/:cheatsheetId/comments/LOAD';
-const ADD = '/:cheatsheetId/comments/ADD';
-const DELETE = '/:cheatsheetId/comments/:commentId/DELETE';
-const EDIT = '/:cheatsheetId/comments/:commentId/EDIT';
+const LOAD = '/comments/LOAD';
+const ADD = '/comments/ADD';
+const DELETE = '/comments/DELETE';
+const EDIT = '/comments/EDIT';
 
 const load = (comments) => ({
     type: LOAD,
@@ -24,7 +24,7 @@ const edit = (comment) => ({
 });
 
 export const getComment = (cheatsheetId) => async (dispatch) => {
-    const response = await fetch(`/api/comments`);
+    const response = await fetch(`/api/${cheatsheetId}/comments`);
     if (response.ok) {
         const comments = await response.json();
         dispatch(load(comments));
@@ -53,7 +53,7 @@ export const deleteComment = (payload) => async (dispatch) => {
     })
 
     if (response.ok) {
-        dispatch(remove(commentId));
+        dispatch(remove(payload.commentId));
         return;
     }
 }
@@ -80,6 +80,7 @@ const commentReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD:
             newState = { ...state };
+            console.log('from commentReducer@@@@@@@@@@@:',newState)
             action.comments.forEach((comment) => {
                 newState[comment.id] = comment;
             });
