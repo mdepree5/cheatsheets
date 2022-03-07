@@ -35,7 +35,19 @@ const NavBar = () => {
           {sessionLinks}
         </li>
       </ul>
+
+      <ul className='navbar_bottom'>
+        <li className='logo'>
+          <NavLink to='/'>CheatSheets logo</NavLink>
+        </li>
+        <li className='navbar_right'>
+          <button className='publish_btn'>publish</button>
+          <input className='search_bar' type="text" placeholder='search'></input>
+        </li>
+
+      </ul>
     </nav>
+
   );
 }
 
