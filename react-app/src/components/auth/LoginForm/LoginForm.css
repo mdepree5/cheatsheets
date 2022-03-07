@@ -76,7 +76,7 @@ input[type=text], input[type=email], input[type=password] {
 }
 
 .background-img {
-    height: 1000px;
+    min-height: 100%;
     position: fixed;
     width: 100%;
 }

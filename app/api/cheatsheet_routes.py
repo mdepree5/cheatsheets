@@ -21,10 +21,10 @@ def create_cheatsheet():
       dependencies = form.data['dependencies'],
       media_url = form.data['media_url']
     )
-    
+
     db.session.add(new_cheatsheet)
     db.session.commit()
-    
+
     return {new_cheatsheet.to_dict()}
 
   if form.errors:
@@ -34,17 +34,17 @@ def create_cheatsheet():
 def get_all_cheatsheets():
   all_cheatsheets = Cheatsheet.query.all()
   print(f'all cheatsheets: {all_cheatsheets}')                                   # * print
-  
+
   # * ———————————————————————————————
   # ? my_cheatsheets = Cheatsheet.query.filter(Cheatsheet.owner_id == current_user.id).all()
   # * ———————————————————————————————
-  
+
   return {"all_cheatsheets": [cheatsheet.to_dict() for cheatsheet in all_cheatsheets]}
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=["GET"])
 def get_one_cheatsheet(cheatsheetId):
   one_cheatsheet = Cheatsheet.query.get(cheatsheetId)
-  
+
   print(f'get one cheatsheet: {one_cheatsheet}')                                  #* print
 
   return {"cheatsheet": one_cheatsheet.to_dict()}
@@ -61,7 +61,7 @@ def update_cheatsheet(id):
     cheatsheet.dependencies = form.data['dependencies']
     cheatsheet.media_url = form.data['media_url']
     db.session.commit()
-    
+
     print(f'updated cheatsheet: {cheatsheet}')                                   # * print
     return {cheatsheet.to_dict()}
 
@@ -72,5 +72,5 @@ def delete_cheatsheet(id):
   cheatsheet = Cheatsheet.query.get(id)
   db.session.delete(cheatsheet)
   db.session.commit()
-  
+
   return 'Deleted cheatsheet.'
