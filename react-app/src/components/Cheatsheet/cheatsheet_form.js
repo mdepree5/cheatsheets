@@ -38,7 +38,7 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
         if(data && data.errors) setErrors(data.errors);
       })
   
-      console.log('CHEATSHEET_FORM', updatedCheatsheet)
+      if(updatedCheatsheet?.errors) setErrors(updatedCheatsheet?.errors);
       return closeModal(); 
     }
 
