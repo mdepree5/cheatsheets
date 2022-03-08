@@ -3,9 +3,13 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Comments from '../Comments/comments';
+import CheatsheetFormModal from './cheatsheet_modal';
+import {CheatsheetDeleteButton} from '../Buttons';
+
+import {getCheatsheet} from '../../store/cheatsheets';
+
 import Steps from '../Steps';
-import CheatsheetForm from './cheatsheet_form';
-import { getCheatsheet } from '../../store/cheatsheets';
+
 // import Comments from '../Comments/comments';
 import './Cheatsheet.css';
 import StepsFormModal from '../../components/Steps/StepsFormModal';
@@ -19,6 +23,8 @@ const CheatsheetPage = () => {
   const dispatch = useDispatch();
   const { cheatsheetId } = useParams();
   const sessionUser = useSelector((state) => state.session.user)
+
+  const sessionUser = useSelector((state) => state?.session?.user)
   // const commentObject = useSelector((state) => state.commentState.comments[cheatsheetId])
   // console.log('ALSFHASFHD', commentObject)
 
@@ -32,9 +38,15 @@ const CheatsheetPage = () => {
     modal = null;
   }
 
+
   return (
     <div>
-      <div style={{ height: '200px' }}></div>
+      <div style={{height: '200px'}}></div>
+      {sessionUser?.id === cheatsheet?.owner_id && (<>
+          <CheatsheetFormModal name='Edit Cheatsheet' edit={true} cheatsheet={cheatsheet}/>
+          <CheatsheetDeleteButton cheatsheetId={cheatsheet?.id}/>
+        </>)}
+      
       <h1 className='cheatsheet-title'>{cheatsheet?.title}</h1>
       <img className='cheatsheet-img' style={{ height: '100px', width: '150px' }} src={cheatsheet?.media_url} alt="cheatsheet" />
       <div className='cheatsheet-description'>Description: {cheatsheet?.description}</div>
