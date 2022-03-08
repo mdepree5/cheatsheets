@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Comments from '../Comments/comments';
-
+import Steps from '../Steps';
 import CheatsheetForm from './cheatsheet_form';
 import {getCheatsheet} from '../../store/cheatsheets';
 // import Comments from '../Comments/comments';
@@ -38,7 +38,7 @@ const CheatsheetPage = () => {
       <div className='cheatsheet-dependencies'>Dependencies: {cheatsheet?.dependencies}</div>
 
       <div style={{height: '500px', border:'solid 1px black', color:'red'}}>TEMPORARY FORMAT FOR RENDER STEPS
-        <div className='cheatsheet-steps'>{steps?.map(step => (<div key={step?.id} >{step?.title} {step?.content}</div>))}</div>
+        <Steps />
       </div>
       <Comments />
     </div>
