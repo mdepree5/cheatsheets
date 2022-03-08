@@ -7,15 +7,15 @@ const DELETE = 'cheatsheet/delete';
 const create = cheatsheet => ({ type: CREATE, cheatsheet });
 const getAll = cheatsheets => ({ type: GET_ALL, cheatsheets });
 const getOne = cheatsheet => ({ type: GET_ONE, cheatsheet });
-const update = cheatsheet => ({ type: UPDATE, cheatsheet }); 
+const update = cheatsheet => ({ type: UPDATE, cheatsheet });
 const destroy = cheatsheetId => ({ type: DELETE, cheatsheetId });
 // todo ——————————————————————————————————————————————————————————————————————————————————
 export const createCheatsheet = cheatsheet => async (dispatch) => {
   const response = await fetch(`/api/cheatsheets/new_cheatsheet`, { method: "POST", body: JSON.stringify(cheatsheet) });
-  
+
   console.log('HEY', response)
 
-  
+
   if (response.ok) {
     const newcheatsheet = await response.json();
     dispatch(create(newcheatsheet));
@@ -82,7 +82,7 @@ const cheatsheetReducer = (state = initialState, action) => {
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case GET_ALL: {
       const newState = {...state};
-      action.cheatsheets.forEach(cheatsheet => newState[cheatsheet.id] = cheatsheet);
+      action.cheatsheets['all_cheatsheets'].forEach(cheatsheet => newState[cheatsheet.id] = cheatsheet);
       return newState;
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————
