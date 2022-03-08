@@ -1,3 +1,4 @@
+import {useHistory} from 'react-router-dom';
 import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {createCheatsheet} from '../../store/cheatsheets';
@@ -14,13 +15,12 @@ export const FormInput = ({name, state, setState}) => {
   ) 
 }
 
-const CheatsheetForm = () => {
+const CheatsheetForm = ({closeModal}) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [errors, setErrors] = useState([]);
 
   const owner_id = useSelector(state => state?.session?.user?.id);
-
-  console.log(owner_id)
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -36,12 +36,10 @@ const CheatsheetForm = () => {
       if(data && data.errors) setErrors(data.errors)
     })
     
-
     console.log('CHEATSHEET_FORM', newCheatsheet);
 
-    console.log('NEW_CHEATSHEET_ID', newCheatsheet?.id);
-
-    return newCheatsheet;
+    if(newCheatsheet) history.push(`/cheatsheets/${newCheatsheet?.id}`);
+    return closeModal();
   }
 
 
