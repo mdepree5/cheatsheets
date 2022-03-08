@@ -2,7 +2,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
-import { newStep } from '../../store/steps';
+import { newStep, getStep } from '../../store/steps';
 
 
 export const FormInput = ({ name, state, setState }) => {
@@ -17,11 +17,11 @@ export const FormInput = ({ name, state, setState }) => {
 }
 
 
-const StepsForm = ({ closeModal }) => {
+const StepsForm = ({ closeModal, cheatsheetId }) => {
     const dispatch = useDispatch();
     const [ errors, setErrors ] = useState([]);
-
-    const owner_id = useSelector(state => state?.session?.user?.id);
+    const cheatsheet_id = cheatsheetId;
+    const history = useHistory();
 
     const [ title, setTitle ] = useState('');
     const [ content, setContent ] = useState('');
@@ -31,14 +31,19 @@ const StepsForm = ({ closeModal }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const step = await dispatch(newStep(
-            { owner_id, title, content, media_url }
+            { cheatsheet_id, title, content, media_url }
         )).catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors)
         })
-
-        if (step) return closeModal();
+        if (step) {
+            // return closeModal();
+            await dispatch(getStep(cheatsheetId))
+            closeModal();
+            return history.push(`/cheatsheets/${cheatsheetId}`)
+        }
     };
+
 
     return (
         <div>
