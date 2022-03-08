@@ -1,0 +1,31 @@
+.modal-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 11;
+}
+
+#modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#modal-content {
+  position: absolute;
+  padding: 20px;
+  background-color: white;
+  border: solid black 2px;
+  box-shadow: 0 1px 10px white;
+  border-radius: 10px;
+  min-height: 200px;
+  min-width: 200px;
+}

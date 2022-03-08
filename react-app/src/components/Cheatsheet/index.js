@@ -33,8 +33,6 @@ const CheatsheetPage = () => {
       <img className='cheatsheet-img' style={{height:'100px', width:'150px'}} src={cheatsheet?.media_url} alt="cheatsheet" />
       <div className='cheatsheet-description'>Description: {cheatsheet?.description}</div>
 
-      <CheatsheetForm />
-
       <div className='cheatsheet-dependencies'>Dependencies: {cheatsheet?.dependencies}</div>
 
       <div style={{height: '500px', border:'solid 1px black', color:'red'}}>TEMPORARY FORMAT FOR RENDER STEPS
