@@ -39,9 +39,7 @@ const NavBar = () => {
 
       <ul className='navbar_bottom'>
         <li className='logo'>
-
-          <NavLink to='/'><img src={logo} alt='logo' style={{height:'40px'}}/></NavLink>
-//           <NavLink to='/'>CheatSheets</NavLink>
+          <NavLink to='/'><img src={logo} alt='logo' style={{ height: '40px', marginRight:'10px' }} /><span>Cheatsheets</span></NavLink>
         </li>
         <li className='navbar_right'>
           <button className='publish_btn'>publish</button>
