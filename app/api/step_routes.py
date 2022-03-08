@@ -20,10 +20,10 @@ def create_step():
       content = form.data['content'],
       media_url = form.data['media_url']
       )
-    
+
     db.session.add(new_step)
     db.session.commit()
-    
+
     return {new_step.to_dict()}
 
   if form.errors:
@@ -32,7 +32,7 @@ def create_step():
 @step_routes.route("/<int:stepId>", methods=['PUT'])
 def update_step(id):
   form = StepForm()
-  
+
   if form.validate_on_submit():
     step = Step.query.get(id)
     step.cheatsheet_id = form.data['cheatsheet_id']
@@ -40,7 +40,7 @@ def update_step(id):
     step.content = form.data['content']
     step.media_url = form.data['media_url']
     db.session.commit()
-    
+
     print(f'updated step: {step}')                                               # * print
     return {step.to_dict()}
 
@@ -51,6 +51,5 @@ def delete_step(id):
   step = Step.query.get(id)
   db.session.delete(step)
   db.session.commit()
-  
-  return 'Deleted step.'
 
+  return 'Deleted step.'

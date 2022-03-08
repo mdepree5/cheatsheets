@@ -9,21 +9,6 @@ comment_routes = Blueprint('comments', __name__)
 # todo                               Comments Routes
 # todo ——————————————————————————————————————————————————————————————————————————————————
 
-# @comment_routes.route("/get_comments/<int:cheatsheetId>/", methods=['GET'])
-# def get_comments(cheatsheetId):
-#   comments = [comment for comment in Comment.query.filter(Comment.cheatsheet_id == cheatsheetId).all()]
-
-#   results = db.session.query(Comment, User).select_from(Comment).join(User).all()
-
-#   for comment in comments:
-#       for c, u in results:
-#           if (u.id == comment.author_id):
-#               comment.username = u.username
-
-
-#   return {'comments': comments.to_dict()}
-  # return {'comments': {comment.id: comment.to_dict() for comment in comments}}
-
 
 # @comment_routes.route("/new_comment", methods=["GET", "POST"])
 # def new_comment():
@@ -45,7 +30,7 @@ comment_routes = Blueprint('comments', __name__)
 #   if form.errors:
 #     return form.errors
 
-@comment_routes.route('/new', methods=['POST'])
+@comment_routes.route('/new_comment', methods=['POST'])
 def get_comments():
   data = request.json
 

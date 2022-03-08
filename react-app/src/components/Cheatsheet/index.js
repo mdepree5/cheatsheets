@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import CommentsComponent from '../Comments/comments';
 import { addComment, getComment, editComment, deleteComment } from '../../store/comments';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,9 +17,11 @@ import './Cheatsheet.css';
 const CheatsheetPage = () => {
   const dispatch = useDispatch();
   const { cheatsheetId } = useParams();
-  // const sessionUser = useSelector((state) => state.session.user)
-  // const commentObject = useSelector((state) => state.commentState.comments[cheatsheetId])
-  // console.log('ALSFHASFHD', commentObject)
+
+  // const commentObj = useSelector(state => state.commentState)
+  // console.log('%%%%%%%%%%%%%',commentObj)
+
+  // const [content, setContent] = useState()
 
   const cheatsheet = useSelector(state => state?.cheatsheet[cheatsheetId]);
   useEffect(() => {dispatch(getCheatsheet(cheatsheetId))}, [dispatch, cheatsheetId])
@@ -44,7 +46,7 @@ const CheatsheetPage = () => {
       </div>
 
 
-      <CommentsComponent comments={comments} />
+      <CommentsComponent comments={comments} cheatsheetId={cheatsheetId}/>
 
     </div>
   );

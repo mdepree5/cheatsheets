@@ -4,21 +4,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 
 
-function CommentsComponent({comments}) {
-    console.log(comments)
-    const history = useHistory()
+function CommentsComponent({comments, cheatsheetId}) {
+    // console.log('from comments.js component:', comments)
+    const { id } = useParams();
     const dispatch = useDispatch()
-    // const { cheatsheetId } = useParams();
-    let cheatsheetId = 1
+    // const history = useHistory()
 
-    useEffect(() => {dispatch(getComment(cheatsheetId))}, [dispatch, cheatsheetId])
-    const sessionUser = useSelector((state) => state?.session?.user);
-    const commentsObj = useSelector((state) => state?.commentState)
-    // const comments = Object.values(commentsObj)
+    // const [content, setContent] = useState(comments.content)
 
-    console.log('from comments.js ',commentsObj)
-    // console.log('from comments.js 2: ',comments)
 
+    useEffect(() => {
+        dispatch(getComment(id))
+    }, [dispatch])
+
+    const commentsObj = useSelector((state) => state.comments)
+    console.log('maybe we will get the thing we want...',commentsObj)
+
+
+    // const sessionUser = useSelector((state) => state?.session?.user);
+    // const commentVals = Object.values(commentsObj)
 
 
     return (
@@ -27,8 +31,13 @@ function CommentsComponent({comments}) {
             <div className='view_comments'>
 
             </div>
+            <form className='post_comment_form'>
+                <textarea className='post_comment_area' cols="50" rows="5"></textarea>
+                <button>new comment</button>
+            </form>
 
-            <form action=""></form>
+
+
             <div>{comments?.map(comment => (<div key={comment?.id} >{comment?.content}</div>))}</div>
 
         </div>

@@ -6,7 +6,7 @@ import commentReducer from './comments';
 
 const rootReducer = combineReducers({
   session,
-  commentState: commentReducer,
+  comments: commentReducer,
   cheatsheet,
 });
 
