@@ -9,10 +9,9 @@ step_routes = Blueprint('steps', __name__)
 # todo ——————————————————————————————————————————————————————————————————————————————————
 # todo                               steps Routes
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@step_routes.route('/', methods=['GET'])
-def get_steps():
-  all_steps = Step.query.all()
-  print('-----------------STEPS--------------------------------', all_steps)
+@step_routes.route('/<int:cheatsheetId>', methods=['GET'])
+def get_steps(cheatsheetId):
+  all_steps = Step.query.filter(Step.cheatsheet_id == int(cheatsheetId)).all()
 
   return {"all_steps": [step.to_dict() for step in all_steps]}
 
@@ -29,7 +28,7 @@ def create_step():
       content = form.data['content'],
       media_url = form.data['media_url']
     )
-    print('NEW_STPE', new_step)
+
     db.session.add(new_step)
     db.session.commit()
 

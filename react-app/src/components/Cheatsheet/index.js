@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import Comments from '../Comments/comments';
 import CheatsheetFormModal from './cheatsheet_modal';
 import {CheatsheetDeleteButton} from '../Buttons';
-
+import { getStep } from '../../store/steps'
 import {getCheatsheet} from '../../store/cheatsheets';
 
 import Steps from '../Steps';
@@ -22,14 +22,17 @@ import StepsFormModal from '../../components/Steps/StepsFormModal';
 const CheatsheetPage = () => {
   const dispatch = useDispatch();
   const { cheatsheetId } = useParams();
-  const sessionUser = useSelector((state) => state.session.user)
-
   const sessionUser = useSelector((state) => state?.session?.user)
   // const commentObject = useSelector((state) => state.commentState.comments[cheatsheetId])
   // console.log('ALSFHASFHD', commentObject)
 
   const cheatsheet = useSelector(state => state?.cheatsheet[ cheatsheetId ]);
   useEffect(() => { dispatch(getCheatsheet(cheatsheetId)) }, [ dispatch, cheatsheetId ])
+  useEffect(() => {
+    dispatch(getStep(cheatsheet?.id))
+}, [dispatch, cheatsheet?.id])
+
+
 
   let modal;
   if (sessionUser?.id === Number(cheatsheet?.owner_id)) {
@@ -46,7 +49,7 @@ const CheatsheetPage = () => {
           <CheatsheetFormModal name='Edit Cheatsheet' edit={true} cheatsheet={cheatsheet}/>
           <CheatsheetDeleteButton cheatsheetId={cheatsheet?.id}/>
         </>)}
-      
+
       <h1 className='cheatsheet-title'>{cheatsheet?.title}</h1>
       <img className='cheatsheet-img' style={{ height: '100px', width: '150px' }} src={cheatsheet?.media_url} alt="cheatsheet" />
       <div className='cheatsheet-description'>Description: {cheatsheet?.description}</div>
@@ -54,7 +57,7 @@ const CheatsheetPage = () => {
       <div className='cheatsheet-dependencies'>Dependencies: {cheatsheet?.dependencies}</div>
 
       <div style={{ height: '500px', border: 'solid 1px black', color: 'red' }}>TEMPORARY FORMAT FOR RENDER STEPS
-        <Steps />
+        <Steps cheatsheetId={cheatsheet?.id}/>
         <div>{modal}</div>
       </div>
     </div>
