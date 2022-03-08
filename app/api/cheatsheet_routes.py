@@ -7,6 +7,13 @@ from datetime import datetime
 
 cheatsheet_routes = Blueprint('cheatsheets', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+  errorMessages = []
+  for field in validation_errors:
+    for error in validation_errors[field]:
+      errorMessages.append(f'{field} : {error}')
+  return errorMessages
+
 # todo ——————————————————————————————————————————————————————————————————————————————————
 # todo                               Cheatsheet Routes
 # todo ——————————————————————————————————————————————————————————————————————————————————
@@ -32,7 +39,8 @@ def create_cheatsheet():
 
     return {**new_cheatsheet.to_dict()}
 
-  return form.errors
+  return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+  # return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/all", methods=["GET"])
 def get_all_cheatsheets():

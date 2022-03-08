@@ -15,7 +15,6 @@ export const createCheatsheet = cheatsheet => async (dispatch) => {
   
   console.log('REDUX', response)
 
-
   if (response.ok) {
     const newcheatsheet = await response.json();
     dispatch(create(newcheatsheet));

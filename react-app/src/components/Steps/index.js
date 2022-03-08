@@ -6,8 +6,8 @@ const Steps = () => {
     const cheatsheet = useSelector(state => state?.cheatsheet[cheatsheetId]);
     const steps = cheatsheet && Object.values(cheatsheet?.steps);
     const sessionUser = useSelector(state => state?.session.user);
-    console.log('ADFASFDFAFD',sessionUser.id)
-    console.log(typeof cheatsheetId)
+    // console.log('ADFASFDFAFD',sessionUser.id)
+    // console.log(typeof cheatsheetId)
 
     let editDeleteAdd;
     if (sessionUser?.id === Number(cheatsheetId)) {

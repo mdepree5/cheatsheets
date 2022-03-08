@@ -47,10 +47,25 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
     )).catch(async(res) => {
       const data = await res.json();
       if(data && data.errors) setErrors(data.errors)
+      
+      // todo ——————————————————————————————————————————————————————————————————————————————————
+      console.log('CHEATSHEET_FORM', data)
+      // todo ——————————————————————————————————————————————————————————————————————————————————
+
+      alert('HEY')
     })
     
-    if(newCheatsheet) history.push(`/cheatsheets/${newCheatsheet?.id}`);
-    return closeModal();
+    // if(!newCheatsheet) alert('HEY')
+    console.log('CHEATSHEET_FORM', newCheatsheet)
+    if(newCheatsheet?.errors) {
+      setErrors(newCheatsheet?.errors)
+      console.log('THE ERRORS', errors)
+    }
+
+    if(newCheatsheet?.id) {
+      history.push(`/cheatsheets/${newCheatsheet?.id}`);
+      return closeModal();
+    }
   }
 
   return (
@@ -64,7 +79,7 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
       </form>
 
       <div className='errors'>
-        {errors.length > 0 && errors.filter(error => error !== 'Invalid value')
+        {errors?.length > 0 && errors?.filter(error => error !== 'Invalid value')
           .map((error, id) => (
             <li key={id}>{error}</li>
           ))
