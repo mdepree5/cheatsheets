@@ -84,6 +84,8 @@ def update_cheatsheet(cheatsheetId):
 @login_required
 def delete_cheatsheet(cheatsheetId):
   cheatsheet = Cheatsheet.query.get(cheatsheetId)
+  # comments = Comment.query.filter_by(cheatsheet_id=cheatsheetId).all()
+  # comments = [comment for comment in Comment.query.filter(Comment.cheatsheet_id == cheatsheetId).all()]
   db.session.delete(cheatsheet)
   db.session.commit()
 
