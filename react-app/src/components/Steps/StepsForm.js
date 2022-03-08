@@ -19,11 +19,9 @@ export const FormInput = ({ name, state, setState }) => {
 
 const StepsForm = ({ closeModal }) => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const [ errors, setErrors ] = useState([]);
 
     const owner_id = useSelector(state => state?.session?.user?.id);
-    const { cheatsheetId } = useParams();
 
     const [ title, setTitle ] = useState('');
     const [ content, setContent ] = useState('');
@@ -39,29 +37,26 @@ const StepsForm = ({ closeModal }) => {
             if (data && data.errors) setErrors(data.errors)
         })
 
-        console.log('NEWSTEP_FORM --------->', step);
-
         if (step) return closeModal();
-
-
-        return (
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <FormInput name='Title' state={title} setState={setTitle} />
-                    <FormInput name='Content' state={content} setState={setContent} />
-                    <FormInput name='Media_url' state={media_url} setState={setMedia_url} />
-                    <button type='submit'>Add Step</button>
-                </form>
-                <div className='errors'>
-                    {errors.length > 0 && errors.filter(error => error !== 'Invalid value')
-                        .map((error, id) => (
-                            <li key={id}>{error}</li>
-                        ))
-                    }
-                </div>
-            </div>
-        );
     };
+
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <FormInput name='Title' state={title} setState={setTitle} />
+                <FormInput name='Content' state={content} setState={setContent} />
+                <FormInput name='Media_url' state={media_url} setState={setMedia_url} />
+                <button type='submit'>Add Step</button>
+            </form>
+            <div className='errors'>
+                {errors.length > 0 && errors.filter(error => error !== 'Invalid value')
+                    .map((error, id) => (
+                        <li key={id}>{error}</li>
+                    ))
+                }
+            </div>
+        </div>
+    );
 }
 
 export default StepsForm;
