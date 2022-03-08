@@ -8,10 +8,10 @@ import { getCheatsheets } from "../../store/cheatsheets";
 import './Homepage.css'
 
 const Homepage = () => {
-    const sessionUser = useSelector((state) => state.session.user)
+    const sessionUser = useSelector((state) => state?.session?.user)
     const dispatch = useDispatch();
-    const cheatsheetsObj = useSelector((state) => state.cheatsheet)
-    const cheatsheets = Object.values(cheatsheetsObj)
+    const cheatsheetsObj = useSelector((state) => state?.cheatsheet)
+    const cheatsheets = cheatsheetsObj && Object.values(cheatsheetsObj)
 
     useEffect(() => {
         dispatch(getCheatsheets());
@@ -46,7 +46,7 @@ const Homepage = () => {
                 <div className="cheatsheets_container">
                     {cheatsheets.map((cheatsheet) => {
                         return (
-                            <NavLink key={cheatsheet.id} to={`/cheatsheets/${cheatsheet.id}`}>
+                            <NavLink key={cheatsheet?.id} to={`/cheatsheets/${cheatsheet?.id}`}>
                                 <div className={`cheatsheet_box`}>
                                     <div>
                                         <img className="cheatsheet-img" src={`${cheatsheet.media_url}`}></img>
