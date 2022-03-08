@@ -22,21 +22,23 @@ import StepsFormModal from '../../components/Steps/StepsFormModal';
 const CheatsheetPage = () => {
   const dispatch = useDispatch();
   const { cheatsheetId } = useParams();
-  // const sessionUser = useSelector((state) => state.session.user)
+  const sessionUser = useSelector((state) => state?.session?.user)
   // const commentObject = useSelector((state) => state.commentState.comments[cheatsheetId])
   // console.log('ALSFHASFHD', commentObject)
 
   const cheatsheet = useSelector(state => state?.cheatsheet[ cheatsheetId ]);
   useEffect(() => { dispatch(getCheatsheet(cheatsheetId)) }, [ dispatch, cheatsheetId ])
 
-  const steps = cheatsheet && Object.values(cheatsheet?.steps)
+  // const steps = cheatsheet && Object.values(cheatsheet?.steps)
 
   return (
     <div>
       <div style={{height: '200px'}}></div>
-
-      <CheatsheetFormModal name='Edit Cheatsheet' edit={true} cheatsheet={cheatsheet}/>
-      <CheatsheetDeleteButton cheatsheetId={cheatsheet?.id}/>
+      {sessionUser?.id === cheatsheet?.owner_id && (<>
+          <CheatsheetFormModal name='Edit Cheatsheet' edit={true} cheatsheet={cheatsheet}/>
+          <CheatsheetDeleteButton cheatsheetId={cheatsheet?.id}/>
+        </>)}
+      
       <h1 className='cheatsheet-title'>{cheatsheet?.title}</h1>
       <img className='cheatsheet-img' style={{ height: '100px', width: '150px' }} src={cheatsheet?.media_url} alt="cheatsheet" />
       <div className='cheatsheet-description'>Description: {cheatsheet?.description}</div>

@@ -5,11 +5,10 @@ import { useParams } from 'react-router-dom';
 
 
 function Comments() {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const { cheatsheetId } = useParams();
     const cheatsheet = useSelector((state) => state?.cheatsheet[cheatsheetId]);
     const comments = cheatsheet && Object.values(cheatsheet?.comments);
-
 
     return (
         <div>
