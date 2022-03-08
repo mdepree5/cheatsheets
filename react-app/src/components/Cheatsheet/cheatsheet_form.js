@@ -36,7 +36,10 @@ const CheatsheetForm = () => {
       if(data && data.errors) setErrors(data.errors)
     })
     
+
     console.log('CHEATSHEET_FORM', newCheatsheet);
+
+    console.log('NEW_CHEATSHEET_ID', newCheatsheet?.id);
 
     return newCheatsheet;
   }
