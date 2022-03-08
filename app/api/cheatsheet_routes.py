@@ -1,36 +1,54 @@
-from flask import Blueprint, render_template, redirect
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 import psycopg2
 from app.forms.cheatsheet_form import CheatsheetForm
 from app.models import Cheatsheet, Comment, User, db
+from datetime import datetime
 
 cheatsheet_routes = Blueprint('cheatsheets', __name__)
 
 # todo ——————————————————————————————————————————————————————————————————————————————————
 # todo                               Cheatsheet Routes
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@cheatsheet_routes.route("/new_cheatsheet", methods=["POST"])
+@cheatsheet_routes.route("/new", methods=["POST"])
 @login_required
 def create_cheatsheet():
   form = CheatsheetForm()
-  print(f'form: {form}')                                                         # * print
-  if form.validate_on_submit():
-    print(f'form data: {form.data}')
-    new_cheatsheet = Cheatsheet(
+  form['csrf_token'].data = request.cookies['csrf_token']
+  print('***************************')
+  print(form.data)
+
+  new_cheatsheet = Cheatsheet(
       owner_id = form.data['owner_id'],
       title = form.data['title'],
       description = form.data['description'],
       dependencies = form.data['dependencies'],
-      media_url = form.data['media_url']
-    )
+      media_url = form.data['media_url'],
+      created_at = datetime.now(),
+      updated_at = datetime.now()
+  )
 
-    db.session.add(new_cheatsheet)
-    db.session.commit()
+  db.session.add(new_cheatsheet)
+  db.session.commit()
+  
+  return {**new_cheatsheet.to_dict()}
+  # if form.validate_on_submit():
+  #   new_cheatsheet = Cheatsheet(
+  #     owner_id = form.data['owner_id'],
+  #     title = form.data['title'],
+  #     description = form.data['description'],
+  #     dependencies = form.data['dependencies'],
+  #     media_url = form.data['media_url']
+  #   )
 
-    return {new_cheatsheet.to_dict()}
+  #   db.session.add(new_cheatsheet)
+  #   db.session.commit()
 
-  if form.errors:
-    return form.errors
+  #   return {**new_cheatsheet.to_dict()}
+  #   # return {new_cheatsheet.to_dict()}
+
+  # if form.errors:
+  #   return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/all", methods=["GET"])
 def get_all_cheatsheets():
