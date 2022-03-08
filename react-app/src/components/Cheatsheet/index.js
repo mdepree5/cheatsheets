@@ -9,6 +9,10 @@ import {getCheatsheet} from '../../store/cheatsheets';
 import './Cheatsheet.css';
 
 
+// import { Editor } from "react-draft-wysiwyg";
+// import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
+
 const CheatsheetPage = () => {
   const dispatch = useDispatch();
   const { cheatsheetId } = useParams();
@@ -42,6 +46,7 @@ const CheatsheetPage = () => {
       {/* <Comments /> */}
     </div>
   );
+
 }
 
 export default CheatsheetPage;

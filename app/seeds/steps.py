@@ -89,7 +89,45 @@ def seed_steps():
         content="Install by running 'brew install postgresql'",
         media_url=''
         )
-    
+
+    simple_git_step_1 = Step(
+        cheatsheet_id=4,
+        title='Step 1',
+        content="In the upper-right corner of any page, use the  drop-down menu, and select New repository.",
+        media_url='https://docs.github.com/assets/cb-11427/images/help/repository/repo-create.png'
+        )
+    simple_git_step_2 = Step(
+        cheatsheet_id=4,
+        title='Step 2',
+        content="In the Repository name box, enter hello-world.",
+        media_url=''
+        )
+    simple_git_step_3 = Step(
+        cheatsheet_id=4,
+        title='Step 3',
+        content="In the Description box, write a short description.",
+        media_url=''
+        )
+    simple_git_step_4 = Step(
+        cheatsheet_id=4,
+        title='Step 4',
+        content="Select whether your repository will be Public or Private.",
+        media_url=''
+        )
+    simple_git_step_5 = Step(
+        cheatsheet_id=4,
+        title='Step 5',
+        content="Click Create repository.",
+        media_url='https://docs.github.com/assets/cb-106613/images/help/repository/hello-world-repo.png'
+        )
+    simple_git_step_6 = Step(
+        cheatsheet_id=4,
+        title='Step 6',
+        content="Thats it, follow the on screen instructions tp push it to your new repo.",
+        media_url=''
+        )
+
+
     
     db.session.add(python_itself_step_1)
     db.session.add(python_itself_step_2)

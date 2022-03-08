@@ -12,7 +12,7 @@
 .navbar {
     justify-content: space-between;
     background-color: #555555;
-    margin: -8px 0px 0px -10px;
+    margin: 0px 0px 0px -10px;
     padding: 10px 20px;
     width: 100%;
     list-style: none;
@@ -24,7 +24,7 @@
 }
 
 .navbar li a {
-    color: #CCCCCC;
+    color: white;
     list-style: none;
     text-decoration: none;
 }
@@ -45,8 +45,11 @@
 
 .session-links button {
     border-radius: 5px;
-    margin-top: 2px;
     margin-right: 30px;
+    margin-top: -10px;
+    border: 1px solid white;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
 }
 
 .navbar_bottom {
@@ -66,9 +69,27 @@
 .navbar_right {
     padding-left: 5px;
     padding-right: 5px;
+    margin-right: 40px;
 }
 
 .publish_btn{
-    padding-left: 2.5px;
-    padding-right: 2.5px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #CCCCCC;
+    background-color: white;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.logo a {
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.search_bar {
+    border: 1px solid #CCCCCC;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
 }
