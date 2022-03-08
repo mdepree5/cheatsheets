@@ -5,9 +5,10 @@ import { useParams } from 'react-router-dom';
 import Comments from '../Comments/comments';
 import Steps from '../Steps';
 import CheatsheetForm from './cheatsheet_form';
-import {getCheatsheet} from '../../store/cheatsheets';
+import { getCheatsheet } from '../../store/cheatsheets';
 // import Comments from '../Comments/comments';
 import './Cheatsheet.css';
+import StepsFormModal from '../../components/Steps/StepsFormModal';
 
 
 // import { Editor } from "react-draft-wysiwyg";
@@ -21,22 +22,23 @@ const CheatsheetPage = () => {
   // const commentObject = useSelector((state) => state.commentState.comments[cheatsheetId])
   // console.log('ALSFHASFHD', commentObject)
 
-  const cheatsheet = useSelector(state => state?.cheatsheet[cheatsheetId]);
-  useEffect(() => {dispatch(getCheatsheet(cheatsheetId))}, [dispatch, cheatsheetId])
+  const cheatsheet = useSelector(state => state?.cheatsheet[ cheatsheetId ]);
+  useEffect(() => { dispatch(getCheatsheet(cheatsheetId)) }, [ dispatch, cheatsheetId ])
 
   const steps = cheatsheet && Object.values(cheatsheet?.steps)
 
   return (
     <div>
-      <div style={{height: '200px'}}></div>
+      <div style={{ height: '200px' }}></div>
       <h1 className='cheatsheet-title'>{cheatsheet?.title}</h1>
-      <img className='cheatsheet-img' style={{height:'100px', width:'150px'}} src={cheatsheet?.media_url} alt="cheatsheet" />
+      <img className='cheatsheet-img' style={{ height: '100px', width: '150px' }} src={cheatsheet?.media_url} alt="cheatsheet" />
       <div className='cheatsheet-description'>Description: {cheatsheet?.description}</div>
 
       <div className='cheatsheet-dependencies'>Dependencies: {cheatsheet?.dependencies}</div>
 
-      <div style={{height: '500px', border:'solid 1px black', color:'red'}}>TEMPORARY FORMAT FOR RENDER STEPS
+      <div style={{ height: '500px', border: 'solid 1px black', color: 'red' }}>TEMPORARY FORMAT FOR RENDER STEPS
         <Steps />
+        <StepsFormModal />
       </div>
       <Comments />
     </div>
