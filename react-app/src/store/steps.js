@@ -11,10 +11,10 @@ const loadSteps = steps => {
     }
 }
 
-const addStep = steps => {
+const addStep = step => {
     return {
         type: ADD,
-        steps
+        step
     }
 }
 
@@ -33,27 +33,27 @@ const editStep = steps => {
 }
 
 
-export const getStep = (cheatsheetId) => async (dispatch) => {
-    const response = await fetch(`/api/steps/${cheatsheetId}`)
+export const getStep = () => async (dispatch) => {
+    const response = await fetch(`/api/steps`)
 
     if (response.ok) {
         const data = await response.json();
         dispatch(loadSteps(data));
-        return data
+        return data;
     }
 }
 
 export const newStep = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/steps/`, {
+    const response = await fetch(`/api/steps/new`, {
         method: 'POST',
-        header: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     })
     let data;
     if (response.ok) {
         data = await response.json();
         dispatch(addStep(data));
-        return data
+        return data;
     }
 }
 
@@ -78,7 +78,7 @@ export const deleteStep = (payload) => async (dispatch) => {
 
     if (response.ok) {
         dispatch(removeStep(payload));
-        return
+        return;
     }
 }
 
@@ -90,13 +90,11 @@ const stepsReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD:
             newState = { ...state };
-            action.steps.forEach((step) => {
-                newState[ step.id ] = step;
-            });
+            action.steps.forEach((step) => newState[step.id] = step);
             return newState;
         case ADD:
             newState = { ...state };
-            newState[ action.step.id ] = action.step;
+            newState[action.step.id] = action.step;
             return newState;
         case DELETE:
             newState = { ...state };

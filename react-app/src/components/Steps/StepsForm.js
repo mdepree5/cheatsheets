@@ -17,11 +17,10 @@ export const FormInput = ({ name, state, setState }) => {
 }
 
 
-const StepsForm = ({ closeModal }) => {
+const StepsForm = ({ closeModal, cheatsheetId }) => {
     const dispatch = useDispatch();
     const [ errors, setErrors ] = useState([]);
-
-    const owner_id = useSelector(state => state?.session?.user?.id);
+    const cheatsheet_id = cheatsheetId;
 
     const [ title, setTitle ] = useState('');
     const [ content, setContent ] = useState('');
@@ -31,14 +30,15 @@ const StepsForm = ({ closeModal }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const step = await dispatch(newStep(
-            { owner_id, title, content, media_url }
+            { cheatsheet_id, title, content, media_url }
         )).catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors)
         })
-
+        console.log('AAHHHHH', step)
         if (step) return closeModal();
     };
+
 
     return (
         <div>

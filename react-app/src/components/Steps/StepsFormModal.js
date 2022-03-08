@@ -3,7 +3,7 @@ import { useState } from 'react';
 import StepsForm from '../../components/Steps/StepsForm';
 
 
-function StepsFormModal() {
+function StepsFormModal({ cheatsheetId }) {
     const [ showModal, setShowModal ] = useState(false);
 
     return (
@@ -11,7 +11,7 @@ function StepsFormModal() {
             <button onClick={e => setShowModal(true)}>Add Step</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <StepsForm closeModal={() => setShowModal(false)} />
+                    <StepsForm closeModal={() => setShowModal(false)} cheatsheetId={cheatsheetId} />
                 </Modal>
             )}
         </>
