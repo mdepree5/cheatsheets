@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { getCheatsheets } from "../../store/cheatsheets";
 import './Homepage.css'
+import no_image from '../../images/no_image_found.png';
+import Image from 'react'
 
 const Homepage = () => {
     const sessionUser = useSelector((state) => state.session.user)
@@ -15,7 +17,8 @@ const Homepage = () => {
 
     useEffect(() => {
         dispatch(getCheatsheets());
-    }, [dispatch]);
+    }, [ dispatch ]);
+
 
 
     return (
@@ -39,7 +42,7 @@ const Homepage = () => {
                 </div>
             </div>
 
-            <hr className="seperator"/>
+            <hr className="seperator" />
 
             <div id="explore_container">
                 <h2>Explore Cheatsheets</h2>
@@ -49,7 +52,7 @@ const Homepage = () => {
                             <NavLink key={cheatsheet.id} to={`/cheatsheets/${cheatsheet.id}`}>
                                 <div className={`cheatsheet_box`}>
                                     <div>
-                                        <img className="cheatsheet-img" src={`${cheatsheet.media_url}`}></img>
+                                        <img className="cheatsheet-img" src={`${cheatsheet.media_url}` ? `${cheatsheet.media_url}` : no_image}></img>
                                         <div>
                                             <h3>{cheatsheet.title}</h3>
                                             <p>author name</p>
