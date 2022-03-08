@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // import { addComment, getComment, editComment, deleteComment } from '../../store/comments';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import Comments from '../Comments/comments';
+// import Comments from '../Comments/comments';
 import CheatsheetFormModal from './cheatsheet_modal';
 import {CheatsheetDeleteButton} from '../Buttons';
 
@@ -29,7 +29,7 @@ const CheatsheetPage = () => {
   const cheatsheet = useSelector(state => state?.cheatsheet[ cheatsheetId ]);
   useEffect(() => { dispatch(getCheatsheet(cheatsheetId)) }, [ dispatch, cheatsheetId ])
 
-  const steps = cheatsheet && Object.values(cheatsheet?.steps)
+  // const steps = cheatsheet && Object.values(cheatsheet?.steps)
 
   return (
     <div>
@@ -47,7 +47,7 @@ const CheatsheetPage = () => {
         <Steps />
         <StepsFormModal />
       </div>
-      <Comments />
+      {/* <Comments /> */}
     </div>
   );
 

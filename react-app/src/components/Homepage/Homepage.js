@@ -3,14 +3,13 @@ import ImageCarousel from "./Carousel";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import { getCheatsheets } from "../../store/cheatsheets";
 import './Homepage.css'
 import no_image from '../../images/no_image_found.png';
-import Image from 'react'
+// import Image from 'react'
 
 const Homepage = () => {
-    const sessionUser = useSelector((state) => state?.session?.user)
+    // const sessionUser = useSelector((state) => state?.session?.user)
     const dispatch = useDispatch();
     const cheatsheetsObj = useSelector((state) => state?.cheatsheet)
     const cheatsheets = cheatsheetsObj && Object.values(cheatsheetsObj)
@@ -52,7 +51,7 @@ const Homepage = () => {
                             <NavLink key={cheatsheet?.id} to={`/cheatsheets/${cheatsheet?.id}`}>
                                 <div className={`cheatsheet_box`}>
                                     <div>
-                                        <img className="cheatsheet-img" src={`${cheatsheet.media_url}` ? `${cheatsheet.media_url}` : no_image}></img>
+                                        <img className="cheatsheet-img" src={`${cheatsheet?.media_url}` ? `${cheatsheet?.media_url}` : no_image} alt='none' />
                                         <div>
                                             <h3>{cheatsheet.title}</h3>
                                             <p>author name</p>
