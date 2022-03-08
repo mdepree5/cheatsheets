@@ -1,0 +1,13 @@
+button{
+  color: black;
+}
+
+button:hover{
+  background-color: gray;
+  border-bottom: solid 4px black;
+}
+
+
+.delete{
+  color: red;
+}

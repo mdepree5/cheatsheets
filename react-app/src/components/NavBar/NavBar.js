@@ -48,7 +48,7 @@ const NavBar = () => {
           /><span>Cheatsheets</span></NavLink>
         </li>
         <li className='navbar_right'>
-          <CheatsheetFormModal className='publish_btn' />
+          <CheatsheetFormModal className='publish_btn' name='Publish' />
           {/* <button className='publish_btn'>publish</button> */}
           <input className='search_bar' type="text" placeholder='search'></input>
         </li>
