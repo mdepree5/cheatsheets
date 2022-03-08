@@ -42,7 +42,7 @@ function CommentsComponent({comments, cheatsheetId}) {
 
 
 
-                <ul>
+                <ul className='posted_comments_container'>
                     {comments?.map(comment => (
                         <li className={'posted_comments'} key={comment?.id}>
                     {comment?.content}</li>))}

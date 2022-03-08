@@ -9,8 +9,14 @@
 }
 
 .view_comments {
-    position: absolute;
+    display: flex;
     justify-content: center;
+    left: 30%;
+
+}
+.posted_comments_container{
+    display: flex;
+    flex-direction: column-reverse;
     left: 30%;
 
 }
