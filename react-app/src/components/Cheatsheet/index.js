@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Comments from '../Comments/comments';
 
-import CheatsheetForm from './cheatsheet_form';
+
 import {getCheatsheet} from '../../store/cheatsheets';
 // import Comments from '../Comments/comments';
 import './Cheatsheet.css';
@@ -32,8 +32,6 @@ const CheatsheetPage = () => {
       <h1 className='cheatsheet-title'>{cheatsheet?.title}</h1>
       <img className='cheatsheet-img' style={{height:'100px', width:'150px'}} src={cheatsheet?.media_url} alt="cheatsheet" />
       <div className='cheatsheet-description'>Description: {cheatsheet?.description}</div>
-
-      <CheatsheetForm />
 
       <div className='cheatsheet-dependencies'>Dependencies: {cheatsheet?.dependencies}</div>
 
