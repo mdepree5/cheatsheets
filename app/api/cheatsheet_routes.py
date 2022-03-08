@@ -16,7 +16,8 @@ def create_cheatsheet():
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  new_cheatsheet = Cheatsheet(
+  if form.validate_on_submit():
+    new_cheatsheet = Cheatsheet(
       owner_id = form.data['owner_id'],
       title = form.data['title'],
       description = form.data['description'],
@@ -24,28 +25,14 @@ def create_cheatsheet():
       media_url = form.data['media_url'],
       created_at = datetime.now(),
       updated_at = datetime.now()
-  )
+    )
 
-  db.session.add(new_cheatsheet)
-  db.session.commit()
-  
-  return {**new_cheatsheet.to_dict()}
-  # if form.validate_on_submit():
-  #   new_cheatsheet = Cheatsheet(
-  #     owner_id = form.data['owner_id'],
-  #     title = form.data['title'],
-  #     description = form.data['description'],
-  #     dependencies = form.data['dependencies'],
-  #     media_url = form.data['media_url']
-  #   )
+    db.session.add(new_cheatsheet)
+    db.session.commit()
 
-  #   db.session.add(new_cheatsheet)
-  #   db.session.commit()
+    return {**new_cheatsheet.to_dict()}
 
-  #   return {**new_cheatsheet.to_dict()}
-  #   # return {new_cheatsheet.to_dict()}
-
-  #   return form.errors
+  return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/all", methods=["GET"])
 def get_all_cheatsheets():
