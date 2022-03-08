@@ -80,7 +80,6 @@ const commentReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD:
             newState = { ...state };
-            console.log('from commentReducer@@@@@@@@@@@:',newState)
             action.comments.forEach((comment) => {
                 newState[comment.id] = comment;
             });

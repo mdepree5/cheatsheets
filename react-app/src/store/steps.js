@@ -33,8 +33,8 @@ const editStep = steps => {
 }
 
 
-export const getStep = () => async (dispatch) => {
-    const response = await fetch(`/api/steps`)
+export const getStep = (cheatsheetId) => async (dispatch) => {
+    const response = await fetch(`/api/steps/${cheatsheetId}`)
 
     if (response.ok) {
         const data = await response.json();
@@ -57,7 +57,7 @@ export const newStep = (payload) => async (dispatch) => {
     }
 }
 
-export const editComment = (payload) => async (dispatch) => {
+export const updateStep = (payload) => async (dispatch) => {
     const response = await fetch(`/api/steps/${payload.stepId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -90,11 +90,12 @@ const stepsReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD:
             newState = { ...state };
-            action.steps.forEach((step) => newState[step.id] = step);
+            action.steps['all_steps'].forEach((step) => newState[step.id] = step);
             return newState;
         case ADD:
             newState = { ...state };
             newState[action.step.id] = action.step;
+            console.log('ASDFASFDSAFA', newState)
             return newState;
         case DELETE:
             newState = { ...state };
