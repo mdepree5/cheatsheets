@@ -7,7 +7,6 @@
   height: 200px;
 }
 
-
 .step-container{
   /* width: 600px; */
   margin-left: auto;
@@ -26,4 +25,16 @@
 .step-buttons{
   display: flex;
   flex-direction: column;
+}
+
+.cheatsheet-title {
+  position: absolute;
+  top: 100px;
+  left: 40%;
+}
+
+.cheatsheet-description {
+  font-size: 20px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  text-align: center;
 }

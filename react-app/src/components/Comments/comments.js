@@ -1,22 +1,30 @@
 import { useEffect, useState } from 'react';
-import {getCheatsheets} from '../../store/cheatsheet'
-import { addComment, getComment, editComment, deleteComment } from '../../store/comments';
+import { addComment, editComment, deleteComment } from '../../store/comments';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 
 function Comments() {
-    const { cheatsheetsId } = useParams();
-    const sessionUser = useSelector((state) => state.session.user);
-    
-    const commentsObj = useSelector((state) => state.commentState)
-    // const comments = Object.values(commentsObj)
+    // const dispatch = useDispatch();
+    const { cheatsheetId } = useParams();
+    const cheatsheet = useSelector((state) => state?.cheatsheet[cheatsheetId]);
+    const comments = cheatsheet && Object.values(cheatsheet?.comments);
 
-    console.log('ASDFA', commentsObj)
-    // console.log('@@@@@@@@@@', comments)
 
     return (
-        <div>comments</div>
+        <div>
+            <div>
+                {comments?.map(comment => {
+                    return (
+                        <div className='comment-container' key={comment.id}>
+                            <li className='comment'>
+                                {comment.content}
+                            </li>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
     )
 }
 
