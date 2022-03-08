@@ -8,7 +8,7 @@ def seed_cheatsheets():
         title='Install Python itself',
         description='We will be installing Python version 3.9.4.',
         dependencies='Have pyenv pre-installed.',
-        media_url='https://portswigger.net/cms/images/cc/df/f173-article-211203-python-body-text.png'
+        media_url='https://i.pinimg.com/564x/0f/60/19/0f6019e15f1d8ae07e7e8ea16d242676.jpg'
         )
     deploy_heroku = Cheatsheet(
         owner_id=2,

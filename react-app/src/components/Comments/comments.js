@@ -1,5 +1,5 @@
-// import { useEffect, useState } from 'react';
-// import { addComment, editComment, deleteComment } from '../../store/comments';
+import { useEffect, useState } from 'react';
+import { addComment, editComment, deleteComment } from '../../store/comments';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -9,7 +9,6 @@ function Comments() {
     const { cheatsheetId } = useParams();
     const cheatsheet = useSelector((state) => state?.cheatsheet[cheatsheetId]);
     const comments = cheatsheet && Object.values(cheatsheet?.comments);
-
 
     return (
         <div>

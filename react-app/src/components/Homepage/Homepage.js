@@ -18,8 +18,6 @@ const Homepage = () => {
         dispatch(getCheatsheets());
     }, [ dispatch ]);
 
-
-
     return (
         <div className="homepage_body">
             <ImageCarousel />
