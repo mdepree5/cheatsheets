@@ -30,7 +30,7 @@ def create_cheatsheet():
 
   db.session.add(new_cheatsheet)
   db.session.commit()
-  
+
   return {**new_cheatsheet.to_dict()}
   # if form.validate_on_submit():
   #   new_cheatsheet = Cheatsheet(
@@ -64,9 +64,15 @@ def get_all_cheatsheets():
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=["GET"])
 def get_one_cheatsheet(cheatsheetId):
   one_cheatsheet = Cheatsheet.query.get(cheatsheetId)
+  # comments = Comment.query.filter(Comment.cheatsheet_id == cheatsheetId).all()
 
 
-  return {**one_cheatsheet.to_dict()}
+  return {**one_cheatsheet.to_dict(),
+          # 'comments': [comment.to_dict() for comment in comments]
+          }
+
+
+
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=['PUT'])
 @login_required

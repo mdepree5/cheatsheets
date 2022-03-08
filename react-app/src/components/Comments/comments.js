@@ -1,23 +1,39 @@
 import { useEffect, useState } from 'react';
-import {getCheatsheets} from '../../store/cheatsheet'
 import { addComment, getComment, editComment, deleteComment } from '../../store/comments';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 
-function Comments() {
-    const { cheatsheetsId } = useParams();
-    const sessionUser = useSelector((state) => state.session.user);
-    
-    const commentsObj = useSelector((state) => state.commentState)
+function CommentsComponent({comments}) {
+    console.log(comments)
+    const history = useHistory()
+    const dispatch = useDispatch()
+    // const { cheatsheetId } = useParams();
+    let cheatsheetId = 1
+
+    useEffect(() => {dispatch(getComment(cheatsheetId))}, [dispatch, cheatsheetId])
+    const sessionUser = useSelector((state) => state?.session?.user);
+    const commentsObj = useSelector((state) => state?.commentState)
     // const comments = Object.values(commentsObj)
 
-    console.log('ASDFA', commentsObj)
-    // console.log('@@@@@@@@@@', comments)
+    console.log('from comments.js ',commentsObj)
+    // console.log('from comments.js 2: ',comments)
+
+
 
     return (
-        <div>comments</div>
+        <>
+        <div className='comments_container'>
+            <div className='view_comments'>
+
+            </div>
+
+            <form action=""></form>
+            <div>{comments?.map(comment => (<div key={comment?.id} >{comment?.content}</div>))}</div>
+
+        </div>
+        </>
     )
 }
 
-export default Comments;
+export default CommentsComponent;

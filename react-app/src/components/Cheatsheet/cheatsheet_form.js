@@ -11,7 +11,7 @@ export const FormInput = ({name, state, setState}) => {
     <label htmlFor={formatName}>{name}</label>
     <input id={formatName} placeholder={name} value={state} onChange={e => setState(e.target.value)} />
   </div>
-  ) 
+  )
 }
 
 const CheatsheetForm = () => {
@@ -20,7 +20,7 @@ const CheatsheetForm = () => {
 
   const owner_id = useSelector(state => state?.session?.user?.id);
 
-  console.log(owner_id)
+  // console.log(owner_id)
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -35,7 +35,7 @@ const CheatsheetForm = () => {
       const data = await res.json();
       if(data && data.errors) setErrors(data.errors)
     })
-    
+
     console.log('CHEATSHEET_FORM', newCheatsheet);
 
     return newCheatsheet;
