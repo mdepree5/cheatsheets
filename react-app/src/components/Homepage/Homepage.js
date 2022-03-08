@@ -1,8 +1,23 @@
 import React from "react";
 import ImageCarousel from "./Carousel";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import { Redirect } from "react-router-dom";
+import { getCheatsheets } from "../../store/cheatsheets";
 import './Homepage.css'
 
 const Homepage = () => {
+    const sessionUser = useSelector((state) => state.session.user)
+    const dispatch = useDispatch();
+    const cheatsheetsObj = useSelector((state) => state.cheatsheet)
+    const cheatsheets = Object.values(cheatsheetsObj)
+
+    useEffect(() => {
+        dispatch(getCheatsheets());
+    }, [dispatch]);
+
+
     return (
         <div className="homepage_body">
             <ImageCarousel />
@@ -29,16 +44,21 @@ const Homepage = () => {
             <div id="explore_container">
                 <h2>Explore Cheatsheets</h2>
                 <div className="cheatsheets_container">
-                    <div className="cheatsheet_box">some project</div>
-                    <div className="cheatsheet_box">some project</div>
-                    <div className="cheatsheet_box">some project</div>
-                    <div className="cheatsheet_box">some project</div>
-                    <div className="cheatsheet_box">some project</div>
-                    <div className="cheatsheet_box">some project</div>
-                    <div className="cheatsheet_box">some project</div>
-                    <div className="cheatsheet_box">some project</div>
-                    <div className="cheatsheet_box">some project</div>
-                    <div className="cheatsheet_box">some project</div>
+                    {cheatsheets.map((cheatsheet) => {
+                        return (
+                            <NavLink key={cheatsheet.id} to={`/cheatsheets/${cheatsheet.id}`}>
+                                <div className={`cheatsheet_box`}>
+                                    <div>
+                                        <img className="cheatsheet-img" src={`${cheatsheet.media_url}`}></img>
+                                        <div>
+                                            <h3>{cheatsheet.title}</h3>
+                                            <p>author name</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </NavLink>
+                        )
+                    })}
                 </div>
             </div>
         </div>
