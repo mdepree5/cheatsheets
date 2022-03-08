@@ -1,7 +1,7 @@
 import {useHistory} from 'react-router-dom';
 import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {createCheatsheet} from '../../store/cheatsheets';
+import {createCheatsheet, updateCheatsheet} from '../../store/cheatsheets';
 
 
 export const FormInput = ({name, state, setState}) => {
@@ -15,20 +15,33 @@ export const FormInput = ({name, state, setState}) => {
   ) 
 }
 
-const CheatsheetForm = ({closeModal}) => {
+const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [errors, setErrors] = useState([]);
 
   const owner_id = useSelector(state => state?.session?.user?.id);
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [dependencies, setDependencies] = useState('');
-  const [media_url, setMedia_url] = useState('');
+  const [title, setTitle] = useState(edit ? cheatsheet?.title : '');
+  const [description, setDescription] = useState(edit ? cheatsheet?.description : '');
+  const [dependencies, setDependencies] = useState(edit ? cheatsheet?.dependencies : '');
+  const [media_url, setMedia_url] = useState(edit ? cheatsheet?.media_url : '');
 
   const handleSubmit = async(event) => {
     event.preventDefault();
+
+    if(edit){
+      const updatedCheatsheet = dispatch(updateCheatsheet(
+        {...cheatsheet, title, description, dependencies, media_url}
+      )).catch(async(res) => {
+        const data = await res.json();
+        if(data && data.errors) setErrors(data.errors);
+      })
+  
+      if(updatedCheatsheet?.errors) setErrors(updatedCheatsheet?.errors); 
+      return closeModal(); 
+    }
+
     const newCheatsheet = await dispatch(createCheatsheet(
       {owner_id, title, description, dependencies, media_url}
     )).catch(async(res) => {
@@ -42,8 +55,6 @@ const CheatsheetForm = ({closeModal}) => {
     return closeModal();
   }
 
-
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -51,7 +62,7 @@ const CheatsheetForm = ({closeModal}) => {
         <FormInput name='Description' state={description} setState={setDescription} />
         <FormInput name='Dependencies' state={dependencies} setState={setDependencies} />
         <FormInput name='Image' state={media_url} setState={setMedia_url} />
-        <button type='submit'>Create new Cheatsheet</button>
+        <button type='submit'>{name}</button>
       </form>
 
       <div className='errors'>

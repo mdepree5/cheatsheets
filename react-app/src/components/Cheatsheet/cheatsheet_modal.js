@@ -3,15 +3,15 @@ import { Modal } from '../../context/Modal';
 import CheatsheetForm from './cheatsheet_form';
 // todo ——————————————————————————————————————————————————————————————————————————————————
 
-function CheatsheetFormModal() {
+function CheatsheetFormModal({name='Create', edit=false, cheatsheet=null}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <button onClick={e => setShowModal(true)}>Publish</button>
+      <button onClick={e => setShowModal(true)}>{name}</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CheatsheetForm closeModal={() => setShowModal(false)}/>
+          <CheatsheetForm name={name} edit={edit} cheatsheet={cheatsheet} closeModal={() => setShowModal(false)} />
         </Modal>
       )}
     </>

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Comments from '../Comments/comments';
-
+import CheatsheetFormModal from './cheatsheet_modal';
 
 import {getCheatsheet} from '../../store/cheatsheets';
 // import Comments from '../Comments/comments';
@@ -29,6 +29,7 @@ const CheatsheetPage = () => {
   return (
     <div>
       <div style={{height: '200px'}}></div>
+      <CheatsheetFormModal name='Edit Cheatsheet' edit={true} cheatsheet={cheatsheet}/>
       <h1 className='cheatsheet-title'>{cheatsheet?.title}</h1>
       <img className='cheatsheet-img' style={{height:'100px', width:'150px'}} src={cheatsheet?.media_url} alt="cheatsheet" />
       <div className='cheatsheet-description'>Description: {cheatsheet?.description}</div>

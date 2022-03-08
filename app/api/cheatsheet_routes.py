@@ -15,8 +15,6 @@ cheatsheet_routes = Blueprint('cheatsheets', __name__)
 def create_cheatsheet():
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
-  print('***************************')
-  print(form.data)
 
   new_cheatsheet = Cheatsheet(
       owner_id = form.data['owner_id'],
@@ -70,20 +68,22 @@ def get_one_cheatsheet(cheatsheetId):
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=['PUT'])
 @login_required
-def update_cheatsheet(id):
+def update_cheatsheet(cheatsheetId):
   form = CheatsheetForm()
-
+  form['csrf_token'].data = request.cookies['csrf_token']
+  
   if form.validate_on_submit():
-    cheatsheet = Cheatsheet.query.get(id)
+    cheatsheet = Cheatsheet.query.get(cheatsheetId)
     # cheatsheet.owner_id = form.data['owner_id']
     cheatsheet.title = form.data['title']
     cheatsheet.description = form.data['description']
     cheatsheet.dependencies = form.data['dependencies']
     cheatsheet.media_url = form.data['media_url']
+    cheatsheet.updated_at = datetime.now()
     db.session.commit()
 
     print(f'updated cheatsheet: {cheatsheet}')                                   # * print
-    return {cheatsheet.to_dict()}
+    return {**cheatsheet.to_dict()}
 
   return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
