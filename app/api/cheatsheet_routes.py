@@ -45,7 +45,6 @@ def create_cheatsheet():
   #   return {**new_cheatsheet.to_dict()}
   #   # return {new_cheatsheet.to_dict()}
 
-  # if form.errors:
   #   return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/all", methods=["GET"])
@@ -81,8 +80,7 @@ def update_cheatsheet(cheatsheetId):
     cheatsheet.media_url = form.data['media_url']
     cheatsheet.updated_at = datetime.now()
     db.session.commit()
-
-    print(f'updated cheatsheet: {cheatsheet}')                                   # * print
+    
     return {**cheatsheet.to_dict()}
 
   return form.errors

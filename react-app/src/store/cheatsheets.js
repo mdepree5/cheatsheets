@@ -93,7 +93,8 @@ const cheatsheetReducer = (state = initialState, action) => {
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case UPDATE: {
-      const newState = {...state}
+      const newState = {...state};
+      console.log('REDUX', action.cheatsheet)
       newState[action.cheatsheet.id] = action.cheatsheet;
       return newState;
     };
