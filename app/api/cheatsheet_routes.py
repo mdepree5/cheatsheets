@@ -74,8 +74,8 @@ def update_cheatsheet(cheatsheetId):
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=['DELETE'])
 @login_required
-def delete_cheatsheet(id):
-  cheatsheet = Cheatsheet.query.get(id)
+def delete_cheatsheet(cheatsheetId):
+  cheatsheet = Cheatsheet.query.get(cheatsheetId)
   db.session.delete(cheatsheet)
   db.session.commit()
 
