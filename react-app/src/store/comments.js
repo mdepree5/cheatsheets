@@ -24,7 +24,7 @@ const edit = (comment) => ({
 });
 
 export const getComment = (cheatsheetId) => async (dispatch) => {
-    const response = await fetch(`/api/${cheatsheetId}/comments`);
+    const response = await fetch(`/api/comments`);
     if (response.ok) {
         const comments = await response.json();
         dispatch(load(comments));
