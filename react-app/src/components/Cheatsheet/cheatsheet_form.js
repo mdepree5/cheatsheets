@@ -29,16 +29,12 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
 
   const handleSubmit = async(event) => {
     event.preventDefault();
-    console.log(title)
-    console.log(description)
-    console.log(dependencies)
-
+    
     if(edit){
       const updatedCheatsheet = await dispatch(updateCheatsheet(
         {...cheatsheet, title, description, dependencies, media_url}
       )).catch(async(res) => {
         const data = await res.json();
-        console.log('DATA', data)
         if(data && data.errors) setErrors(data.errors);
       })
   

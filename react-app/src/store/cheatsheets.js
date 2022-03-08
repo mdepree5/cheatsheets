@@ -47,7 +47,7 @@ export const getCheatsheet = (cheatsheetId) => async (dispatch) => {
 };
 
 export const updateCheatsheet = cheatsheet => async (dispatch) => {
-  const response = await fetch(`/api/cheatsheets/${cheatsheet.id}`, { method: 'PUT', body: JSON.stringify(cheatsheet) });
+  const response = await fetch(`/api/cheatsheets/${cheatsheet.id}`, { method: 'PUT', headers: {"Content-Type": "application/json"}, body: JSON.stringify(cheatsheet) });
 
   if (response.ok) {
     const updatedcheatsheet = await response.json();
@@ -94,7 +94,6 @@ const cheatsheetReducer = (state = initialState, action) => {
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case UPDATE: {
       const newState = {...state};
-      console.log('REDUX', action.cheatsheet)
       newState[action.cheatsheet.id] = action.cheatsheet;
       return newState;
     };
