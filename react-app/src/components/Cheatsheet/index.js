@@ -18,14 +18,19 @@ import StepsFormModal from '../../components/Steps/StepsFormModal';
 const CheatsheetPage = () => {
   const dispatch = useDispatch();
   const { cheatsheetId } = useParams();
-  // const sessionUser = useSelector((state) => state.session.user)
+  const sessionUser = useSelector((state) => state.session.user)
   // const commentObject = useSelector((state) => state.commentState.comments[cheatsheetId])
   // console.log('ALSFHASFHD', commentObject)
 
   const cheatsheet = useSelector(state => state?.cheatsheet[ cheatsheetId ]);
   useEffect(() => { dispatch(getCheatsheet(cheatsheetId)) }, [ dispatch, cheatsheetId ])
 
-  const steps = cheatsheet && Object.values(cheatsheet?.steps)
+  let modal;
+  if (sessionUser?.id === Number(cheatsheet?.owner_id)) {
+    modal = <StepsFormModal cheatsheetId={cheatsheetId}/>
+  } else {
+    modal = null;
+  }
 
   return (
     <div>
@@ -38,9 +43,8 @@ const CheatsheetPage = () => {
 
       <div style={{ height: '500px', border: 'solid 1px black', color: 'red' }}>TEMPORARY FORMAT FOR RENDER STEPS
         <Steps />
-        <StepsFormModal />
+        <div>{modal}</div>
       </div>
-      <Comments />
     </div>
   );
 

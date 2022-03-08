@@ -1,29 +1,17 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { getStep } from "../../store/steps";
 
 const Steps = () => {
     const { cheatsheetId } = useParams();
+    const dispatch = useDispatch();
     const cheatsheet = useSelector(state => state?.cheatsheet[cheatsheetId]);
     const steps = cheatsheet && Object.values(cheatsheet?.steps);
-    const sessionUser = useSelector(state => state?.session.user);
-    console.log('ADFASFDFAFD',sessionUser.id)
-    console.log(typeof cheatsheetId)
 
-    let editDeleteAdd;
-    if (sessionUser?.id === Number(cheatsheetId)) {
-        editDeleteAdd = (
-            <div className="submit-create-step">
-                <div className="text-area-div">
-                    <textarea className="create-step" rows='5' cols='100' placeholder="Enter your step here..."></textarea>
-                </div>
-                <div className="button-div">
-                    <button className="submit-step">Submit</button>
-                </div>
-            </div>
-        )
-        } else {
-        editDeleteAdd = null;
-        }
+    // useEffect(() => {
+    //     dispatch(getStep())
+    // }, [dispatch])
 
     return (
         <div>
@@ -37,7 +25,6 @@ const Steps = () => {
                     </div>
                 )
             })}
-            <div>{editDeleteAdd}</div>
         </div>
     );
 }
