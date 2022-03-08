@@ -11,11 +11,11 @@ const update = cheatsheet => ({ type: UPDATE, cheatsheet });
 const destroy = cheatsheetId => ({ type: DELETE, cheatsheetId });
 // todo ——————————————————————————————————————————————————————————————————————————————————
 export const createCheatsheet = cheatsheet => async (dispatch) => {
-  const response = await fetch(`/api/cheatsheets/new_cheatsheet`, { method: "POST", body: JSON.stringify(cheatsheet) });
+  const response = await fetch(`/api/cheatsheets/new`, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(cheatsheet) });
   
-  console.log('HEY', response)
+  console.log('REDUX', response)
 
-  
+
   if (response.ok) {
     const newcheatsheet = await response.json();
     dispatch(create(newcheatsheet));

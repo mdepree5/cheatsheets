@@ -20,6 +20,8 @@ const CheatsheetForm = () => {
 
   const owner_id = useSelector(state => state?.session?.user?.id);
 
+  console.log(owner_id)
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [dependencies, setDependencies] = useState('');
@@ -34,7 +36,7 @@ const CheatsheetForm = () => {
       if(data && data.errors) setErrors(data.errors)
     })
     
-    console.log(newCheatsheet);
+    console.log('CHEATSHEET_FORM', newCheatsheet);
 
     return newCheatsheet;
   }
