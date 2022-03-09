@@ -30,7 +30,7 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
 
 
   const handleSubmit = async(event) => {
-    event.preventDefault();    
+    event.preventDefault();
     const cheatsheetData = {...cheatsheet, owner_id, title, description, dependencies, media_url};
 
     if(edit){
@@ -50,7 +50,7 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className='cheatsheet-form-container' onSubmit={handleSubmit}>
         <FormInput name='Title' state={title} setState={setTitle} />
         <FormInput name='Description' state={description} setState={setDescription} />
         <FormInput name='Dependencies' state={dependencies} setState={setDependencies} />
