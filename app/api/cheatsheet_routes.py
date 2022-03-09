@@ -55,12 +55,13 @@ def get_all_cheatsheets():
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=["GET"])
 def get_one_cheatsheet(cheatsheetId):
   one_cheatsheet = Cheatsheet.query.get(cheatsheetId)
-  # comments = Comment.query.filter(Comment.cheatsheet_id == cheatsheetId).all()
+  comments = Comment.query.filter(Comment.cheatsheet_id == cheatsheetId).all()
 
 
   return {**one_cheatsheet.to_dict(),
-          # 'comments': [comment.to_dict() for comment in comments]
+          'comments': [comment.to_dict() for comment in comments]
           }
+
 
 
 
@@ -70,7 +71,7 @@ def get_one_cheatsheet(cheatsheetId):
 def update_cheatsheet(cheatsheetId):
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
-  
+
   if form.validate_on_submit():
     cheatsheet = Cheatsheet.query.get(cheatsheetId)
     cheatsheet.title = form.data['title']
@@ -79,7 +80,7 @@ def update_cheatsheet(cheatsheetId):
     cheatsheet.media_url = form.data['media_url']
     cheatsheet.updated_at = datetime.now()
     db.session.commit()
-    
+
     return {**cheatsheet.to_dict()}
 
   print({'errors': validation_errors_to_error_messages(form.errors)})
