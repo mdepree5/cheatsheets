@@ -41,8 +41,6 @@ export const addComment = (payload) => async (dispatch) => {
         body: JSON.stringify(payload)
     })
 
-    console.log('addcomment thunk @@@@@@@@@@@@', response)
-
     let data;
     if (response.ok) {
         data = await response.json();
@@ -68,13 +66,14 @@ export const deleteComment = (commentId) => async (dispatch) => {
 
 
 
-export const editComment = (comment, commentId) => async (dispatch) => {
-    const response = await fetch(`/api/comments/${commentId}`, {
+export const editComment = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${payload.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(comment)
+        body: JSON.stringify(payload)
     })
 
+    console.log('editcomment thunk response@@@@@@@@', response)
     if (response.ok) {
         const data = await response.json();
         dispatch(edit(data));
