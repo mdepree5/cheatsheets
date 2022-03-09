@@ -15,6 +15,8 @@ def get_steps(cheatsheetId):
 
   return {"all_steps": [step.to_dict() for step in all_steps]}
 
+
+
 @step_routes.route("/new", methods=["POST"])
 @login_required
 def create_step():
@@ -41,21 +43,21 @@ def create_step():
   if form.errors:
     return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@step_routes.route("/<int:stepId>", methods=['PUT'])
+@step_routes.route("/<int:id>", methods=['PUT'])
 @login_required
-def update_step(stepId):
+def update_step(id):
   form = StepForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
 
   if form.validate_on_submit():
-    step = Step.query.get(stepId)
+    step = Step.query.get(id)
     step.cheatsheet_id = form.data['cheatsheet_id']
     step.title = form.data['title']
     step.content = form.data['content']
     step.media_url = form.data['media_url']
     db.session.commit()
-
-    print(f'updated step: {step}')                                               # * print
-    return {step.to_dict()}
+    return {'step': step.to_dict()}
 
   return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————

@@ -25,10 +25,10 @@ const removeStep = stepId => {
     }
 }
 
-const editStep = steps => {
+const editStep = step => {
     return {
         type: EDIT,
-        steps
+        step
     }
 }
 
@@ -58,16 +58,17 @@ export const newStep = (payload) => async (dispatch) => {
 }
 
 export const updateStep = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/steps/${payload.stepId}`, {
+    const response = await fetch(`/api/steps/${payload.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     })
 
+    console.log('PAYLOAD', response)
     if (response.ok) {
-        const data = await response.json();
-        dispatch(editStep(data));
-        return data;
+        const newStep = await response.json();
+        dispatch(editStep(newStep));
+        return newStep;
     }
 }
 
@@ -103,7 +104,7 @@ const stepsReducer = (state = {}, action) => {
             return newState;
         case EDIT:
             newState = { ...state };
-            newState[ action.step.id ] = action.step;
+            newState[action.step.step.id] = action.step;
             return newState;
         default:
             return state
