@@ -66,5 +66,4 @@ def delete_step(stepId):
   db.session.delete(step)
   db.session.commit()
 
-  return {'message': 'Deleted step.'}
-
+  return {'stepId': stepId}

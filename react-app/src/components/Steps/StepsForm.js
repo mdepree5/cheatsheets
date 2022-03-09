@@ -32,9 +32,9 @@ const StepsForm = ({ closeModal, cheatsheetId }) => {
     const dispatch = useDispatch();
     const [ errors, setErrors ] = useState([]);
     const cheatsheet_id = cheatsheetId;
-    
-    console.log('debugger')
-    console.log(cheatsheet_id)
+
+    // console.log('debugger')
+    // console.log(cheatsheet_id)
 
     const history = useHistory();
 
