@@ -7,7 +7,7 @@ import stepsReducer from './steps';
 
 const rootReducer = combineReducers({
   session,
-  comments: commentReducer,
+  commentReducer,
   cheatsheet,
   stepsReducer
 });

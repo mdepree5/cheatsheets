@@ -7,7 +7,7 @@ import CheatsheetFormModal from './cheatsheet_modal';
 import {CheatsheetDeleteButton} from '../Buttons';
 import { getStep } from '../../store/steps'
 import {getCheatsheet} from '../../store/cheatsheets';
-
+import CommentsComponent from '../Comments/comments';
 import Steps from '../Steps';
 
 // import Comments from '../Comments/comments';
@@ -32,7 +32,7 @@ const CheatsheetPage = () => {
     dispatch(getStep(cheatsheet?.id))
 }, [dispatch, cheatsheet?.id])
 
-
+  // console.log('&&&&&&&&&&&&&&&&&&&',cheatsheet?.comments)
 
   let modal;
   if (sessionUser?.id === Number(cheatsheet?.owner_id)) {
@@ -61,7 +61,7 @@ const CheatsheetPage = () => {
       <div>
         <Steps cheatsheetId={cheatsheet?.id}/>
         <div>{modal}</div>
-        <Comments />
+        <CommentsComponent  comments={cheatsheet?.comments} cheatsheetId={cheatsheetId} />
       </div>
     </div>
   );

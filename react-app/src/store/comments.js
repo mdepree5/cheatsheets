@@ -25,7 +25,7 @@ const edit = (comment) => ({
 
 
 export const getComment = (id) => async (dispatch) => {
-    const response = await fetch(`/api/cheatsheets/${id}/comments`);
+    const response = await fetch(`/api/comments/${id}`);
     if (response.ok) {
         const data = await response.json();
         dispatch(load(data));
@@ -77,29 +77,30 @@ export const editComment = (comment, commentId) => async (dispatch) => {
 
 const initialState = {};
 
-const commentReducer = (state = initialState, action) => {
+const commentReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
         case LOAD:
-            newState = {...state};
-            action.cheatsheets['all_cheatsheets'].forEach(
-                cheatsheet => newState[cheatsheet.id] = cheatsheet);
+            newState = { ...state };
+            action.comments['cheetsheet_comments'].forEach((comment) => newState[comment.id] = comment);
             return newState;
         case ADD:
             newState = { ...state };
             newState[action.comment.id] = action.comment;
+            console.log('ASDFASFDSAFA', newState)
             return newState;
         case DELETE:
             newState = { ...state };
-            delete newState[action.commentId];
+            delete newState[ action.commentId ];
             return newState;
         case EDIT:
             newState = { ...state };
-            newState[action.commment.id] = action.comment;
+            newState[ action.comment.id ] = action.comment;
             return newState;
         default:
             return state
     }
 }
+
 
 export default commentReducer;

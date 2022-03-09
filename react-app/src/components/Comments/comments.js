@@ -5,35 +5,45 @@ import { useParams, useHistory } from 'react-router-dom';
 import './comments.css'
 
 
-function CommentsComponent({ comments, cheatsheet, cheatsheetId }) {
-    const { id } = useParams();
-    const dispatch = useDispatch()
-    // const history = useHistory()
+function CommentsComponent({ cheatsheetId }) {
+    // console.log('---------------------',typeof(+cheatsheetId))
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const commentsObj = useSelector(state => state?.commentReducer);
+    const comments = Object.values(commentsObj)
+    console.log('****************',comments)
+    const sessionUser = useSelector((state) => state?.session?.user)
+    //something changed
+
+
+    useEffect(() => {
+        dispatch(getComment(cheatsheetId))
+    }, [dispatch, cheatsheetId])
 
     const [ content, setContent ] = useState('')
-    // const [postedContent, setPostedContent] = useState()
-
-    // const userId = useSelector(state => state.session.user.id)
-    // console.log('userid from comments',userId)
 
 
-    const commentsVals = cheatsheet && Object.values(cheatsheet?.comments)
-    console.log('from comments.js component:', commentsVals)
 
-    // useEffect(() => {
-    //     dispatch(getComment(id))
-    // }, [ dispatch ])
+    const handleNewComment = async (e) => {
+        e.preventDefault();
+        const newComment = {
+            writer_id: sessionUser.id ,
+            cheatsheet_id: cheatsheetId ,
+            content
+        }
 
-    // const commentsObj = useSelector((state) => state.comments)
-    // console.log('maybe we will get the thing we want...',commentsObj)
+        console.log('from handler: ',cheatsheetId, content)
+        const postComment = await dispatch(addComment(newComment));
+        // const updateComments = await dispatch(getComment(cheatsheetId))
 
+        if (postComment) {
+            await dispatch(getComment(cheatsheetId))
+            return history.push(`/cheatsheets/${cheatsheetId}`)
 
-    // const handleNewComment = async (e) => {
-    //     e.preventDefault();
-    //     const newComment = { userId: user.id, cheatsheetId, content}
-    //     await dispatch(addComment(newComment));
-    //     await dispatch(getComment(cheatsheetId))
-    // }
+        } else {
+            console.log('post fail')
+        }
+    }
 
 
     // const sessionUser = useSelector((state) => state?.session?.user);
@@ -47,8 +57,16 @@ function CommentsComponent({ comments, cheatsheet, cheatsheetId }) {
 
                 </div>
                 <form className='post_comment_form' >
-                    <textarea className='post_comment_area' placeholder='write something' cols="50" rows="5"></textarea>
-                    <button>new comment</button>
+                    <textarea
+                        className='post_comment_area'
+                        placeholder='write something'
+                        cols="50"
+                        rows="5"
+                        value={content}
+                        onChange={e => setContent(e.target.value)}
+                        >
+                    </textarea>
+                    <button onClick={handleNewComment}>new comment</button>
                 </form>
 
 
