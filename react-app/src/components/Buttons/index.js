@@ -20,9 +20,6 @@ export const DeleteButton = ({thisId, deleteThunk, config}) => {
 }
 
 
-export const CheatsheetDeleteButton = ({cheatsheetId}) => {
-  const sessionUser = useSelector(state => state?.session?.user);
-  return (
-    <DeleteButton thisId={cheatsheetId} deleteThunk={deleteCheatsheet} config={{buttonName: 'Delete Cheatsheet', newRoute:`/users/${sessionUser?.id}`}}/>
-  )
-}
+export const CheatsheetDeleteButton = ({cheatsheetId}) => (
+  <DeleteButton thisId={cheatsheetId} deleteThunk={deleteCheatsheet} config={{buttonName: 'Delete Cheatsheet', newRoute:'/'}}/>
+)
