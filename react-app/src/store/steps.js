@@ -95,7 +95,7 @@ const stepsReducer = (state = {}, action) => {
             return newState;
         case ADD:
             newState = { ...state };
-            newState[action.step.id] = action.step;
+            newState[action.step.step.id] = action.step;
             return newState;
         case DELETE:
             newState = { ...state };
