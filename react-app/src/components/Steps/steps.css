@@ -20,8 +20,10 @@
 
 /* Create a scrollable div for the step content?? */
 .step-wrapper {
-    width: 600px;
+    width: auto;
     height: auto;
+    padding-left: 40px;
+    padding-right: 40px;
     /* overflow: auto; */
 }
 
@@ -52,8 +54,14 @@
     background-color: #d39420;
 }
 
+.image-wrapper {
+    padding-bottom: 20px;
+    display:flex;
+    justify-content: center;
+}
+
 #step_image_render {
-    margin-top:20px;
+
     border: 1px solid rgb(235, 235, 235);
     box-shadow: 5px 5px 5px grey;
     height: 90px;
@@ -61,8 +69,9 @@
 }
 
 .step-buttons-div {
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content:center;
 }

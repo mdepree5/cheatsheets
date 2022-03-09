@@ -32,16 +32,17 @@ const Steps = ({ cheatsheetId }) => {
                         <h3 className="step-title-header">{step?.title}</h3>
                         <div className="step-wrapper">
                         <li className="step-content" key={step?.id} style={{ borderLeft: '4px solid lightGrey', padding: '10px' }}>
-                            {step?.content}
+                            {/* {step?.content} */}
 
                             {typeof step?.media_url === 'string' && (
-                                <div>
+                                <div className="image-wrapper">
                                     <img id='step_image_render'
                                         src={step?.media_url} onError={(e) => e.target.style.display = 'none'}
                                         alt='url'
                                     />
                                 </div>
                             )}
+                                {step?.content}
                             {sessionUser?.id === cheatsheet?.owner_id && (
                                 <div className="step-buttons-div">
                                     <div>
