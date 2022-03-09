@@ -27,8 +27,6 @@ def create_cheatsheet():
     
   print('debugger Printing the REQUEST', request)
 
-  image = request.files["image"]
-  print('debugger print image', image)
   # thing = request.data # => b''
   # thing = request.form # => ImmutableMultiDict([])
   # thing = request.args # => ImmutableMultiDict([])
@@ -37,9 +35,9 @@ def create_cheatsheet():
   # thing = request.headers.get('Content-Type') # => multipart/form-data
   # thing = request.form.to_dict() # => {}
   
-  # thing = request.form['title']
+  # thing = request.headers #*** => STUFF!
+  thing = request.form.get('title')
   
-  thing = request.headers #*** => STUFF!
   
   print('debugger REQUEST: ======>', thing)
   print(thing)
