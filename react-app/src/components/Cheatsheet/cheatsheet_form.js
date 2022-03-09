@@ -28,7 +28,6 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
   const [dependencies, setDependencies] = useState(edit ? cheatsheet?.dependencies : '');
   const [media_url, setMedia_url] = useState(edit ? cheatsheet?.media_url : '');
 
-
   const handleSubmit = async(event) => {
     event.preventDefault();    
     const cheatsheetData = {...cheatsheet, owner_id, title, description, dependencies, media_url};
