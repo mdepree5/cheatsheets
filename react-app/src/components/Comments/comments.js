@@ -11,7 +11,7 @@ function CommentsComponent({ cheatsheetId }) {
     const history = useHistory();
     const commentsObj = useSelector(state => state?.commentReducer);
     const comments = Object.values(commentsObj)
-    console.log('****************',comments)
+    // console.log('****************',comments)
     const sessionUser = useSelector((state) => state?.session?.user)
     //something changed
 

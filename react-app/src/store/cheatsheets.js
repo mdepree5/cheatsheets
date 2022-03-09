@@ -11,9 +11,23 @@ const update = cheatsheet => ({ type: UPDATE, cheatsheet });
 const destroy = cheatsheetId => ({ type: DELETE, cheatsheetId });
 // todo ——————————————————————————————————————————————————————————————————————————————————
 export const createCheatsheet = cheatsheet => async (dispatch) => {
-  const response = await fetch(`/api/cheatsheets/new`, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(cheatsheet) });
+  console.log('OUTSIDE', cheatsheet)
+  console.log('OUTSIDE EXPECT FORMDATA OBJ');
+
+  const response = await fetch(`/api/cheatsheets/new`, {
+    method: "POST",
+    headers: {"Content-Type": "multipart/form-data"},
+    body: JSON.stringify(cheatsheet)
+    // body: cheatsheet
+
+    // method: "POST",
+    // headers: {"Content-Type": "application/json"},
+    // body: JSON.stringify(cheatsheet)
+  });
   
-  console.log('REDUX', response)
+  // console.log('REDUX', response)
+
+  console.log('REDUX RESPONSE', response)
 
   if (response.ok) {
     const newcheatsheet = await response.json();
@@ -22,6 +36,18 @@ export const createCheatsheet = cheatsheet => async (dispatch) => {
   }
   return response;
 };
+// export const createCheatsheet = cheatsheet => async (dispatch) => {
+//   const response = await fetch(`/api/cheatsheets/new`, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(cheatsheet) });
+  
+//   // console.log('REDUX', response)
+
+//   if (response.ok) {
+//     const newcheatsheet = await response.json();
+//     dispatch(create(newcheatsheet));
+//     return newcheatsheet;
+//   }
+//   return response;
+// };
 
 export const getCheatsheets = () => async (dispatch) => {
   const response = await fetch(`/api/cheatsheets/all`, { method: 'GET' });
