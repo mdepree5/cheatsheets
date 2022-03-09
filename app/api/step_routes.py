@@ -15,6 +15,8 @@ def get_steps(cheatsheetId):
 
   return {"all_steps": [step.to_dict() for step in all_steps]}
 
+
+
 @step_routes.route("/new", methods=["POST"])
 @login_required
 def create_step():
@@ -53,9 +55,7 @@ def update_step(stepId):
     step.content = form.data['content']
     step.media_url = form.data['media_url']
     db.session.commit()
-
-    print(f'updated step: {step}')                                               # * print
-    return {step.to_dict()}
+    return {'step': step.to_dict()}
 
   return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————

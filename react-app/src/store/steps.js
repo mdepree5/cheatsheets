@@ -25,10 +25,10 @@ const removeStep = stepId => {
     }
 }
 
-const editStep = steps => {
+const editStep = step => {
     return {
         type: EDIT,
-        steps
+        step
     }
 }
 
@@ -103,7 +103,7 @@ const stepsReducer = (state = {}, action) => {
             return newState;
         case EDIT:
             newState = { ...state };
-            newState[ action.step.id ] = action.step;
+            newState[action.step.step.id] = action.step;
             return newState;
         default:
             return state
