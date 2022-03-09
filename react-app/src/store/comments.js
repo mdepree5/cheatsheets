@@ -13,9 +13,9 @@ const add = (comment) => ({
     comment
 });
 
-const remove = (commentId) => ({
+const remove = (id) => ({
     type: DELETE,
-    commentId
+    id
 });
 
 const edit = (comment) => ({
@@ -23,32 +23,33 @@ const edit = (comment) => ({
     comment
 });
 
-export const getComment = (cheatsheetId) => async (dispatch) => {
-    const response = await fetch(`/api/comments`);
+
+export const getComment = (id) => async (dispatch) => {
+    const response = await fetch(`/api/cheatsheets/${id}/comments`);
     if (response.ok) {
-        const comments = await response.json();
-        dispatch(load(comments));
-        return comments;
+        const data = await response.json();
+        dispatch(load(data));
+        return data;
     }
 };
 
-export const addComment = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/new_comment`, {
+export const addComment = (comment) => async (dispatch) => {
+    const response = await fetch(`/api/comments/new_comment`, {
         method: 'POST',
         header: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(comment)
     })
 
-    let newComment;
     if (response.ok) {
-        newComment = await response.json();
-        dispatch(add(newComment));
-        return newComment;
+        const data = await response.json();
+        dispatch(add(data.comment));
+        return data;
     }
+    return response
 }
 
 export const deleteComment = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/${payload.cheatsheetId}/comments/${payload.commentId}`, {
+    const response = await fetch(`/api/${payload.id}/comments/${payload.commentId}`, {
         method: 'DELETE'
     })
 
@@ -59,30 +60,30 @@ export const deleteComment = (payload) => async (dispatch) => {
 }
 
 
-export const editComment = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/comments/${payload.commentId}`, {
+export const editComment = (comment, commentId) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${commentId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(comment)
     })
 
     if (response.ok) {
-        const newComment = await response.json();
-        dispatch(edit(newComment));
-        return newComment;
+        const data = await response.json();
+        dispatch(edit(data));
+        return data;
     }
 }
 
 
+const initialState = {};
 
-const commentReducer = (state = {}, action) => {
+const commentReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD:
-            newState = { ...state };
-            action.comments.forEach((comment) => {
-                newState[comment.id] = comment;
-            });
+            newState = {...state};
+            action.cheatsheets['all_cheatsheets'].forEach(
+                cheatsheet => newState[cheatsheet.id] = cheatsheet);
             return newState;
         case ADD:
             newState = { ...state };
