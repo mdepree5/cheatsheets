@@ -16,6 +16,17 @@ export const FormInput = ({ name, state, setState }) => {
     )
 }
 
+export const FormTextarea = ({ name, state, setState }) => {
+    const formatName = name.toLowerCase().split(' ').join('-');
+
+    return (
+        <div className='form-input'>
+            <label htmlFor={formatName}>{name}</label>
+            <textarea id={formatName} placeholder={name} value={state} onChange={e => setState(e.target.value)} />
+        </div>
+    )
+}
+
 
 const StepsForm = ({ closeModal, cheatsheetId }) => {
     const dispatch = useDispatch();
@@ -49,7 +60,7 @@ const StepsForm = ({ closeModal, cheatsheetId }) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <FormInput name='Title' state={title} setState={setTitle} />
-                <FormInput name='Content' state={content} setState={setContent} />
+                <FormTextarea name='Content' state={content} setState={setContent}  />
                 <FormInput name='Media_url' state={media_url} setState={setMedia_url} />
                 <button type='submit'>Add Step</button>
             </form>
