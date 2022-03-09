@@ -41,12 +41,14 @@ const StepsForm = ({ closeModal, cheatsheetId }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         const step = await dispatch(newStep(
             { cheatsheet_id, title, content, media_url }
         )).catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors)
         })
+
         if (step) {
             // return closeModal();
             await dispatch(getStep(cheatsheetId))

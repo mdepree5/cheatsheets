@@ -34,8 +34,8 @@ def create_step():
     db.session.add(new_step)
     db.session.commit()
 
-
-    return {new_step.to_dict()}
+    return {'step':new_step.to_dict()}
+    # return {new_step.to_dict()}
 
 
   if form.errors:
