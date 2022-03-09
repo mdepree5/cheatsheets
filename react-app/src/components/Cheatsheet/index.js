@@ -32,7 +32,7 @@ const CheatsheetPage = () => {
     dispatch(getStep(cheatsheet?.id))
 }, [dispatch, cheatsheet?.id])
 
-  console.log('&&&&&&&&&&&&&&&&&&&',cheatsheet?.comments)
+  // console.log('&&&&&&&&&&&&&&&&&&&',cheatsheet?.comments)
 
   let modal;
   if (sessionUser?.id === Number(cheatsheet?.owner_id)) {
@@ -61,7 +61,7 @@ const CheatsheetPage = () => {
       <div>
         <Steps cheatsheetId={cheatsheet?.id}/>
         <div>{modal}</div>
-        <CommentsComponent  comments={cheatsheet?.comments} />
+        <CommentsComponent  comments={cheatsheet?.comments} cheatsheetId={cheatsheetId} />
       </div>
     </div>
   );

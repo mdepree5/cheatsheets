@@ -70,6 +70,17 @@ def get_one_cheatsheet(cheatsheetId):
           }
 
 
+@cheatsheet_routes.route("/<int:cheatsheetId>/comments", methods=["GET"])
+def get_comments_cheatsheet(cheatsheetId):
+  one_cheatsheet = Cheatsheet.query.get(cheatsheetId)
+  comments = Comment.query.filter(Comment.cheatsheet_id == cheatsheetId).all()
+
+
+  return {**one_cheatsheet.to_dict(),
+          'comments': [comment.to_dict() for comment in comments]
+          }
+
+
 
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=['PUT'])
