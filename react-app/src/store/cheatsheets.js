@@ -74,37 +74,38 @@ const initialState = {};
 const cheatsheetReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE: {
-      const newState = {...state};
-      newState[action.cheatsheet.id] = action.cheatsheet
+      const newState = {}; //* => empty object to reset state to only have access to one cheatsheet
+      newState[action.cheatsheet.id] = action.cheatsheet;
+      // console.log('CREATE ONE NEWSTATE', newState);
       return newState;
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case GET_ALL: {
-      const newState = {...state};
-      console.log('GET ALL', newState)
+      const newState = {}; //* => empty object to reset state and populate with fresh query
       action.cheatsheets['all_cheatsheets'].forEach(cheatsheet => newState[cheatsheet.id] = cheatsheet);
+      // console.log('GET ALL NEWSTATE', newState);
       return newState;
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case GET_ONE: {
       const newState = state;
       newState[action.cheatsheet.id] = action.cheatsheet;
-      // console.log('GET ONE NEW STATE', newState)
+      // console.log('GET ONE NEW STATE', newState);
       return newState;
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case UPDATE: {
       const newState = state;
       newState[action.cheatsheet.id] = action.cheatsheet;
-      // console.log('UPDATE', newState)
+      // console.log('UPDATE', newState);
       return newState;
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case DELETE: {
       const newState = state;
       delete newState[action.cheatsheetId.id];
-      // console.log('ID OF THE DELETED ONE', action.cheatsheetId.id)
-      // console.log('NEWSTATE AFTER DELETE', newState)
+      // console.log('ID OF THE DELETED ONE', action.cheatsheetId.id);
+      // console.log('NEWSTATE AFTER DELETE', newState);
       return newState;
     }
 // todo ——————————————————————————————————————————————————————————————————————————————————
