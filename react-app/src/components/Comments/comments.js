@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { addComment, editComment, deleteComment } from '../../store/comments';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import './comments.css';
 
 
 function Comments() {
@@ -12,7 +13,7 @@ function Comments() {
 
     return (
         <div>
-            <div>
+            <div className='all-comments-container'>
                 {comments?.map(comment => {
                     return (
                         <div className='comment-container' key={comment.id}>

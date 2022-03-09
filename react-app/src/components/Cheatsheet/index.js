@@ -51,19 +51,31 @@ const CheatsheetPage = () => {
       </>)}
 
       <h1 className='cheatsheet-title'>{cheatsheet?.title}</h1>
+
       <img className='cheatsheet-img'
         style={{ height: '100px', width: '150px' }}
         src={cheatsheet?.media_url}
         alt="cheatsheet"
         onError={(e) => e.target.style.display = 'none'}
       />
+
+      <div className='img-container'>
+        <img className='cheatsheet-page-img' src={cheatsheet?.media_url} alt="cheatsheet" />
+      </div>
+
       <div className='cheatsheet-description'>Description: {cheatsheet?.description}</div>
 
       <div className='cheatsheet-dependencies'>Dependencies: {cheatsheet?.dependencies}</div>
 
+
       <div style={{ height: '500px', border: 'solid 1px black', color: 'red' }}>TEMPORARY FORMAT FOR RENDER STEPS
         <Steps cheatsheetId={cheatsheet?.id} />
+
+      <div>
+        <Steps cheatsheetId={cheatsheet?.id}/>
+
         <div>{modal}</div>
+        <Comments />
       </div>
     </div>
   );
