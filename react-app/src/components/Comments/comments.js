@@ -3,6 +3,7 @@ import { addComment, getComment, editComment, deleteComment } from '../../store/
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import './comments.css'
+import EditCommentsModal from '../EditComment/EditCommentModal';
 
 
 function CommentsComponent({ cheatsheetId }) {
@@ -75,7 +76,7 @@ function CommentsComponent({ cheatsheetId }) {
                     {comments?.map(comment => (
                         <li className={'posted_comments'} key={comment?.id}>
                             {comment?.content}
-                            <button className='edit_comment_btn'>edit</button>
+                            <EditCommentsModal comment={comment}/>
                         </li>
                     ))}
                 </ul>
