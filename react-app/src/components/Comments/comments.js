@@ -5,35 +5,23 @@ import { useParams, useHistory } from 'react-router-dom';
 import './comments.css'
 
 
-function CommentsComponent({ comments, cheatsheetId }) {
+function CommentsComponent({ cheatsheetId }) {
     // console.log('---------------------',typeof(+cheatsheetId))
     const dispatch = useDispatch();
-    // const commentsObj = useSelector(state => state?.commentState);
-    // const commentsVals = Object.values(comments)
+    const history = useHistory();
+    const commentsObj = useSelector(state => state?.commentReducer);
+    const comments = Object.values(commentsObj)
+    console.log('****************',comments)
     const sessionUser = useSelector((state) => state?.session?.user)
 
-    console.log('prop passed from cheatsheet/index: ',comments)
+
 
     useEffect(() => {
         dispatch(getComment(cheatsheetId))
     }, [dispatch, cheatsheetId])
 
     const [ content, setContent ] = useState('')
-    // const [postedContent, setPostedContent] = useState()
 
-    // const userId = useSelector(state => state.session.user.id)
-    // console.log('userid from comments',userId)
-
-
-    // const commentsVals = cheatsheet && Object.values(cheatsheet?.comments)
-    // console.log('from comments.js component:', commentsVals)
-
-    // useEffect(() => {
-    //     dispatch(getComment(id))
-    // }, [ dispatch ])
-
-    // const commentsObj = useSelector((state) => state.comments)
-    // console.log('maybe we will get the thing we want...',commentsObj)
 
 
     const handleNewComment = async (e) => {
@@ -46,6 +34,7 @@ function CommentsComponent({ comments, cheatsheetId }) {
 
         if (postComment) {
             await dispatch(getComment(cheatsheetId))
+            return history.push(`/cheatsheets/${cheatsheetId}`)
 
         } else {
             console.log('post fail')
