@@ -47,7 +47,7 @@ const Steps = ({ cheatsheetId }) => {
                                     <div>
                                         <button onClick={() => handleDelete(step?.id)}>Delete</button>
                                     </div>
-                                    <EditStepsFormModal stepId={step?.id}/>
+                                    <EditStepsFormModal step={step}/>
                                 </div>
                             )}
                         </li>

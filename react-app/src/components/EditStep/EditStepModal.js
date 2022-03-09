@@ -4,7 +4,7 @@ import EditStep from '.';
 import './editStep.css';
 
 
-function EditStepsFormModal({ stepId }) {
+function EditStepsFormModal({ step }) {
     const [ showModal, setShowModal ] = useState(false);
 
     return (
@@ -12,7 +12,7 @@ function EditStepsFormModal({ stepId }) {
             <button className='edit-step-modal' onClick={e => setShowModal(true)}>Edit Step</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <EditStep closeModal={() => setShowModal(false)} stepId={stepId} />
+                    <EditStep closeModal={() => setShowModal(false)} step={step} />
                 </Modal>
             )}
         </div>
