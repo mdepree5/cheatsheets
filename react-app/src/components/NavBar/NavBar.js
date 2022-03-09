@@ -7,11 +7,16 @@ import logo from '../../images/logo-no-bg .png';
 import CheatsheetFormModal from '../Cheatsheet/cheatsheet_modal';
 
 const NavBar = () => {
-  const sessionUser = useSelector((state) => state.session.user);
+  const sessionUser = useSelector((state) => state?.session?.user);
 
   let sessionLinks;
   if (sessionUser) {
-    sessionLinks = <LogoutButton />;
+    sessionLinks = (
+    <>
+      <LogoutButton />
+      <NavLink to={`/users/${sessionUser?.id}`}>My Page</NavLink>
+    </>
+    );
   } else {
     sessionLinks = (
       <div className='login-signup-links'>
@@ -49,7 +54,6 @@ const NavBar = () => {
         </li>
         <li className='navbar_right'>
           <CheatsheetFormModal className='publish_btn' name='Publish' />
-          {/* <button className='publish_btn'>publish</button> */}
           <input className='search_bar' type="text" placeholder='search'></input>
         </li>
 

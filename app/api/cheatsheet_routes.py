@@ -45,13 +45,12 @@ def create_cheatsheet():
 @cheatsheet_routes.route("/all", methods=["GET"])
 def get_all_cheatsheets():
   all_cheatsheets = Cheatsheet.query.all()
-  print(f'all cheatsheets: {all_cheatsheets}')                                   # * print
-
-  # * ———————————————————————————————
-  # ? my_cheatsheets = Cheatsheet.query.filter(Cheatsheet.owner_id == current_user.id).all()
-  # * ———————————————————————————————
 
   return {"all_cheatsheets": [cheatsheet.to_dict() for cheatsheet in all_cheatsheets]}
+  
+  # => STABLE for getting all cheatsheets by user
+  # my_cheatsheets = Cheatsheet.query.filter(Cheatsheet.owner_id == current_user.id).all()
+  # return {"all_cheatsheets": [cheatsheet.to_dict() for cheatsheet in my_cheatsheets]}
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=["GET"])
 def get_one_cheatsheet(cheatsheetId):
