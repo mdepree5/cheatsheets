@@ -34,12 +34,11 @@ def create_cheatsheet():
       updated_at = datetime.now()
     )
 
-  db.session.add(new_cheatsheet)
-  db.session.commit()
+    db.session.add(new_cheatsheet)
+    db.session.commit()
+    return {**new_cheatsheet.to_dict()}
 
-  return {**new_cheatsheet.to_dict()}
-
-return {'errors': validation_errors_to_error_messages(form.errors)}
+  return {'errors': validation_errors_to_error_messages(form.errors)}
 
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/all", methods=["GET"])
