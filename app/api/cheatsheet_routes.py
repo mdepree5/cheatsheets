@@ -67,7 +67,6 @@ def update_cheatsheet(cheatsheetId):
   
   if form.validate_on_submit():
     cheatsheet = Cheatsheet.query.get(cheatsheetId)
-    # cheatsheet.owner_id = form.data['owner_id']
     cheatsheet.title = form.data['title']
     cheatsheet.description = form.data['description']
     cheatsheet.dependencies = form.data['dependencies']
