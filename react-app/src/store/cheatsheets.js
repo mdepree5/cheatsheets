@@ -37,7 +37,7 @@ export const getCheatsheets = () => async (dispatch) => {
 };
 
 export const getCheatsheetsByUserId = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/users/${userId}/my_cheatsheets`, { method: 'GET' });
+  const response = await fetch(`/api/users/${userId}/cheatsheets`, { method: 'GET' });
 
   if (response.ok) {
     const cheatsheets = await response.json();

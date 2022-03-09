@@ -18,9 +18,9 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route('/<int:id>/my_cheatsheets', methods=['GET'])
+@user_routes.route('/<int:id>/cheatsheets', methods=['GET'])
 @login_required
 def get_my_cheatsheets():
     my_cheatsheets = Cheatsheet.query.filter(Cheatsheet.owner_id == current_user.id).all()
 
-    return {"my_cheatsheets": [cheatsheet.to_dict() for cheatsheet in my_cheatsheets]}
+    return {"all_cheatsheets": [cheatsheet.to_dict() for cheatsheet in my_cheatsheets]}
