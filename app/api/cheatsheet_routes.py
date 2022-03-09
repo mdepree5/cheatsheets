@@ -22,11 +22,10 @@ def validation_errors_to_error_messages(validation_errors):
 def create_cheatsheet():
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
-  if (request.headers.get('Content-Type') == 'multipart/form-data'):
-    print(f"debugger the header type is: {request.headers.get('Content-Type')}")  
-    
-  print('debugger Printing the REQUEST', request)
 
+  print('debugger Print FORM DATA', form.data)
+  # print(f"debugger the header type is: {request.headers.get('Content-Type')}")  
+  # print('debugger Printing the REQUEST', request)
   # thing = request.data # => b''
   # thing = request.form # => ImmutableMultiDict([])
   # thing = request.args # => ImmutableMultiDict([])
@@ -35,12 +34,9 @@ def create_cheatsheet():
   # thing = request.headers.get('Content-Type') # => multipart/form-data
   # thing = request.form.to_dict() # => {}
   
-  # thing = request.headers #*** => STUFF!
-  thing = request.form.get('title')
-  
-  
-  print('debugger REQUEST: ======>', thing)
-  print(thing)
+  # thing = request.headers #***
+  # thing = request.get_json
+  # thing = request.json
 
   
   if form.validate_on_submit():
