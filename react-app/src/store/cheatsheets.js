@@ -11,23 +11,20 @@ const update = cheatsheet => ({ type: UPDATE, cheatsheet });
 const destroy = cheatsheetId => ({ type: DELETE, cheatsheetId });
 // todo ——————————————————————————————————————————————————————————————————————————————————
 export const createCheatsheet = cheatsheet => async (dispatch) => {
-  console.log('OUTSIDE', cheatsheet)
-  console.log('OUTSIDE EXPECT FORMDATA OBJ');
+  console.log('OUTSIDE, EXPECT FORMDATA OBJ', cheatsheet)
 
   const response = await fetch(`/api/cheatsheets/new`, {
     method: "POST",
     headers: {"Content-Type": "multipart/form-data"},
-    body: JSON.stringify(cheatsheet)
-    // body: cheatsheet
+    body: cheatsheet
+    // body: JSON.stringify(cheatsheet)
 
     // method: "POST",
     // headers: {"Content-Type": "application/json"},
     // body: JSON.stringify(cheatsheet)
   });
-  
-  // console.log('REDUX', response)
 
-  console.log('REDUX RESPONSE', response)
+  // console.log('REDUX RESPONSE', response)
 
   if (response.ok) {
     const newcheatsheet = await response.json();

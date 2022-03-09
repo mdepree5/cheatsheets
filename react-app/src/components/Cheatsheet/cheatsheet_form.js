@@ -10,7 +10,7 @@ export const FormInput = ({name, state, setState}) => {
   return (
   <div className='form-input'>
     <label htmlFor={formatName}>{name}</label>
-    <input id={formatName} placeholder={name} value={state} onChange={e => setState(e.target.value)} />
+    <input id={formatName} placeholder={name} name={formatName} value={state} onChange={e => setState(e.target.value)} />
   </div>
   )
 }
@@ -63,13 +63,14 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <FormInput name='Title' state={title} setState={setTitle} />
         <FormInput name='Description' state={description} setState={setDescription} />
         <FormInput name='Dependencies' state={dependencies} setState={setDependencies} />
         <FormInput name='Image' state={media_url} setState={setMedia_url} />
 
         <input
+          name='image'
           type="file"
           accept="image/*"
           onChange={setImage}
