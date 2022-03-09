@@ -31,3 +31,4 @@ const Steps = ({ cheatsheetId }) => {
 }
 
 export default Steps;
+

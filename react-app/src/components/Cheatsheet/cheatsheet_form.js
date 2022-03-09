@@ -2,7 +2,7 @@ import {useHistory} from 'react-router-dom';
 import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {createCheatsheet, updateCheatsheet} from '../../store/cheatsheets';
-
+import './Cheatsheet.css';
 
 export const FormInput = ({name, state, setState}) => {
   const formatName = name.toLowerCase().split(' ').join('-');
@@ -28,40 +28,23 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
   const [media_url, setMedia_url] = useState(edit ? cheatsheet?.media_url : '');
 
   const handleSubmit = async(event) => {
-    event.preventDefault();
-    
+    event.preventDefault();    
+    const cheatsheetData = {...cheatsheet, owner_id, title, description, dependencies, media_url};
+
     if(edit){
-      const updatedCheatsheet = await dispatch(updateCheatsheet(
-        {...cheatsheet, title, description, dependencies, media_url}
-      )).catch(async(res) => {
-        const data = await res.json();
-        if(data && data.errors) setErrors(data.errors);
-      })
-  
-      if(updatedCheatsheet?.errors) setErrors(updatedCheatsheet?.errors);
-      return closeModal(); 
+      const updated = await dispatch(updateCheatsheet(cheatsheetData))
+      if(updated?.errors) setErrors(updated?.errors);
+      if(updated?.id) return closeModal();
     }
 
-    const newCheatsheet = await dispatch(createCheatsheet(
-      {owner_id, title, description, dependencies, media_url}
-    )).catch(async(res) => {
-      const data = await res.json();
-      if(data && data.errors) setErrors(data.errors)
-    })
-    
-
-    if(newCheatsheet) setErrors(newCheatsheet)
-    // console.log('CHEATSHEET_FORM', newCheatsheet)
-    // if(newCheatsheet?.errors) {
-    //   setErrors(newCheatsheet?.errors)
-    //   console.log('THE ERRORS', errors)
-    // }
-
-    if(newCheatsheet?.id) {
-      history.push(`/cheatsheets/${newCheatsheet?.id}`);
+    const created = await dispatch(createCheatsheet(cheatsheetData))
+    if(created?.errors) setErrors(created?.errors)
+    if(created?.id) {
+      history.push(`/cheatsheets/${created?.id}`);
       return closeModal();
     }
   }
+
 
   return (
     <div>
@@ -76,7 +59,7 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
       <div className='errors'>
         {errors?.length > 0 && errors?.filter(error => error !== 'Invalid value')
           .map((error, id) => (
-            <li key={id}>{error}</li>
+            <div key={id}>{error}</div>
           ))
         }
       </div>
