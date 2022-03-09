@@ -1,7 +1,7 @@
 import React from "react";
 import ImageCarousel from "./Carousel";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getCheatsheets } from "../../store/cheatsheets";
 import './Homepage.css'
@@ -13,6 +13,8 @@ const Homepage = () => {
     const dispatch = useDispatch();
     const cheatsheetsObj = useSelector((state) => state?.cheatsheet)
     const cheatsheets = cheatsheetsObj && Object.values(cheatsheetsObj)
+
+
 
     useEffect(() => {
         dispatch(getCheatsheets());
@@ -46,17 +48,17 @@ const Homepage = () => {
                 <div className="cheatsheets_container">
                     {cheatsheets.map((cheatsheet) => {
                         return (
-                            <NavLink key={cheatsheet?.id} to={`/cheatsheets/${cheatsheet?.id}`}>
+                            <a key={cheatsheet?.id} href={`/cheatsheets/${cheatsheet?.id}`} >
                                 <div className={`cheatsheet_box`}>
                                     <div>
-                                        <img className="cheatsheet-img" src={`${cheatsheet?.media_url}` ? `${cheatsheet?.media_url}` : no_image} alt='none' />
+                                        <img className="cheatsheet-img" src={`${cheatsheet?.media_url}` ? `${cheatsheet?.media_url}` : no_image} alt='none' onError={(e) => e.target.style.display = 'none'}/>
                                         <div>
                                             <h3>{cheatsheet.title}</h3>
-                                            <p>author name</p>
+                                            <p>author name:</p>
                                         </div>
                                     </div>
                                 </div>
-                            </NavLink>
+                            </a>
                         )
                     })}
                 </div>
