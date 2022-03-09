@@ -37,7 +37,7 @@ export const getComment = (id) => async (dispatch) => {
 export const addComment = (payload) => async (dispatch) => {
     const response = await fetch(`/api/comments/new_comment`, {
         method: 'POST',
-        header: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     })
 
