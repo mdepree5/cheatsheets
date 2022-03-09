@@ -12,7 +12,7 @@ export const FormInput = ({name, state, setState}) => {
     <label htmlFor={formatName}>{name}</label>
     <input id={formatName} placeholder={name} value={state} onChange={e => setState(e.target.value)} />
   </div>
-  ) 
+  )
 }
 
 const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
@@ -22,10 +22,12 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
 
   const owner_id = useSelector(state => state?.session?.user?.id);
 
+
   const [title, setTitle] = useState(edit ? cheatsheet?.title : '');
   const [description, setDescription] = useState(edit ? cheatsheet?.description : '');
   const [dependencies, setDependencies] = useState(edit ? cheatsheet?.dependencies : '');
   const [media_url, setMedia_url] = useState(edit ? cheatsheet?.media_url : '');
+
 
   const handleSubmit = async(event) => {
     event.preventDefault();    
@@ -53,7 +55,7 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
         <FormInput name='Description' state={description} setState={setDescription} />
         <FormInput name='Dependencies' state={dependencies} setState={setDependencies} />
         <FormInput name='Image' state={media_url} setState={setMedia_url} />
-        <button type='submit'>{name}</button>
+        <button className='new-delete-button' type='submit'>{name}</button>
       </form>
 
       <div className='errors'>

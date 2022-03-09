@@ -34,12 +34,13 @@ def create_cheatsheet():
       updated_at = datetime.now()
     )
 
-    db.session.add(new_cheatsheet)
-    db.session.commit()
+  db.session.add(new_cheatsheet)
+  db.session.commit()
 
-    return {**new_cheatsheet.to_dict()}
+  return {**new_cheatsheet.to_dict()}
 
-  return {'errors': validation_errors_to_error_messages(form.errors)}
+return {'errors': validation_errors_to_error_messages(form.errors)}
+
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/all", methods=["GET"])
 def get_all_cheatsheets():
@@ -55,9 +56,15 @@ def get_all_cheatsheets():
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=["GET"])
 def get_one_cheatsheet(cheatsheetId):
   one_cheatsheet = Cheatsheet.query.get(cheatsheetId)
+  # comments = Comment.query.filter(Comment.cheatsheet_id == cheatsheetId).all()
 
 
-  return {**one_cheatsheet.to_dict()}
+  return {**one_cheatsheet.to_dict(),
+          # 'comments': [comment.to_dict() for comment in comments]
+          }
+
+
+
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=['PUT'])
 @login_required

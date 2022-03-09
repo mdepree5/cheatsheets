@@ -27,12 +27,16 @@ def create_step():
       title = form.data['title'],
       content = form.data['content'],
       media_url = form.data['media_url']
-    )
+
+      )
+
 
     db.session.add(new_step)
     db.session.commit()
 
-    return {**new_step.to_dict()}
+    return {'step':new_step.to_dict()}
+    # return {new_step.to_dict()}
+
 
   if form.errors:
     return form.errors

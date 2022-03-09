@@ -9,6 +9,9 @@ import CheatsheetFormModal from '../Cheatsheet/cheatsheet_modal';
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
+
+
+
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = <LogoutButton />;
@@ -29,7 +32,7 @@ const NavBar = () => {
     <nav className='nav-container'>
       <ul className='navbar'>
         <li className='home'>
-          <NavLink to='/' exact={true} activeClassName='active'>
+          <NavLink to='/' exact={true} activeClassName='active' >
             Home
           </NavLink>
         </li>
