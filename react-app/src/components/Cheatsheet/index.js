@@ -46,7 +46,7 @@ const CheatsheetPage = () => {
       </div>
 
 
-      <CommentsComponent comments={comments} cheatsheetId={cheatsheetId}/>
+      <CommentsComponent comments={comments} cheatsheet={cheatsheet} cheatsheetId={cheatsheetId}/>
 
     </div>
   );
