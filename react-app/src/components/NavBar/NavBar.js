@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css';
 import logo from '../../images/logo-no-bg .png';
+import CheatsheetFormModal from '../Cheatsheet/cheatsheet_modal';
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -47,7 +48,8 @@ const NavBar = () => {
           /><span>Cheatsheets</span></NavLink>
         </li>
         <li className='navbar_right'>
-          <button className='publish_btn'>publish</button>
+          <CheatsheetFormModal className='publish_btn' name='Publish' />
+          {/* <button className='publish_btn'>publish</button> */}
           <input className='search_bar' type="text" placeholder='search'></input>
         </li>
 

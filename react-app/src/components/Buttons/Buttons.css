@@ -1,0 +1,18 @@
+button{
+  color: black;
+}
+
+button:hover{
+  background-color: #ebe9e9;
+  border-bottom: solid 2px #d1cece;
+}
+
+
+.delete{
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+  background-color: white;
+  margin-left: 5px;
+  cursor: pointer;
+}

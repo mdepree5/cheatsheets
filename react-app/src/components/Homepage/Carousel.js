@@ -14,15 +14,15 @@ const ImageCarousel = () => {
                 stopOnHover={true}
                 >
                 <div>
-                    <img className='carousel_img' src="https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png" alt="python image" />
+                    <img className='carousel' src="https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png" alt="python" />
                 </div>
 
                 <div>
-                    <img className='carousel_img' src="https://www.fullstackpython.com/img/logos/heroku.png" alt="heroku image" />
+                    <img className='carousel' src="https://www.fullstackpython.com/img/logos/heroku.png" alt="heroku" />
                 </div>
 
                 <div>
-                    <img className='carousel_img' src="https://coursework.vschool.io/content/images/size/w2000/2017/09/JavaScriptBanner.png" alt="javascript image" />
+                    <img className='carousel' src="https://coursework.vschool.io/content/images/size/w2000/2017/09/JavaScriptBanner.png" alt="javascript" />
                 </div>
             </Carousel>
         </div>

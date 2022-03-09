@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import cheatsheet from './cheatsheets'
 import commentReducer from './comments';
+import stepsReducer from './steps';
 
 const rootReducer = combineReducers({
   session,
   comments: commentReducer,
   cheatsheet,
+  stepsReducer
 });
 
 let enhancer;

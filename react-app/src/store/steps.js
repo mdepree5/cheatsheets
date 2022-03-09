@@ -11,10 +11,10 @@ const loadSteps = steps => {
     }
 }
 
-const addStep = steps => {
+const addStep = step => {
     return {
         type: ADD,
-        steps
+        step
     }
 }
 
@@ -39,25 +39,25 @@ export const getStep = (cheatsheetId) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(loadSteps(data));
-        return data
+        return data;
     }
 }
 
-export const newStep = (cheatsheetId) => async (dispatch) => {
-    const response = await fetch(`/api/steps/`, {
+export const newStep = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/steps/new`, {
         method: 'POST',
-        header: { 'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     })
     let data;
     if (response.ok) {
         data = await response.json();
         dispatch(addStep(data));
-        return data
+        return data;
     }
 }
 
-export const editComment = (payload) => async (dispatch) => {
+export const updateStep = (payload) => async (dispatch) => {
     const response = await fetch(`/api/steps/${payload.stepId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -72,13 +72,13 @@ export const editComment = (payload) => async (dispatch) => {
 }
 
 export const deleteStep = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/steps/${payload.stepId}`,{
+    const response = await fetch(`/api/steps/${payload.stepId}`, {
         method: 'DELETE'
     })
 
-    if (response.ok){
-        dispatch(remove(stepId));
-        return
+    if (response.ok) {
+        dispatch(removeStep(payload));
+        return;
     }
 }
 
@@ -90,21 +90,20 @@ const stepsReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD:
             newState = { ...state };
-            action.steps.forEach((step) => {
-                newState[step.id] = step;
-            });
+            action.steps['all_steps'].forEach((step) => newState[step.id] = step);
             return newState;
         case ADD:
             newState = { ...state };
             newState[action.step.id] = action.step;
+            console.log('ASDFASFDSAFA', newState)
             return newState;
         case DELETE:
             newState = { ...state };
-            delete newState[action.stepId];
+            delete newState[ action.stepId ];
             return newState;
         case EDIT:
             newState = { ...state };
-            newState[action.step.id] = action.step;
+            newState[ action.step.id ] = action.step;
             return newState;
         default:
             return state
