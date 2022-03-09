@@ -3,12 +3,13 @@ import { addComment, getComment, editComment, deleteComment } from '../../store/
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import './comments.css'
+import EditCommentsModal from '../EditComment/EditCommentModal';
 
 
 function CommentsComponent({ cheatsheetId }) {
     // console.log('---------------------',typeof(+cheatsheetId))
+    // const history = useHistory();
     const dispatch = useDispatch();
-    const history = useHistory();
     const commentsObj = useSelector(state => state?.commentReducer);
     const comments = Object.values(commentsObj)
     // console.log('****************',comments)
@@ -39,11 +40,9 @@ function CommentsComponent({ cheatsheetId }) {
 
         if (postComment) {
             await dispatch(getComment(cheatsheetId))
-            console.log('new comment successful? maybe?')
-            return history.push(`/cheatsheets/${cheatsheetId}`)
+            // console.log('new comment successful? maybe?')
 
-        } else {
-            console.log('new comment failed')
+            setContent('')
         }
     }
 
@@ -76,7 +75,10 @@ function CommentsComponent({ cheatsheetId }) {
                 <ul className='posted_comments_container'>
                     {comments?.map(comment => (
                         <li className={'posted_comments'} key={comment?.id}>
-                            {comment?.content}</li>))}
+                            {comment?.content}
+                            <EditCommentsModal comment={comment}/>
+                        </li>
+                    ))}
                 </ul>
 
             </div>
