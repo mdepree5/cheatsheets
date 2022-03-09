@@ -20,9 +20,9 @@ function CommentsComponent({ comments, cheatsheet, cheatsheetId }) {
     const commentsVals = cheatsheet && Object.values(cheatsheet?.comments)
     console.log('from comments.js component:', commentsVals)
 
-    useEffect(() => {
-        dispatch(getComment(id))
-    }, [ dispatch ])
+    // useEffect(() => {
+    //     dispatch(getComment(id))
+    // }, [ dispatch ])
 
     // const commentsObj = useSelector((state) => state.comments)
     // console.log('maybe we will get the thing we want...',commentsObj)
