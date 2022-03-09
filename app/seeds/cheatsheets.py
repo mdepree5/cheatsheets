@@ -25,7 +25,7 @@ def seed_cheatsheets():
         media_url='https://s3-us-east-2.amazonaws.com/blog-ghost-prod/2021/02/why-use-postgresql-database68__1_.jpg'
         )
     simple_git = Cheatsheet(
-        owner_id=1,
+        owner_id=3,
         title='Simple Git',
         description='Here is a simple Git',
         dependencies='Have a GitHub account',
@@ -48,4 +48,3 @@ def seed_cheatsheets():
 def undo_cheatsheets():
     db.session.execute('TRUNCATE cheatsheets RESTART IDENTITY CASCADE;')
     db.session.commit()
-

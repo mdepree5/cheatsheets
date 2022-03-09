@@ -1,0 +1,26 @@
+.comments_container {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+
+.view_comments {
+    display: flex;
+    justify-content: center;
+    left: 30%;
+
+}
+.posted_comments_container{
+    display: flex;
+    flex-direction: column-reverse;
+    left: 30%;
+
+}
+
+.posted_comments {
+    list-style: none;
+}

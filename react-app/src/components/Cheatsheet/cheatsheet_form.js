@@ -22,10 +22,12 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
 
   const owner_id = useSelector(state => state?.session?.user?.id);
 
+
   const [title, setTitle] = useState(edit ? cheatsheet?.title : '');
   const [description, setDescription] = useState(edit ? cheatsheet?.description : '');
   const [dependencies, setDependencies] = useState(edit ? cheatsheet?.dependencies : '');
   const [media_url, setMedia_url] = useState(edit ? cheatsheet?.media_url : '');
+
 
   const handleSubmit = async(event) => {
     event.preventDefault();
@@ -48,6 +50,7 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
       const data = await res.json();
       if(data && data.errors) setErrors(data.errors)
     })
+
 
     if(newCheatsheet) history.push(`/cheatsheets/${newCheatsheet?.id}`);
     return closeModal();
