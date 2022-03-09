@@ -5,10 +5,16 @@ import { useParams, useHistory } from 'react-router-dom';
 import './comments.css'
 
 
-function CommentsComponent({ comments, cheatsheet, cheatsheetId }) {
-    const { id } = useParams();
-    const dispatch = useDispatch()
-    // const history = useHistory()
+function CommentsComponent({ comments, cheatsheetId }) {
+    const dispatch = useDispatch();
+    // const commentsObj = useSelector(state => state?.commentState);
+    // const commentsVals = Object.values(comments)
+
+    console.log('prop passed from cheatsheet/index: ',comments)
+
+    useEffect(() => {
+        dispatch(getComment(cheatsheetId))
+    }, [dispatch, cheatsheetId])
 
     const [ content, setContent ] = useState('')
     // const [postedContent, setPostedContent] = useState()
@@ -17,12 +23,12 @@ function CommentsComponent({ comments, cheatsheet, cheatsheetId }) {
     // console.log('userid from comments',userId)
 
 
-    const commentsVals = cheatsheet && Object.values(cheatsheet?.comments)
-    console.log('from comments.js component:', commentsVals)
+    // const commentsVals = cheatsheet && Object.values(cheatsheet?.comments)
+    // console.log('from comments.js component:', commentsVals)
 
-    useEffect(() => {
-        dispatch(getComment(id))
-    }, [ dispatch ])
+    // useEffect(() => {
+    //     dispatch(getComment(id))
+    // }, [ dispatch ])
 
     // const commentsObj = useSelector((state) => state.comments)
     // console.log('maybe we will get the thing we want...',commentsObj)
