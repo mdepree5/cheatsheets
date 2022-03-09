@@ -33,19 +33,19 @@ export const getComment = (id) => async (dispatch) => {
     }
 };
 
-export const addComment = (comment) => async (dispatch) => {
+export const addComment = (payload) => async (dispatch) => {
     const response = await fetch(`/api/comments/new_comment`, {
         method: 'POST',
         header: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(comment)
+        body: JSON.stringify(payload)
     })
 
+    let data;
     if (response.ok) {
-        const data = await response.json();
-        dispatch(add(data.comment));
+        data = await response.json();
+        dispatch(add(data));
         return data;
     }
-    return response
 }
 
 export const deleteComment = (payload) => async (dispatch) => {

@@ -26,14 +26,14 @@ function CommentsComponent({ cheatsheetId }) {
 
     const handleNewComment = async (e) => {
         e.preventDefault();
-        const newComment = {
+        const payload = {
             writer_id: sessionUser.id ,
             cheatsheet_id: cheatsheetId ,
             content
         }
 
         console.log('from handler: ',cheatsheetId, content)
-        const postComment = await dispatch(addComment(newComment));
+        const postComment = await dispatch(addComment(payload));
         // const updateComments = await dispatch(getComment(cheatsheetId))
 
         if (postComment) {
@@ -41,7 +41,7 @@ function CommentsComponent({ cheatsheetId }) {
             return history.push(`/cheatsheets/${cheatsheetId}`)
 
         } else {
-            console.log('post fail')
+            console.log('posting comment failed')
         }
     }
 
