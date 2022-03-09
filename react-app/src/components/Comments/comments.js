@@ -13,7 +13,7 @@ function CommentsComponent({ cheatsheetId }) {
     const comments = Object.values(commentsObj)
     console.log('****************',comments)
     const sessionUser = useSelector((state) => state?.session?.user)
-
+    //something changed
 
 
     useEffect(() => {
