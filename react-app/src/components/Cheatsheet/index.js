@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Comments from '../Comments/comments';
 import CheatsheetFormModal from './cheatsheet_modal';
-import {CheatsheetDeleteButton} from '../Buttons';
+import { CheatsheetDeleteButton } from '../Buttons';
 import { getStep } from '../../store/steps'
-import {getCheatsheet} from '../../store/cheatsheets';
+import { getCheatsheet } from '../../store/cheatsheets';
 
 import Steps from '../Steps';
 
@@ -35,13 +35,13 @@ const CheatsheetPage = () => {
   useEffect(() => { dispatch(getCheatsheet(cheatsheetId)) }, [ dispatch, cheatsheetId ])
   useEffect(() => {
     dispatch(getStep(cheatsheet?.id))
-}, [dispatch, cheatsheet?.id])
+  }, [ dispatch, cheatsheet?.id ])
 
 
 
   let modal;
   if (sessionUser?.id === Number(cheatsheet?.owner_id)) {
-    modal = <StepsFormModal cheatsheetId={cheatsheetId}/>
+    modal = <StepsFormModal cheatsheetId={cheatsheetId} />
   } else {
     modal = null;
   }
@@ -49,6 +49,7 @@ const CheatsheetPage = () => {
 
   return (
     <div>
+
       <div style={{height: '200px'}}></div>
 
 
@@ -63,26 +64,41 @@ const CheatsheetPage = () => {
       <div style={{height: '500px', border:'solid 1px black', color:'red'}}>TEMPORARY FORMAT FOR RENDER STEPS
         <div>{steps?.map(step => (<div key={step?.id} >{step?.title} {step?.content}</div>))}</div>
 
+
+      <div style={{ height: '200px' }}></div>
+
       {sessionUser?.id === cheatsheet?.owner_id && (<>
-          <CheatsheetFormModal name='Edit Cheatsheet' edit={true} cheatsheet={cheatsheet}/>
-          <CheatsheetDeleteButton cheatsheetId={cheatsheet?.id}/>
-        </>)}
+        <CheatsheetFormModal name='Edit Cheatsheet' edit={true} cheatsheet={cheatsheet} />
+        <CheatsheetDeleteButton cheatsheetId={cheatsheet?.id} />
+      </>)}
 
       <h1 className='cheatsheet-title'>{cheatsheet?.title}</h1>
+
+      <img className='cheatsheet-img'
+        style={{ height: '100px', width: '150px' }}
+        src={cheatsheet?.media_url}
+        alt="cheatsheet"
+        onError={(e) => e.target.style.display = 'none'}
+      />
+
       <div className='img-container'>
         <img className='cheatsheet-page-img' src={cheatsheet?.media_url} alt="cheatsheet" />
 
       </div>
+
       <div className='cheatsheet-description'>Description: {cheatsheet?.description}</div>
 
       <div className='cheatsheet-dependencies'>Dependencies: {cheatsheet?.dependencies}</div>
 
 
+
       <CommentsComponent comments={comments} cheatsheet={cheatsheet} cheatsheetId={cheatsheetId}/>
+
 
 
       <div>
         <Steps cheatsheetId={cheatsheet?.id}/>
+
         <div>{modal}</div>
         <Comments />
       </div>
