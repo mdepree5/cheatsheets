@@ -19,9 +19,9 @@ const Steps = ({ cheatsheetId }) => {
     }
 
 
-    useEffect(() => {
-        dispatch(getStep(cheatsheetId))
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getStep(cheatsheetId))
+    // }, [dispatch])
 
     return (
         <div className="all-steps-container">
@@ -33,12 +33,14 @@ const Steps = ({ cheatsheetId }) => {
                         <li className="step-content" key={step?.id} style={{ borderLeft: '4px solid lightGrey', padding: '10px' }}>
                             {step?.content}
 
-                            <div>
-                                <img id='step_image_render'
-                                    src={step?.media_url} onError={(e) => e.target.style.display = 'none'}
-                                    alt='url'
-                                />
-                            </div>
+                            {typeof step?.media_url === 'string' && (
+                                <div>
+                                    <img id='step_image_render'
+                                        src={step?.media_url} onError={(e) => e.target.style.display = 'none'}
+                                        alt='url'
+                                    />
+                                </div>
+                            )}
                             {sessionUser?.id === cheatsheet?.owner_id && (
                                 <div>
                                     <button onClick={() => handleDelete(step?.id)}>Delete</button>
@@ -54,4 +56,3 @@ const Steps = ({ cheatsheetId }) => {
 }
 
 export default Steps;
-
