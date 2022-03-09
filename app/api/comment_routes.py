@@ -54,11 +54,11 @@ def get_comments():
 
 # todo ——————————————————————————————————————————————————————————————————————————————————
 # @comment_routes.route("/<int:commentId>", methods=['PUT'])
-# def update_comment(id):
+# def update_comment(commentId):
 #   form = CommentForm()
 
 #   if form.validate_on_submit():
-#     comment = Comment.query.get(id)
+#     comment = Comment.query.get(commentId)
 #     comment.writer_id = form.data['writer_id']
 #     comment.cheatsheet_id = form.data['cheatsheet_id']
 #     comment.content = form.data['content']
@@ -82,7 +82,15 @@ def update_comment(id):
   return comment.to_dict()
 
 
+
 # todo ——————————————————————————————————————————————————————————————————————————————————
+# @comment_routes.route("/<int:commentId>", methods=['DELETE'])
+# def delete_comment(commentId):
+#   comment = Comment.query.get(commentId)
+#   db.session.delete(comment)
+#   db.session.commit()
+
+#   return {'message': 'Deleted comment.'}
 @comment_routes.route("/<int:id>", methods=['DELETE'])
 def delete_comment(id):
   comment = Comment.query.get(id)

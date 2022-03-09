@@ -43,11 +43,11 @@ def create_step():
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @step_routes.route("/<int:stepId>", methods=['PUT'])
 @login_required
-def update_step(id):
+def update_step(stepId):
   form = StepForm()
 
   if form.validate_on_submit():
-    step = Step.query.get(id)
+    step = Step.query.get(stepId)
     step.cheatsheet_id = form.data['cheatsheet_id']
     step.title = form.data['title']
     step.content = form.data['content']
@@ -61,9 +61,9 @@ def update_step(id):
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @step_routes.route("/<int:stepId>", methods=['DELETE'])
 @login_required
-def delete_step(id):
-  step = Step.query.get(id)
+def delete_step(stepId):
+  step = Step.query.get(stepId)
   db.session.delete(step)
   db.session.commit()
 
-  return 'Deleted step.'
+  return {'stepId': stepId}

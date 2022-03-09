@@ -72,3 +72,7 @@ button {
   cursor: pointer;
   z-index: 66;
 }
+
+.errors{
+  color: red;
+}
