@@ -7,26 +7,32 @@ import { FormInput, FormTextarea } from '../Steps/StepsForm';
 
 
 
-const EditStep = () => {
+const EditStep = ({ closeModal, stepId }) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+    const { cheatsheetId } = useParams();
+    const id = stepId;
 
-    const [stepTitle, setStepTitle] = useState('');
-    const [stepContent, setStepContent] = useState('');
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
     const [media_url, setMedia_url] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const updatedStep = {
+            id,
             cheatsheetId,
             title,
             content,
             media_url
         };
 
+        console.log('UPDATEDSTEP', updatedStep)
+
+
         closeModal();
-        return await dispatch(editStep(payload));
+        return await dispatch(updateStep(updatedStep));
     }
 
 
@@ -37,15 +43,15 @@ const EditStep = () => {
             <FormInput name='Title' state={title} setState={setTitle} />
             <FormTextarea name='Content' state={content} setState={setContent}  />
             <FormInput name='Media_url' state={media_url} setState={setMedia_url} />
-            <button type='submit'>Add Step</button>
+            <button type='submit'>Edit step</button>
         </form>
-        <div className='errors'>
+        {/* <div className='errors'>
             {errors.length > 0 && errors.filter(error => error !== 'Invalid value')
                 .map((error, id) => (
                     <li key={id}>{error}</li>
                 ))
             }
-        </div>
+        </div> */}
     </div>
     );
 }

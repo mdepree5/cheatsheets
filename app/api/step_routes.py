@@ -43,10 +43,12 @@ def create_step():
   if form.errors:
     return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
-@step_routes.route("/<int:stepId>", methods=['PUT'])
+@step_routes.route("/<int:id>", methods=['PUT'])
 @login_required
 def update_step(stepId):
   form = StepForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
 
   if form.validate_on_submit():
     step = Step.query.get(stepId)

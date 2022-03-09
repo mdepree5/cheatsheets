@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getStep, deleteStep } from "../../store/steps";
+import { deleteStep } from "../../store/steps";
 import no_image from '../../images/no_image_found.png'
+import EditStepsFormModal from "../EditStep/EditStepModal";
 import './steps.css';
 
 
@@ -43,7 +44,12 @@ const Steps = ({ cheatsheetId }) => {
                             )}
                             {sessionUser?.id === cheatsheet?.owner_id && (
                                 <div>
-                                    <button onClick={() => handleDelete(step?.id)}>Delete</button>
+                                    <div>
+                                        <button onClick={() => handleDelete(step?.id)}>Delete</button>
+                                    </div>
+                                    <div>
+                                        <EditStepsFormModal stepId={step?.id}/>
+                                    </div>
                                 </div>
                             )}
                         </li>

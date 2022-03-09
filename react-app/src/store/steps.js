@@ -58,7 +58,8 @@ export const newStep = (payload) => async (dispatch) => {
 }
 
 export const updateStep = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/steps/${payload.stepId}`, {
+    console.log('PAYLOAD', payload)
+    const response = await fetch(`/api/steps/${payload.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -103,7 +104,7 @@ const stepsReducer = (state = {}, action) => {
             return newState;
         case EDIT:
             newState = { ...state };
-            newState[action.step.step.id] = action.step;
+            newState[action.step.stepId] = action.step;
             return newState;
         default:
             return state
