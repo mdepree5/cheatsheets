@@ -61,5 +61,8 @@
 }
 
 .step-buttons-div {
-    display: inline;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

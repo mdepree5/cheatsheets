@@ -8,7 +8,7 @@ function EditStepsFormModal({ stepId }) {
     const [ showModal, setShowModal ] = useState(false);
 
     return (
-        <div className='modal-button-container'>
+        <div className='edit-step-modal-button-container'>
             <button className='edit-step-modal' onClick={e => setShowModal(true)}>Edit Step</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
