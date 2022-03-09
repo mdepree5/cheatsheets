@@ -18,10 +18,10 @@ const addStep = step => {
     }
 }
 
-const removeStep = steps => {
+const removeStep = stepId => {
     return {
         type: DELETE,
-        steps
+        stepId
     }
 }
 
@@ -71,14 +71,15 @@ export const updateStep = (payload) => async (dispatch) => {
     }
 }
 
-export const deleteStep = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/steps/${payload.stepId}`, {
+export const deleteStep = (stepId) => async (dispatch) => {
+    const response = await fetch(`/api/steps/${stepId}`, {
         method: 'DELETE'
     })
 
     if (response.ok) {
-        dispatch(removeStep(payload));
-        return;
+        const stepId = await response.json();
+        dispatch(removeStep(stepId));
+        return response;
     }
 }
 
@@ -95,11 +96,10 @@ const stepsReducer = (state = {}, action) => {
         case ADD:
             newState = { ...state };
             newState[action.step.id] = action.step;
-            console.log('ASDFASFDSAFA', newState)
             return newState;
         case DELETE:
             newState = { ...state };
-            delete newState[ action.stepId ];
+            delete newState[action.stepId];
             return newState;
         case EDIT:
             newState = { ...state };
