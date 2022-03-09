@@ -61,7 +61,7 @@ const CheatsheetPage = () => {
       <div>
         <Steps cheatsheetId={cheatsheet?.id}/>
         <div>{modal}</div>
-        <CommentsComponent  comments={cheatsheet?.comments} cheatsheetId={cheatsheetId} />
+        <CommentsComponent cheatsheetId={cheatsheetId} />
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ function CommentsComponent({ cheatsheetId }) {
     const history = useHistory();
     const commentsObj = useSelector(state => state?.commentReducer);
     const comments = Object.values(commentsObj)
-    console.log('****************',comments)
+    // console.log('****************',comments)
     const sessionUser = useSelector((state) => state?.session?.user)
     //something changed
 
@@ -33,15 +33,17 @@ function CommentsComponent({ cheatsheetId }) {
         }
 
         console.log('from handler: ',cheatsheetId, content)
+
         const postComment = await dispatch(addComment(payload));
         // const updateComments = await dispatch(getComment(cheatsheetId))
 
         if (postComment) {
             await dispatch(getComment(cheatsheetId))
+            console.log('new comment successful? maybe?')
             return history.push(`/cheatsheets/${cheatsheetId}`)
 
         } else {
-            console.log('posting comment failed')
+            console.log('new comment failed')
         }
     }
 
@@ -58,7 +60,7 @@ function CommentsComponent({ cheatsheetId }) {
                 </div>
                 <form className='post_comment_form' >
                     <textarea
-                        className='post_comment_area'
+                        className='post_comment_textarea'
                         placeholder='write something'
                         cols="50"
                         rows="5"
