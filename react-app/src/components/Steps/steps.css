@@ -8,18 +8,28 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 }
 
-.step-title {
+.step-title-header {
     font-size: 25px;
     color: black;
+    background-color: #f2f2f2;
+    text-align: center; /* align title only center?? */
+}
+
+/* Create a scrollable div for the step content?? */
+.step-wrapper {
+    width: 600px;
+    height: auto;
+    /* overflow: auto; */
 }
 
 .step-content {
     color: rgb(66, 66, 66);
     list-style: none;
     font-size: 18px;
+    
 }
 
 .add-step-modal {
@@ -40,4 +50,12 @@
 
 .add-step-modal:hover {
     background-color: #d39420;
+}
+
+#step_image_render {
+    margin-top:20px;
+    border: 1px solid rgb(235, 235, 235);
+    box-shadow: 5px 5px 5px grey;
+    height: 90px;
+    width: 140px;
 }

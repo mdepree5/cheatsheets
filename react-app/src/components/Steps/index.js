@@ -24,17 +24,19 @@ const Steps = ({ cheatsheetId }) => {
             {steps?.map((step) => {
                 return (
                     <div className="step-container">
-                        <h3 className="step-title">{step?.title}</h3>
+                        <h3 className="step-title-header">{step?.title}</h3>
+                        <div className="step-wrapper">
                         <li className="step-content" key={step?.id} style={{ borderLeft: '4px solid lightGrey', padding: '10px' }}>
                             {step?.content}
+                  
                             <div>
                                 <img id='step_image_render'
-                                    style={{ height: '90px', width: '140px', boxShadow: '10px 5px 5px grey', borderStyle: '1px solid grey' }}
                                     src={step?.media_url} onError={(e) => e.target.style.display = 'none'}
                                     alt='url'
                                 />
                             </div>
                         </li>
+                        </div>
                     </div>
                 )
             })}
