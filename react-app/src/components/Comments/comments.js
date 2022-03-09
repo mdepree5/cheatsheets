@@ -26,7 +26,11 @@ function CommentsComponent({ cheatsheetId }) {
 
     const handleNewComment = async (e) => {
         e.preventDefault();
-        const newComment = { writer_id: sessionUser.id , cheatsheet_id: cheatsheetId , content}
+        const newComment = {
+            writer_id: sessionUser.id ,
+            cheatsheet_id: cheatsheetId ,
+            content
+        }
 
         console.log('from handler: ',cheatsheetId, content)
         const postComment = await dispatch(addComment(newComment));
