@@ -76,3 +76,26 @@ button {
 .errors{
   color: red;
 }
+
+.cheatsheet-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-step-header {
+  text-align: center;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+input#title, input#description, input#dependencies, input#image {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+}
+
+div.form-input {
+  width: 100%;
+}

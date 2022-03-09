@@ -2,9 +2,27 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { updateStep, getStep } from '../../store/steps';
-import { FormInput, FormTextarea } from '../Steps/StepsForm';
+import './editStep.css';
 
+export const FormInput = ({ name, state, setState }) => {
+    const formatName = name.toLowerCase().split(' ').join('-');
 
+    return (
+        <div className='form-input'>
+            <input id={formatName} placeholder={name} value={state} onChange={e => setState(e.target.value)} />
+        </div>
+    )
+}
+
+export const FormTextarea = ({ name, state, setState }) => {
+    const formatName = name.toLowerCase().split(' ').join('-');
+
+    return (
+        <div className='form-input'>
+            <textarea id={formatName} placeholder={name} value={state} onChange={e => setState(e.target.value)} />
+        </div>
+    )
+}
 
 
 const EditStep = ({ closeModal, step }) => {
@@ -14,7 +32,6 @@ const EditStep = ({ closeModal, step }) => {
     const { cheatsheetId } = useParams();
     const id = step.id;
 
-    console.log('stepppppp ------>>>>', step);
 
     const [ title, setTitle ] = useState(step.title);
     const [ content, setContent ] = useState(step.content);
@@ -44,12 +61,13 @@ const EditStep = ({ closeModal, step }) => {
 
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className='edit-step-form-container'>
+            <h4 className='edit-step-header'>Edit step</h4>
+            <form className='edit-step-form' onSubmit={handleSubmit}>
                 <FormInput name='Title' state={title} setState={setTitle} />
                 <FormTextarea name='Content' state={content} setState={setContent} />
                 <FormInput name='Media_url' state={media_url} setState={setMedia_url} />
-                <button type='submit'>Edit step</button>
+                <button className='edit-step-submit' type='submit'>Edit step</button>
             </form>
             <div className='errors'>
                 {errors.length > 0 && errors.filter(error => error !== 'Invalid value')
