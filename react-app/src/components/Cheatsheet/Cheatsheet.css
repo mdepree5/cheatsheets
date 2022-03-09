@@ -8,11 +8,12 @@
 }
 
 .step-container{
-  /* width: 600px; */
+  width: 600px;
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
-  border: solid black 1px;
+  border-bottom: 1px solid black;
+  margin-bottom: 50px;
 }
 
 .step-placeholder{
@@ -31,10 +32,43 @@
   position: absolute;
   top: 100px;
   left: 40%;
+  margin-top: 30px;
+
 }
 
 .cheatsheet-description {
   font-size: 20px;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   text-align: center;
+}
+
+.cheatsheet-dependencies {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 50px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid black;
+}
+
+.img-container {
+  width: 100%;
+  height: 600px;
+  margin-bottom: 50px;
+}
+
+.cheatsheet-page-img {
+  width: 60%;
+  height: 600px;
+  position: absolute;
+  left: 20%;
+}
+
+button {
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+  background-color: white;
+  margin-left: 5px;
+  cursor: pointer;
+  z-index: 66;
 }
