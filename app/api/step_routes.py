@@ -67,3 +67,4 @@ def delete_step(stepId):
   db.session.commit()
 
   return {'message': 'Deleted step.'}
+

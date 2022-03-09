@@ -1,22 +1,27 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getStep } from "../../store/steps";
+import { getStep, deleteStep } from "../../store/steps";
 import no_image from '../../images/no_image_found.png'
 import './steps.css';
 
 
 const Steps = ({ cheatsheetId }) => {
     const dispatch = useDispatch();
+    const sessionUser = useSelector(state => state.session.user);
     const stepsObj = useSelector(state => state?.stepsReducer);
-    const steps = Object.values(stepsObj)
-    // console.log('STEPS ------------->', steps)
-    // const steps = cheatsheet && Object.values(cheatsheet?.steps);
+
+    const steps = Object.values(stepsObj);
+    const cheatsheet = useSelector(state => state.cheatsheet[cheatsheetId]);
+
+    const handleDelete = async (stepId) => {
+       return await dispatch(deleteStep(stepId))
+    }
 
 
     useEffect(() => {
         dispatch(getStep(cheatsheetId))
-    }, [ dispatch, cheatsheetId ])
+    }, [dispatch])
 
     return (
         <div className="all-steps-container">
@@ -27,13 +32,18 @@ const Steps = ({ cheatsheetId }) => {
                         <div className="step-wrapper">
                         <li className="step-content" key={step?.id} style={{ borderLeft: '4px solid lightGrey', padding: '10px' }}>
                             {step?.content}
-                  
+
                             <div>
                                 <img id='step_image_render'
                                     src={step?.media_url} onError={(e) => e.target.style.display = 'none'}
                                     alt='url'
                                 />
                             </div>
+                            {sessionUser?.id === cheatsheet?.owner_id && (
+                                <div>
+                                    <button onClick={() => handleDelete(step?.id)}>Delete</button>
+                                </div>
+                            )}
                         </li>
                         </div>
                     </div>
