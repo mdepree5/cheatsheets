@@ -45,13 +45,13 @@ def create_step():
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @step_routes.route("/<int:id>", methods=['PUT'])
 @login_required
-def update_step(stepId):
+def update_step(id):
   form = StepForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
 
   if form.validate_on_submit():
-    step = Step.query.get(stepId)
+    step = Step.query.get(id)
     step.cheatsheet_id = form.data['cheatsheet_id']
     step.title = form.data['title']
     step.content = form.data['content']
