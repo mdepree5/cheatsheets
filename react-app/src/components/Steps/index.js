@@ -7,7 +7,7 @@ const Steps = ({ cheatsheetId }) => {
     const dispatch = useDispatch();
     const stepsObj = useSelector(state => state?.stepsReducer);
     const steps = Object.values(stepsObj)
-    console.log('STEPS', steps)
+    // console.log('STEPS', steps)
     // const steps = cheatsheet && Object.values(cheatsheet?.steps);
 
     useEffect(() => {

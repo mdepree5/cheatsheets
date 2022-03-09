@@ -23,7 +23,6 @@ export const CheatsheetDeleteButton = ({cheatsheetId}) => {
   const sessionUser = useSelector(state => state?.session?.user);
   console.log('DELETE_BUTTON', sessionUser)
   return (
-    <DeleteButton thisId={cheatsheetId} deleteThunk={deleteCheatsheet} config={{buttonName: 'Delete Cheatsheet'}}/>
-    // <DeleteButton thisId={cheatsheetId} deleteThunk={deleteCheatsheet} config={{buttonName: 'Delete Cheatsheet', newRoute:`/users/${sessionUser?.id}`}}/>
+    <DeleteButton thisId={cheatsheetId} deleteThunk={deleteCheatsheet} config={{buttonName: 'Delete Cheatsheet', newRoute:`/users/${sessionUser?.id}`}}/>
   )
 }
