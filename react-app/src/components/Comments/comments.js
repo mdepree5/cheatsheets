@@ -5,16 +5,16 @@ import { useParams, useHistory } from 'react-router-dom';
 import './comments.css'
 
 
-function CommentsComponent({comments, cheatsheet, cheatsheetId}) {
+function CommentsComponent({ comments, cheatsheet, cheatsheetId }) {
     const { id } = useParams();
     const dispatch = useDispatch()
     // const history = useHistory()
 
-    const [content, setContent] = useState('')
+    const [ content, setContent ] = useState('')
     // const [postedContent, setPostedContent] = useState()
 
-    const userId = useSelector(state => state.session.user.id)
-    console.log('userid from comments',userId)
+    // const userId = useSelector(state => state.session.user.id)
+    // console.log('userid from comments',userId)
 
 
     const commentsVals = cheatsheet && Object.values(cheatsheet?.comments)
@@ -22,18 +22,18 @@ function CommentsComponent({comments, cheatsheet, cheatsheetId}) {
 
     useEffect(() => {
         dispatch(getComment(id))
-    }, [dispatch])
+    }, [ dispatch ])
 
     // const commentsObj = useSelector((state) => state.comments)
     // console.log('maybe we will get the thing we want...',commentsObj)
 
 
-    const handleNewComment = async (e) => {
-        e.preventDefault();
-        const newComment = { userId: user.id, cheatsheetId, content}
-        await dispatch(addComment(newComment));
-        await dispatch(getComment(cheatsheetId))
-    }
+    // const handleNewComment = async (e) => {
+    //     e.preventDefault();
+    //     const newComment = { userId: user.id, cheatsheetId, content}
+    //     await dispatch(addComment(newComment));
+    //     await dispatch(getComment(cheatsheetId))
+    // }
 
 
     // const sessionUser = useSelector((state) => state?.session?.user);
@@ -46,7 +46,7 @@ function CommentsComponent({comments, cheatsheet, cheatsheetId}) {
                 <div className='view_comments'>
 
                 </div>
-                <form className='post_comment_form' onSubmit={handleNewComment}>
+                <form className='post_comment_form' >
                     <textarea className='post_comment_area' placeholder='write something' cols="50" rows="5"></textarea>
                     <button>new comment</button>
                 </form>
@@ -56,7 +56,7 @@ function CommentsComponent({comments, cheatsheet, cheatsheetId}) {
                 <ul className='posted_comments_container'>
                     {comments?.map(comment => (
                         <li className={'posted_comments'} key={comment?.id}>
-                    {comment?.content}</li>))}
+                            {comment?.content}</li>))}
                 </ul>
 
             </div>

@@ -44,9 +44,9 @@ def create_cheatsheet():
   #   db.session.commit()
 
 
-    return {**new_cheatsheet.to_dict()}
+  #   return {**new_cheatsheet.to_dict()}
 
-  return form.errors
+  # return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/all", methods=["GET"])
 def get_all_cheatsheets():
