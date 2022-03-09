@@ -9,6 +9,11 @@ comment_routes = Blueprint('comments', __name__)
 # todo                               Comments Routes
 # todo ——————————————————————————————————————————————————————————————————————————————————
 
+@comment_routes.route('/<int:cheatsheetId>', methods=['GET'])
+def get_steps(cheatsheetId):
+  all_steps = Comment.query.filter(Comment.cheatsheet_id == int(cheatsheetId)).all()
+
+  return {"cheetsheet_comments": [comment.to_dict() for comment in all_steps]}
 
 # @comment_routes.route("/new_comment", methods=["GET", "POST"])
 # def new_comment():
