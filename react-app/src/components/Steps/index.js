@@ -10,6 +10,7 @@ const Steps = ({ cheatsheetId }) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const stepsObj = useSelector(state => state?.stepsReducer);
+
     const steps = Object.values(stepsObj);
     const cheatsheet = useSelector(state => state.cheatsheet[cheatsheetId]);
 
@@ -53,3 +54,4 @@ const Steps = ({ cheatsheetId }) => {
 }
 
 export default Steps;
+

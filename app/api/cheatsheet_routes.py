@@ -7,6 +7,13 @@ from datetime import datetime
 
 cheatsheet_routes = Blueprint('cheatsheets', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+  errorMessages = []
+  for field in validation_errors:
+    for error in validation_errors[field]:
+      errorMessages.append(f'{field.capitalize()} : {error}')
+  return errorMessages
+
 # todo ——————————————————————————————————————————————————————————————————————————————————
 # todo                               Cheatsheet Routes
 # todo ——————————————————————————————————————————————————————————————————————————————————
@@ -31,22 +38,9 @@ def create_cheatsheet():
   db.session.commit()
 
   return {**new_cheatsheet.to_dict()}
-  # if form.validate_on_submit():
-  #   new_cheatsheet = Cheatsheet(
-  #     owner_id = form.data['owner_id'],
-  #     title = form.data['title'],
-  #     description = form.data['description'],
-  #     dependencies = form.data['dependencies'],
-  #     media_url = form.data['media_url']
-  #   )
 
-  #   db.session.add(new_cheatsheet)
-  #   db.session.commit()
+return {'errors': validation_errors_to_error_messages(form.errors)}
 
-
-  #   return {**new_cheatsheet.to_dict()}
-
-  # return form.errors
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/all", methods=["GET"])
 def get_all_cheatsheets():
@@ -80,7 +74,6 @@ def update_cheatsheet(cheatsheetId):
   
   if form.validate_on_submit():
     cheatsheet = Cheatsheet.query.get(cheatsheetId)
-    # cheatsheet.owner_id = form.data['owner_id']
     cheatsheet.title = form.data['title']
     cheatsheet.description = form.data['description']
     cheatsheet.dependencies = form.data['dependencies']
@@ -90,13 +83,16 @@ def update_cheatsheet(cheatsheetId):
     
     return {**cheatsheet.to_dict()}
 
-  return form.errors
+  print({'errors': validation_errors_to_error_messages(form.errors)})
+  return {'errors': validation_errors_to_error_messages(form.errors)}
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=['DELETE'])
 @login_required
 def delete_cheatsheet(cheatsheetId):
   cheatsheet = Cheatsheet.query.get(cheatsheetId)
+  # comments = Comment.query.filter_by(cheatsheet_id=cheatsheetId).all()
+  # comments = [comment for comment in Comment.query.filter(Comment.cheatsheet_id == cheatsheetId).all()]
   db.session.delete(cheatsheet)
   db.session.commit()
 
-  return 'Deleted cheatsheet.'
+  return {'message': 'Deleted cheatsheet.'}

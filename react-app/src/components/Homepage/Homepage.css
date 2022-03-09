@@ -64,5 +64,6 @@
 .cheatsheet-img {
     max-width: 300px;
     max-height: 500px;
+    border-bottom: 1px solid gray;
 }
 
