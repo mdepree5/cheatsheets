@@ -61,9 +61,9 @@ def update_step(id):
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @step_routes.route("/<int:stepId>", methods=['DELETE'])
 @login_required
-def delete_step(id):
-  step = Step.query.get(id)
+def delete_step(stepId):
+  step = Step.query.get(stepId)
   db.session.delete(step)
   db.session.commit()
 
-  return 'Deleted step.'
+  return
