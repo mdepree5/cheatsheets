@@ -94,4 +94,7 @@ def delete_cheatsheet(cheatsheetId):
   db.session.delete(cheatsheet)
   db.session.commit()
 
-  return {'message': 'Deleted cheatsheet.'}
+
+  return {'id': cheatsheetId}
+  return {cheatsheetId: 'Deleted Cheatsheet'}
+

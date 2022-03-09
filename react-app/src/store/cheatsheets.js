@@ -81,25 +81,30 @@ const cheatsheetReducer = (state = initialState, action) => {
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case GET_ALL: {
       const newState = {...state};
+      console.log('GET ALL', newState)
       action.cheatsheets['all_cheatsheets'].forEach(cheatsheet => newState[cheatsheet.id] = cheatsheet);
       return newState;
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case GET_ONE: {
-      const newState = {...state};
+      const newState = state;
       newState[action.cheatsheet.id] = action.cheatsheet;
+      // console.log('GET ONE NEW STATE', newState)
       return newState;
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case UPDATE: {
-      const newState = {...state};
+      const newState = state;
       newState[action.cheatsheet.id] = action.cheatsheet;
+      // console.log('UPDATE', newState)
       return newState;
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case DELETE: {
-      const newState = {...state};
-      delete newState[action.cheatsheetId];
+      const newState = state;
+      delete newState[action.cheatsheetId.id];
+      // console.log('ID OF THE DELETED ONE', action.cheatsheetId.id)
+      // console.log('NEWSTATE AFTER DELETE', newState)
       return newState;
     }
 // todo ——————————————————————————————————————————————————————————————————————————————————
