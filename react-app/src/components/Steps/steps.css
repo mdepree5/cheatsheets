@@ -29,7 +29,7 @@
     color: rgb(66, 66, 66);
     list-style: none;
     font-size: 18px;
-    
+
 }
 
 .add-step-modal {
@@ -58,4 +58,8 @@
     box-shadow: 5px 5px 5px grey;
     height: 90px;
     width: 140px;
+}
+
+.step-buttons-div {
+    display: inline;
 }
