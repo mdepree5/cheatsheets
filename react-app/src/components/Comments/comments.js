@@ -8,13 +8,12 @@ import EditCommentsModal from '../EditComment/EditCommentModal';
 
 function CommentsComponent({ cheatsheetId }) {
     // console.log('---------------------',typeof(+cheatsheetId))
-    // const history = useHistory();
+    const history = useHistory();
     const dispatch = useDispatch();
     const commentsObj = useSelector(state => state?.commentReducer);
     const comments = Object.values(commentsObj)
-    // console.log('****************',comments)
+  
     const sessionUser = useSelector((state) => state?.session?.user)
-    //something changed
 
 
     useEffect(() => {
@@ -44,6 +43,12 @@ function CommentsComponent({ cheatsheetId }) {
 
             setContent('')
         }
+    }
+
+    const handleDelete = async (commentId) => {
+        await dispatch(deleteComment(commentId))
+        history.push(`/cheatsheets/${cheatsheetId}`)
+
     }
 
 
@@ -77,6 +82,7 @@ function CommentsComponent({ cheatsheetId }) {
                         <li className={'posted_comments'} key={comment?.id}>
                             {comment?.content}
                             <EditCommentsModal comment={comment}/>
+                            <button onClick={() => handleDelete(comment?.id)}>Delete</button>
                         </li>
                     ))}
                 </ul>

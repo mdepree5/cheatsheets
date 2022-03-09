@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, redirect, request
+from flask_login import login_required
 import psycopg2
 from app.forms.comment_form import CommentForm
 from app.models import Comment, User, db
@@ -36,6 +37,7 @@ def get_steps(cheatsheetId):
 #     return form.errors
 
 @comment_routes.route('/new_comment', methods=['POST'])
+# @login_required
 def get_comments():
   data = request.json
 
@@ -70,6 +72,7 @@ def get_comments():
 #   return form.errors
 
 @comment_routes.route("/<int:id>", methods=['PUT'])
+# @login_required
 def update_comment(id):
   data = request.json
   print(data)
@@ -79,7 +82,7 @@ def update_comment(id):
 
   db.session.commit()
 
-  return comment.to_dict()
+  return { 'comment': comment.to_dict()}
 
 
 
@@ -91,10 +94,11 @@ def update_comment(id):
 #   db.session.commit()
 
 #   return {'message': 'Deleted comment.'}
-@comment_routes.route("/<int:id>", methods=['DELETE'])
-def delete_comment(id):
-  comment = Comment.query.get(id)
+@comment_routes.route("/<int:commentId>", methods=['DELETE'])
+# @login_required
+def delete_comment(commentId):
+  comment = Comment.query.get(commentId)
   db.session.delete(comment)
   db.session.commit()
 
-  return {'message': 'successful delete'}
+  return {'commentId': commentId}
