@@ -29,8 +29,8 @@ const CheatsheetPage = () => {
   const cheatsheet = useSelector(state => state?.cheatsheet[ cheatsheetId ]);
   useEffect(() => { dispatch(getCheatsheet(cheatsheetId)) }, [ dispatch, cheatsheetId ])
   useEffect(() => {
-    dispatch(getStep(cheatsheet?.id))
-  }, [ dispatch, cheatsheet?.id ])
+    dispatch(getStep(cheatsheetId))
+  }, [ dispatch, cheatsheetId ])
 
   // console.log('&&&&&&&&&&&&&&&&&&&',cheatsheet?.comments)
 
