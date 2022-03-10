@@ -5,13 +5,13 @@ import React from 'react';
 import { newStep, getStep } from '../../store/steps';
 
 
-export const FormInput = ({ name, state, setState }) => {
+export const FormInput = ({ name, state, setState, isRequired }) => {
     const formatName = name.toLowerCase().split(' ').join('-');
 
     return (
         <div className='form-input'>
             <label htmlFor={formatName}>{name}</label>
-            <input id={formatName} placeholder={name} value={state} onChange={e => setState(e.target.value)} />
+            <input id={formatName} placeholder={name} value={state} onChange={e => setState(e.target.value)} required={isRequired} />
         </div>
     )
 }
@@ -22,7 +22,7 @@ export const FormTextarea = ({ name, state, setState }) => {
     return (
         <div className='form-input'>
             <label htmlFor={formatName}>{name}</label>
-            <textarea id={formatName} placeholder={name} value={state} onChange={e => setState(e.target.value)} />
+            <textarea id={formatName} placeholder={name} value={state} onChange={e => setState(e.target.value)} required/>
         </div>
     )
 }
@@ -62,9 +62,9 @@ const StepsForm = ({ closeModal, cheatsheetId }) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <FormInput name='Title' state={title} setState={setTitle} />
+                <FormInput name='Title' state={title} setState={setTitle} isRequired={true} />
                 <FormTextarea name='Content' state={content} setState={setContent}  />
-                <FormInput name='Media_url' state={media_url} setState={setMedia_url} />
+                <FormInput name='Media_url' state={media_url} setState={setMedia_url} isRequired={false}/>
                 <button type='submit'>Add Step</button>
             </form>
             <div className='errors'>
