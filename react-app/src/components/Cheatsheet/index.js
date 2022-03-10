@@ -61,7 +61,7 @@ const CheatsheetPage = () => {
       <div className='cheatsheet-dependencies'>Dependencies: {cheatsheet?.dependencies}</div>
 
       <div>
-        <Steps cheatsheetId={cheatsheet?.id} />
+        <Steps cheatsheetId={cheatsheetId} />
         <div>{modal}</div>
         <CommentsComponent cheatsheetId={cheatsheetId} />
       </div>

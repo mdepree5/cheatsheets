@@ -91,20 +91,23 @@ const stepsReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
         case LOAD:
-            newState = { ...state };
-            action.steps['all_steps'].forEach((step) => newState[step.id] = step);
+            // newState = { ...state };
+            newState = {};
+            action.steps[ 'all_steps' ].forEach((step) => newState[ step.id ] = step);
+            console.log(newState);
             return newState;
         case ADD:
             newState = { ...state };
-            newState[action.step.step.id] = action.step;
+            // const newState = {}; //* => empty object to reset state 
+            newState[ action.step.step.id ] = action.step;
             return newState;
         case DELETE:
             newState = { ...state };
-            delete newState[action.stepId.stepId];
+            delete newState[ action.stepId.stepId ];
             return newState;
         case EDIT:
             newState = { ...state };
-            newState[action.step.step.id] = action.step;
+            newState[ action.step.step.id ] = action.step;
             return newState;
         default:
             return state
