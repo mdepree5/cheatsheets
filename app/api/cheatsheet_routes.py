@@ -26,15 +26,18 @@ def create_cheatsheet():
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  image = form.data['media_url']
-  if not allowed_file(image.filename):
-    return {"errors": "file type not permitted"}, 400
-  
-  image.filename = get_unique_filename(image.filename)
-  upload = upload_file_to_s3(image)
-  if "url" not in upload:
-    return upload, 400
-  url = upload["url"]
+  url = 'no data provided'
+  if form.data['media_url'] != 'null':
+    image = form.data['media_url']
+    
+    if not allowed_file(image.filename):
+      return {"errors": "file type not permitted"}, 400
+    
+    image.filename = get_unique_filename(image.filename)
+    upload = upload_file_to_s3(image)
+    if "url" not in upload:
+      return upload, 400
+    url = upload["url"]
 
   if form.validate_on_submit():
     new_cheatsheet = Cheatsheet(
@@ -85,15 +88,25 @@ def update_cheatsheet(cheatsheetId):
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  image = form.data['media_url']
-  if not allowed_file(image.filename):
-    return {"errors": "file type not permitted"}, 400
+  print(form.data)
+  print('debugger')
+  print(form.data['media_url'])
+  print('debugger')
+  
+  url = 'no data provided'
+  if form.data['media_url'] != 'null':
+    print('we have data!')
+    image = form.data['media_url']
+    if not allowed_file(image.filename):
+      return {"errors": "file type not permitted"}, 400
 
-  image.filename = get_unique_filename(image.filename)
-  upload = upload_file_to_s3(image)
-  if "url" not in upload:
-    return upload, 400
-  url = upload["url"]
+    image.filename = get_unique_filename(image.filename)
+    upload = upload_file_to_s3(image)
+    if "url" not in upload:
+      return upload, 400
+    url = upload["url"]
+  
+  print('it is null')
   
   if form.validate_on_submit():
     cheatsheet = Cheatsheet.query.get(cheatsheetId)
@@ -103,10 +116,9 @@ def update_cheatsheet(cheatsheetId):
     cheatsheet.media_url = url
     cheatsheet.updated_at = datetime.now()
     db.session.commit()
-
+    
     return {**cheatsheet.to_dict()}
-
-  print({'errors': validation_errors_to_error_messages(form.errors)})
+  
   return {'errors': validation_errors_to_error_messages(form.errors)}
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=['DELETE'])

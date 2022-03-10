@@ -19,6 +19,7 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [errors, setErrors] = useState([]);
+  const [imageLoading, setImageLoading] = useState(false);
 
   const owner_id = useSelector(state => state?.session?.user?.id);
 
@@ -30,11 +31,11 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
 
   const handleSubmit = async(event) => {
     event.preventDefault(); 
-    const cheatsheetData = {...cheatsheet, owner_id, title, description, dependencies, media_url};
+    // const cheatsheetData = {...cheatsheet, owner_id, title, description, dependencies, media_url};
     const formData = new FormData();
 
     
-    if(edit && cheatsheet?.id) formData.append('id', cheatsheet?.id)
+    // if(edit && cheatsheet?.id) formData.append('id', cheatsheet?.id)
     formData.append('owner_id', owner_id);
     formData.append('title', title);
     formData.append('description', description);
@@ -48,22 +49,22 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
     }
     console.log('************************************')
     
-    console.log('EDIT!?!???????', edit)
-
-
+    setImageLoading(true); 
     if(edit){
-      console.log('WILL THIS RUN!?!?!?', edit)
-      
-      console.log()
       const updated = await dispatch(updateCheatsheet(formData, cheatsheet?.id))
       if(updated?.errors) setErrors(updated?.errors);
-      if(updated?.id) return closeModal();
+      if(updated?.id) {
+        setImageLoading(false);
+        history.push(`/cheatsheets/${cheatsheet?.id}`)
+        return closeModal();
+      }
       return alert('This shouldn\'t happen if the updated works');
     }
-
+    
     const created = await dispatch(createCheatsheet(formData))
     if(created?.errors) setErrors(created?.errors)
     if(created?.id) {
+      setImageLoading(false);
       history.push(`/cheatsheets/${created?.id}`);
       return closeModal();
     }
@@ -84,7 +85,7 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
 
         <button className='new-delete-button' type='submit'>{name}</button>
       </form>
-
+      {(imageLoading)&& <p>Uploading Image...</p>}
       <div className='errors'>
         {errors?.length > 0 && errors?.filter(error => error !== 'Invalid value')
           .map((error, id) => (
