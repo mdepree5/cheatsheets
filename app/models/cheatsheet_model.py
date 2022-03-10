@@ -15,8 +15,8 @@ class Cheatsheet(db.Model):
 
   # one to many with users, steps, comments
   users = db.relationship("User", back_populates="cheatsheets")
-  steps = db.relationship("Step", back_populates="cheatsheets")
-  comments = db.relationship("Comment", back_populates="cheatsheets")
+  steps = db.relationship("Step", back_populates="cheatsheets", cascade="all, delete")
+  comments = db.relationship("Comment", back_populates="cheatsheets", cascade="all, delete")
 
   def to_dict(self):
     return {
