@@ -80,8 +80,6 @@ export const editComment = (payload) => async (dispatch) => {
 }
 
 
-const initialState = {};
-
 const commentReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {

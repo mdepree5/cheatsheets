@@ -1,19 +1,17 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { editComment, getComment } from '../../store/comments';
 
 const EditComment = ({closeModal, comment}) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const sessionUser = useSelector(state => state.session.user);
     const { cheatsheetId } = useParams();
     const id = comment.id
-  
+
 
     const [content, setContent] = useState(comment.content);
 
-    const cheatsheet_id = cheatsheetId
 
     const handleSubmit = async (e) => {
         e.preventDefault();
