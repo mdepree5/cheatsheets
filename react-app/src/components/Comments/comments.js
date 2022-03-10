@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import './comments.css'
 import EditCommentsModal from '../EditComment/EditCommentModal';
+import DeleteCommentButton from './DeleteComment';
 
 
 function CommentsComponent({ cheatsheetId }) {
@@ -12,6 +13,7 @@ function CommentsComponent({ cheatsheetId }) {
     const commentsObj = useSelector(state => state?.commentReducer);
     const comments = Object.values(commentsObj)
 
+    console.log('@@@@@@@',comments)
     const sessionUser = useSelector((state) => state?.session?.user)
 
 
@@ -76,11 +78,12 @@ function CommentsComponent({ cheatsheetId }) {
                     {comments?.map(comment => (
                         <li className={'posted_comments'} key={comment?.id}>
                             {comment?.content}
-                            
                             <div className='edit_delete_box'>
-                                <EditCommentsModal comment={comment}/>
-                                <button onClick={() => handleDelete(comment?.id)}>Delete</button>
+                                <EditCommentsModal comment={comment} cheatsheetId={cheatsheetId}/>
+                                <DeleteCommentButton comment={comment}/>
+                                {/* <button onClick={() => handleDelete(comment?.id)}>Delete</button> */}
                             </div>
+
 
                         </li>
                     ))}

@@ -48,6 +48,7 @@ const CheatsheetPage = () => {
       <div>
         <Steps cheatsheetId={cheatsheetId} />
         <div>{modal}</div>
+        
         <CommentsComponent cheatsheetId={cheatsheetId} />
       </div>
     </div>
