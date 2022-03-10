@@ -11,16 +11,31 @@
 .view_comments {
     display: flex;
     justify-content: center;
-    left: 30%;
 
 }
 .posted_comments_container{
     display: flex;
+    position: relative;
     flex-direction: column-reverse;
-    left: 30%;
+    justify-content: space-between;
+
+
 
 }
 
 .posted_comments {
+    display: flex;
+    position: relative;
+    flex-direction: column;
     list-style: none;
+    border-bottom: 1px solid rgb(182, 182, 182);
+    padding: 20px;
+
+}
+
+.edit_delete_box {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+
 }
