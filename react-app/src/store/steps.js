@@ -93,7 +93,6 @@ const stepsReducer = (state = {}, action) => {
             // newState = { ...state };
             newState = {};
             action.steps[ 'all_steps' ].forEach((step) => newState[ step.id ] = step);
-            // console.log(newState);
             return newState;
         case ADD:
             newState = { ...state };
