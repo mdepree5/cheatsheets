@@ -4,6 +4,9 @@ import psycopg2
 from app.forms.cheatsheet_form import CheatsheetForm
 from app.models import Cheatsheet, Comment, User, db
 from datetime import datetime
+from app.s3_helpers import (
+  upload_file_to_s3, allowed_file, get_unique_filename)
+
 
 cheatsheet_routes = Blueprint('cheatsheets', __name__)
 
@@ -23,10 +26,20 @@ def create_cheatsheet():
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  print('REQUEST', request)
-  print('REQUEST files', request.files)
+  # print('REQUEST', request)
+  # print('REQUEST files', request.files)
   # print('REQUEST form files', form.data['media_url'])
 
+  image = form.data['media_url']
+  if not allowed_file(image.filename):
+    return {"errors": "file type not permitted"}, 400
+
+  image.filename = get_unique_filename(image.filename)
+  upload = upload_file_to_s3(image)
+  if "url" not in upload:
+    return upload, 400
+  url = upload["url"]
+  
   # image = request.files["media_url"]
   # print('debugger print image', image)
   
@@ -62,7 +75,7 @@ def create_cheatsheet():
       title = form.data['title'],
       description = form.data['description'],
       dependencies = form.data['dependencies'],
-      media_url = form.data['media_url'],
+      media_url = url,
       # media_url = form.data['media_url'],
       created_at = datetime.now(),
       updated_at = datetime.now()
