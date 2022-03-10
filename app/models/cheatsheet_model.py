@@ -28,7 +28,7 @@ class Cheatsheet(db.Model):
       "media_url": self.media_url,
       "created_at": self.created_at,
       "updated_at": self.updated_at,
-      'comments': {comment.id: comment.to_dict() for comment in self.comments},
-      'steps': {step.id: step.to_dict() for step in self.steps},
+      # 'comments': {comment.id: comment.to_dict() for comment in self.comments},
+      # 'steps': {step.id: step.to_dict() for step in self.steps},
       'owner': self.users.username
     }

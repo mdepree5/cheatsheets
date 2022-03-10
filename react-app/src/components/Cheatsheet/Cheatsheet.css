@@ -99,3 +99,32 @@ input#title, input#description, input#dependencies, input#image {
 div.form-input {
   width: 100%;
 }
+
+
+.existing-image{
+  height: 3em;
+  width: 3em;
+}
+
+.remove-restore-image{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: solid #CCCCCC 1px;
+  border-radius: 5px;
+}
+
+#media_url{
+  width: 100%;
+  margin-bottom: 2px;
+  border-radius: 5px;
+}
+
+#media_url_input{
+  width: 100%;
+  margin-bottom: 2px;
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+}
+
