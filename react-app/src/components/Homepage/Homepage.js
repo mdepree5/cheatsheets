@@ -1,7 +1,6 @@
 import React from "react";
 import ImageCarousel from "./Carousel";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { getCheatsheets } from "../../store/cheatsheets";
 import './Homepage.css'
