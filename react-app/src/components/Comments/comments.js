@@ -76,12 +76,12 @@ function CommentsComponent({ cheatsheetId }) {
                     {comments?.map(comment => (
                         <li className={'posted_comments'} key={comment?.id}>
                             {comment?.content}
-
+                            
                             <div className='edit_delete_box'>
                                 <EditCommentsModal comment={comment}/>
                                 <button onClick={() => handleDelete(comment?.id)}>Delete</button>
                             </div>
-                            
+
                         </li>
                     ))}
                 </ul>
