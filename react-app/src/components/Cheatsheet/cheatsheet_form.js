@@ -59,7 +59,11 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
       return closeModal();
     }
   }
-
+  
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  }
 
   return (
     <div>
@@ -70,10 +74,10 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
         <FormInput name='Image' state={media_url} setState={setMedia_url} />
 
         <input
-          name='image'
+          name='media_url'
           type="file"
           accept="image/*"
-          onChange={setImage}
+          onChange={updateImage}
         />
 
         <button className='new-delete-button' type='submit'>{name}</button>

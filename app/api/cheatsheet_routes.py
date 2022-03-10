@@ -23,10 +23,23 @@ def create_cheatsheet():
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  print('debugger Print FORM DATA', form.data)
+  print('REQUEST', request)
+  print('REQUEST files', request.files)
+  # print('REQUEST form files', form.data['media_url'])
+
   # image = request.files["media_url"]
-  image = form.data["media_url"]
-  print('debugger print image', image)
+  # print('debugger print image', image)
+  
+  print('***************************************')
+
+
+  # print('debugger Print FORM DATA', form.data)
+  
+  # imagefile = request.files
+  # image = form.data["media_url"]
+  # print('debugger print image', image)
+  # print('debugger print request', request)
+  # print('debugger print image from file', imagefile)
   
   # print(f"debugger the header type is: {request.headers.get('Content-Type')}")  
   # print('debugger Printing the REQUEST', request)
