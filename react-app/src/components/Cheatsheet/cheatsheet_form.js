@@ -41,9 +41,9 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
     formData.append('dependencies', dependencies);
     formData.append('media_url', media_url);
 
-    console.log('********** PRINT ALL FORM DATA **********')
-    for (const pair of formData.entries()) console.log(`${pair[0]}: ${pair[1]}`);
-    console.log('*****************************************')    
+    // console.log('********** PRINT ALL FORM DATA **********')
+    // for (const pair of formData.entries()) console.log(`${pair[0]}: ${pair[1]}`);
+    // console.log('*****************************************')
 
     setImageLoading(true); 
     if(edit){
@@ -51,7 +51,7 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
       if(updated?.errors) setErrors(updated?.errors);
       if(updated?.id) {
         setImageLoading(false);
-        history.push(`/cheatsheets/${cheatsheet?.id}`) //! => UPDATE CHEATSHEET REDUX IS STABLE BUT IMAGE DOES NOT VISUALLY RENDER IMMEDIATELY
+        history.push(`/cheatsheets/${cheatsheet?.id}`) //! => UPDATE REDUX STABLE BUT IMAGE DOES NOT VISUALLY RENDER IMMEDIATELY
         return closeModal();
       }
       return 'Failed to update';
@@ -81,7 +81,7 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
         <input name='media_url' type="file" accept="image/*" onChange={updateMedia_url}/>
         <button className='new-delete-button' type='submit'>{name}</button>
       </form>
-      {(imageLoading)&& <p>Publishing...</p>}
+      {(imageLoading)&& <p>{edit ? 'Updating' : 'Publishing'}...</p>}
       <div className='errors'>
         {errors?.length > 0 && errors?.filter(error => error !== 'Invalid value')
           .map((error, id) => (

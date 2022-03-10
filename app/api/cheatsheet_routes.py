@@ -4,8 +4,7 @@ import psycopg2
 from app.forms.cheatsheet_form import CheatsheetForm
 from app.models import Cheatsheet, Comment, User, db
 from datetime import datetime
-from app.s3_helpers import (
-  upload_file_to_s3, allowed_file, get_unique_filename)
+from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 cheatsheet_routes = Blueprint('cheatsheets', __name__)
 
@@ -86,20 +85,7 @@ def update_cheatsheet(cheatsheetId):
 
 
   url = form.data['media_url']
-  if type(form.data['media_url']) is str:
-    print('debugger')
-    print('YES STRING!!!!')
-    print(form.data['media_url'])
-    print('WHICH MEANS IT IS AN UPDATE AND THE IMAGE HAS NOT BEEN CHANGED!!!!')
-    print('debugger')
   if type(form.data['media_url']) is not str:
-    print('debugger')
-    print('HEY NOT STRING!!!!')
-    print(form.data['media_url'])
-    print('WHICH MEANS A NEW IMAGE HAS BEEN UPLOADED!!!!')
-    print('debugger')
-    
-  # if form.data['media_url'] != 'null' and not form.data['media_url'].startswith('http://'):
     image = form.data['media_url']
     if not allowed_file(image.filename):
       return {"errors": "file type not permitted"}, 400
