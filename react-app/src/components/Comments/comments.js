@@ -62,6 +62,7 @@ function CommentsComponent({ cheatsheetId }) {
                 <ul className='posted_comments_container'>
                     {comments?.map(comment => (
                         <li className={'posted_comments'} key={comment?.id}>
+                            <div className='comment-author'>{comment.owner}</div>
                             {comment?.content}
                             <div className='edit_delete_box'>
                                 <EditCommentsModal comment={comment} cheatsheetId={cheatsheetId}/>
