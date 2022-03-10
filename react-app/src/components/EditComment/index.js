@@ -9,7 +9,7 @@ const EditComment = ({closeModal, comment}) => {
     const sessionUser = useSelector(state => state.session.user);
     const { cheatsheetId } = useParams();
     const id = comment.id
-    // console.log('comment id: ', id)
+  
 
     const [content, setContent] = useState(comment.content);
 
@@ -22,7 +22,7 @@ const EditComment = ({closeModal, comment}) => {
             id,
             content
         }));
-
+        await dispatch(getComment(cheatsheetId))
         closeModal();
         return history.push(`/cheatsheets/${cheatsheetId}`)
 

@@ -7,12 +7,11 @@ import EditCommentsModal from '../EditComment/EditCommentModal';
 
 
 function CommentsComponent({ cheatsheetId }) {
-    // console.log('---------------------',typeof(+cheatsheetId))
     const history = useHistory();
     const dispatch = useDispatch();
     const commentsObj = useSelector(state => state?.commentReducer);
     const comments = Object.values(commentsObj)
-  
+
     const sessionUser = useSelector((state) => state?.session?.user)
 
 
@@ -32,15 +31,11 @@ function CommentsComponent({ cheatsheetId }) {
             content
         }
 
-        console.log('from handler: ',cheatsheetId, content)
-
         const postComment = await dispatch(addComment(payload));
         // const updateComments = await dispatch(getComment(cheatsheetId))
 
         if (postComment) {
             await dispatch(getComment(cheatsheetId))
-            // console.log('new comment successful? maybe?')
-
             setContent('')
         }
     }
