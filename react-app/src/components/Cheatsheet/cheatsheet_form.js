@@ -22,22 +22,24 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
 
   const owner_id = useSelector(state => state?.session?.user?.id);
 
-  const [image, setImage] = useState(null);
   const [title, setTitle] = useState(edit ? cheatsheet?.title : '');
   const [description, setDescription] = useState(edit ? cheatsheet?.description : '');
   const [dependencies, setDependencies] = useState(edit ? cheatsheet?.dependencies : '');
-  const [media_url, setMedia_url] = useState(edit ? cheatsheet?.media_url : '');
+  const [media_url, setMedia_url] = useState(null);
+  // const [media_url, setMedia_url] = useState(edit ? cheatsheet?.media_url : '');
 
   const handleSubmit = async(event) => {
-    event.preventDefault();    
+    event.preventDefault(); 
     const cheatsheetData = {...cheatsheet, owner_id, title, description, dependencies, media_url};
     const formData = new FormData();
 
+    
+    if(edit && cheatsheet?.id) formData.append('id', cheatsheet?.id)
     formData.append('owner_id', owner_id);
     formData.append('title', title);
     formData.append('description', description);
     formData.append('dependencies', dependencies);
-    formData.append('media_url', image);
+    formData.append('media_url', media_url);
 
     console.log('************************************')
     console.log('FORM DATA', formData);
@@ -46,10 +48,17 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
     }
     console.log('************************************')
     
+    console.log('EDIT!?!???????', edit)
+
+
     if(edit){
-      const updated = await dispatch(updateCheatsheet(cheatsheetData))
+      console.log('WILL THIS RUN!?!?!?', edit)
+      
+      console.log()
+      const updated = await dispatch(updateCheatsheet(formData, cheatsheet?.id))
       if(updated?.errors) setErrors(updated?.errors);
       if(updated?.id) return closeModal();
+      return alert('This shouldn\'t happen if the updated works');
     }
 
     const created = await dispatch(createCheatsheet(formData))
@@ -60,9 +69,9 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
     }
   }
   
-  const updateImage = (e) => {
+  const updateMedia_url = (e) => {
     const file = e.target.files[0];
-    setImage(file);
+    setMedia_url(file);
   }
 
   return (
@@ -71,14 +80,7 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
         <FormInput name='Title' state={title} setState={setTitle} />
         <FormInput name='Description' state={description} setState={setDescription} />
         <FormInput name='Dependencies' state={dependencies} setState={setDependencies} />
-        <FormInput name='Image' state={media_url} setState={setMedia_url} />
-
-        <input
-          name='media_url'
-          type="file"
-          accept="image/*"
-          onChange={updateImage}
-        />
+        <input name='media_url' type="file" accept="image/*" onChange={updateMedia_url}/>
 
         <button className='new-delete-button' type='submit'>{name}</button>
       </form>

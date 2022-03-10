@@ -76,7 +76,6 @@ def create_cheatsheet():
       description = form.data['description'],
       dependencies = form.data['dependencies'],
       media_url = url,
-      # media_url = form.data['media_url'],
       created_at = datetime.now(),
       updated_at = datetime.now()
     )
@@ -119,12 +118,22 @@ def update_cheatsheet(cheatsheetId):
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
+  image = form.data['media_url']
+  if not allowed_file(image.filename):
+    return {"errors": "file type not permitted"}, 400
+
+  image.filename = get_unique_filename(image.filename)
+  upload = upload_file_to_s3(image)
+  if "url" not in upload:
+    return upload, 400
+  url = upload["url"]
+  
   if form.validate_on_submit():
     cheatsheet = Cheatsheet.query.get(cheatsheetId)
     cheatsheet.title = form.data['title']
     cheatsheet.description = form.data['description']
     cheatsheet.dependencies = form.data['dependencies']
-    cheatsheet.media_url = form.data['media_url']
+    cheatsheet.media_url = url
     cheatsheet.updated_at = datetime.now()
     db.session.commit()
 
