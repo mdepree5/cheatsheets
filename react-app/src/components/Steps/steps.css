@@ -40,13 +40,15 @@
     border-radius: 5px;
     border: 1px solid #e5991e;
     font-size: 20px;
-    position: absolute;
-    left: 46%;
     margin-top: -10px;
+    z-index: 0;
 }
 
 .modal-button-container {
     padding: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     margin-top: -50px;
 }
 
