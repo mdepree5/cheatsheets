@@ -11,20 +11,7 @@ const update = cheatsheet => ({ type: UPDATE, cheatsheet });
 const destroy = cheatsheetId => ({ type: DELETE, cheatsheetId });
 // todo ——————————————————————————————————————————————————————————————————————————————————
 export const createCheatsheet = cheatsheet => async (dispatch) => {
-  console.log('OUTSIDE, EXPECT FORMDATA OBJ', cheatsheet)
-
-  const response = await fetch(`/api/cheatsheets/new`, {
-    method: "POST",
-    // headers: {"Content-Type": "multipart/form-data"},
-    body: cheatsheet
-    // body: JSON.stringify(cheatsheet)
-
-    // method: "POST",
-    // headers: {"Content-Type": "application/json"},
-    // body: JSON.stringify(cheatsheet)
-  });
-
-  // console.log('REDUX RESPONSE', response)
+  const response = await fetch(`/api/cheatsheets/new`, { method: "POST", body: cheatsheet });
 
   if (response.ok) {
     const newcheatsheet = await response.json();
@@ -33,18 +20,6 @@ export const createCheatsheet = cheatsheet => async (dispatch) => {
   }
   return response;
 };
-// export const createCheatsheet = cheatsheet => async (dispatch) => {
-//   const response = await fetch(`/api/cheatsheets/new`, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(cheatsheet) });
-  
-//   // console.log('REDUX', response)
-
-//   if (response.ok) {
-//     const newcheatsheet = await response.json();
-//     dispatch(create(newcheatsheet));
-//     return newcheatsheet;
-//   }
-//   return response;
-// };
 
 export const getCheatsheets = () => async (dispatch) => {
   const response = await fetch(`/api/cheatsheets/all`, { method: 'GET' });
@@ -69,24 +44,7 @@ export const getCheatsheet = (cheatsheetId) => async (dispatch) => {
 };
 
 export const updateCheatsheet = (cheatsheet, cheatsheetId) => async (dispatch) => {
-
-  // console.log('updatedCheatsheet', cheatsheet)
-  // console.log('updatedCheatsheet id????', cheatsheet.entries())
-  // console.log('updatedCheatsheet id????', cheatsheet.entries().id)
-  // console.log('updatedCheatsheet id????', cheatsheet.entries()['id'])
-  // console.log(cheatsheet.entries())
-  // for (const pair of cheatsheet.entries()) {
-  //   console.log('HEYY')
-  //   console.log(`${pair[0]}: ${pair[1]}`); 
-  // }
-  console.log(cheatsheetId)
-
-  const response = await fetch(`/api/cheatsheets/${cheatsheetId}`, {
-    method: 'PUT',
-    // headers: {"Content-Type": "application/json"}, 
-    body: cheatsheet
-    // body: JSON.stringify(cheatsheet) 
-  });
+  const response = await fetch(`/api/cheatsheets/${cheatsheetId}`, { method: 'PUT', body: cheatsheet });
 
   if (response.ok) {
     const updatedcheatsheet = await response.json();
