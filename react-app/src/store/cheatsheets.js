@@ -11,9 +11,7 @@ const update = cheatsheet => ({ type: UPDATE, cheatsheet });
 const destroy = cheatsheetId => ({ type: DELETE, cheatsheetId });
 // todo ——————————————————————————————————————————————————————————————————————————————————
 export const createCheatsheet = cheatsheet => async (dispatch) => {
-  const response = await fetch(`/api/cheatsheets/new`, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(cheatsheet) });
-  
-  console.log('REDUX', response)
+  const response = await fetch(`/api/cheatsheets/new`, { method: "POST", body: cheatsheet });
 
   if (response.ok) {
     const newcheatsheet = await response.json();
@@ -45,8 +43,8 @@ export const getCheatsheet = (cheatsheetId) => async (dispatch) => {
   return response;
 };
 
-export const updateCheatsheet = cheatsheet => async (dispatch) => {
-  const response = await fetch(`/api/cheatsheets/${cheatsheet.id}`, { method: 'PUT', headers: {"Content-Type": "application/json"}, body: JSON.stringify(cheatsheet) });
+export const updateCheatsheet = (cheatsheet, cheatsheetId) => async (dispatch) => {
+  const response = await fetch(`/api/cheatsheets/${cheatsheetId}`, { method: 'PUT', body: cheatsheet });
 
   if (response.ok) {
     const updatedcheatsheet = await response.json();
