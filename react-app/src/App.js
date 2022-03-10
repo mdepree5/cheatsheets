@@ -10,20 +10,20 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Homepage from './components/Homepage/Homepage.js';
 import UploadPicture from './components/test_uploadPicture/test_uploadPicture.js';
-
+import Footer from './components/Footer/Footer';
 
 import CheatsheetPage from './components/Cheatsheet';
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
+  const [ loaded, setLoaded ] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
-  }, [dispatch]);
+  }, [ dispatch ]);
 
   if (!loaded) {
     return null;
@@ -42,7 +42,7 @@ function App() {
         </Route>
 
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
 
         <ProtectedRoute path='/users/:userId' exact={true} >
@@ -54,7 +54,7 @@ function App() {
         </ProtectedRoute>
 
         <Route path='/cheatsheets/:cheatsheetId'>
-          <CheatsheetPage/>
+          <CheatsheetPage />
         </Route>
 
         {/* test route to check if we are able to upload to aws */}
@@ -62,6 +62,7 @@ function App() {
           <UploadPicture />
         </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
