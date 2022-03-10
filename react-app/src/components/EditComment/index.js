@@ -9,7 +9,7 @@ const EditComment = ({closeModal, comment}) => {
     const sessionUser = useSelector(state => state.session.user);
     const { cheatsheetId } = useParams();
     const id = comment.id
-    console.log('comment id: ', id)
+    // console.log('comment id: ', id)
 
     const [content, setContent] = useState(comment.content);
 
@@ -18,14 +18,14 @@ const EditComment = ({closeModal, comment}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const updatedComment = await dispatch(editComment({
+        await dispatch(editComment({
             id,
             content
         }));
 
         closeModal();
         return history.push(`/cheatsheets/${cheatsheetId}`)
-        
+
     }
 
     return (
@@ -34,6 +34,8 @@ const EditComment = ({closeModal, comment}) => {
                 <textarea className='edit_comment_textarea'
                 cols="50"
                 rows="5"
+                value={content}
+                onChange={e => setContent(e.target.value)}
                     >
                 </textarea>
                 <button type='submit' className='update_btn'>update comment</button>

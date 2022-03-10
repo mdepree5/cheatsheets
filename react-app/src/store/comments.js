@@ -103,8 +103,8 @@ const commentReducer = (state = {}, action) => {
         case EDIT:
             newState = { ...state };
             console.log('%%%%%',newState)
-            console.log('action commentid', action.comment.comment)
-            newState[ action.comment.comment ] = action.comment;
+            console.log('action obj: ', action.comment.comment.id)
+            newState[ action.comment.comment.id ] = action.comment;
             return newState;
         default:
             return state
