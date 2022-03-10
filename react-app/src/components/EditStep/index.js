@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { updateStep, getStep } from '../../store/steps';
 import './editStep.css';
@@ -28,7 +28,7 @@ export const FormTextarea = ({ name, state, setState }) => {
 const EditStep = ({ closeModal, step }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const sessionUser = useSelector(state => state.session.user);
+    // const sessionUser = useSelector(state => state.session.user);
     const { cheatsheetId } = useParams();
     const id = step.id;
 

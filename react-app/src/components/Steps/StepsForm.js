@@ -1,6 +1,6 @@
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import React from 'react';
 import { newStep, getStep } from '../../store/steps';
 

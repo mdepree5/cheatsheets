@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import { deleteStep, getStep } from "../../store/steps";
-import no_image from '../../images/no_image_found.png'
 import EditStepsFormModal from "../EditStep/EditStepModal";
 import './steps.css';
 
