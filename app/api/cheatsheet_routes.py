@@ -4,6 +4,8 @@ import psycopg2
 from app.forms.cheatsheet_form import CheatsheetForm
 from app.models import Cheatsheet, Comment, User, db
 from datetime import datetime
+from app.s3_helpers import (
+  upload_file_to_s3, allowed_file, get_unique_filename)
 
 cheatsheet_routes = Blueprint('cheatsheets', __name__)
 
@@ -23,13 +25,26 @@ def create_cheatsheet():
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
+  url = 'no data provided'
+  if form.data['media_url'] != 'null':
+    image = form.data['media_url']
+    
+    if not allowed_file(image.filename):
+      return {"errors": "file type not permitted"}, 400
+    
+    image.filename = get_unique_filename(image.filename)
+    upload = upload_file_to_s3(image)
+    if "url" not in upload:
+      return upload, 400
+    url = upload["url"]
+
   if form.validate_on_submit():
     new_cheatsheet = Cheatsheet(
       owner_id = form.data['owner_id'],
       title = form.data['title'],
       description = form.data['description'],
       dependencies = form.data['dependencies'],
-      media_url = form.data['media_url'],
+      media_url = url,
       created_at = datetime.now(),
       updated_at = datetime.now()
     )
@@ -62,8 +77,6 @@ def get_one_cheatsheet(cheatsheetId):
           }
 
 
-
-
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=['PUT'])
 @login_required
@@ -71,12 +84,25 @@ def update_cheatsheet(cheatsheetId):
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
+  url = 'no data provided'
+  if form.data['media_url'] != 'null':
+    print('we have data!')
+    image = form.data['media_url']
+    if not allowed_file(image.filename):
+      return {"errors": "file type not permitted"}, 400
+
+    image.filename = get_unique_filename(image.filename)
+    upload = upload_file_to_s3(image)
+    if "url" not in upload:
+      return upload, 400
+    url = upload["url"]
+    
   if form.validate_on_submit():
     cheatsheet = Cheatsheet.query.get(cheatsheetId)
     cheatsheet.title = form.data['title']
     cheatsheet.description = form.data['description']
     cheatsheet.dependencies = form.data['dependencies']
-    cheatsheet.media_url = form.data['media_url']
+    cheatsheet.media_url = url
     cheatsheet.updated_at = datetime.now()
     db.session.commit()
 
@@ -89,8 +115,6 @@ def update_cheatsheet(cheatsheetId):
 @login_required
 def delete_cheatsheet(cheatsheetId):
   cheatsheet = Cheatsheet.query.get(cheatsheetId)
-  # comments = Comment.query.filter_by(cheatsheet_id=cheatsheetId).all()
-  # comments = [comment for comment in Comment.query.filter(Comment.cheatsheet_id == cheatsheetId).all()]
   db.session.delete(cheatsheet)
   db.session.commit()
 
