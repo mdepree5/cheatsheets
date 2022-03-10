@@ -10,7 +10,7 @@ export const FormInput = ({name, state, setState}) => {
   return (
   <div className='form-input'>
     <label htmlFor={formatName}>{name}</label>
-    <input id={formatName} placeholder={name} value={state} onChange={e => setState(e.target.value)} />
+    <input id={formatName} placeholder={name} name={formatName} value={state} onChange={e => setState(e.target.value)} />
   </div>
   )
 }
@@ -19,7 +19,8 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [errors, setErrors] = useState([]);
-
+  const [imageLoading, setImageLoading] = useState(false);
+  
   const owner_id = useSelector(state => state?.session?.user?.id);
 
 
@@ -27,26 +28,49 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
   const [description, setDescription] = useState(edit ? cheatsheet?.description : '');
   const [dependencies, setDependencies] = useState(edit ? cheatsheet?.dependencies : '');
   const [media_url, setMedia_url] = useState(edit ? cheatsheet?.media_url : '');
+  // const [media_url, setMedia_url] = useState(null);
 
 
   const handleSubmit = async(event) => {
     event.preventDefault();
-    const cheatsheetData = {...cheatsheet, owner_id, title, description, dependencies, media_url};
+    const formData = new FormData();
+    
+    formData.append('owner_id', owner_id);
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('dependencies', dependencies);
+    formData.append('media_url', media_url);
 
+    console.log('********** PRINT ALL FORM DATA **********')
+    for (const pair of formData.entries()) console.log(`${pair[0]}: ${pair[1]}`);
+    console.log('*****************************************')    
+
+    setImageLoading(true); 
     if(edit){
-      const updated = await dispatch(updateCheatsheet(cheatsheetData))
+      const updated = await dispatch(updateCheatsheet(formData, cheatsheet?.id))
       if(updated?.errors) setErrors(updated?.errors);
-      if(updated?.id) return closeModal();
+      if(updated?.id) {
+        setImageLoading(false);
+        history.push(`/cheatsheets/${cheatsheet?.id}`) //! => UPDATE CHEATSHEET REDUX IS STABLE BUT IMAGE DOES NOT VISUALLY RENDER IMMEDIATELY
+        return closeModal();
+      }
+      return 'Failed to update';
     }
 
-    const created = await dispatch(createCheatsheet(cheatsheetData))
+    const created = await dispatch(createCheatsheet(formData))
     if(created?.errors) setErrors(created?.errors)
     if(created?.id) {
+      setImageLoading(false);
       history.push(`/cheatsheets/${created?.id}`);
       return closeModal();
     }
+    return 'Failed to Create';
   }
 
+  const updateMedia_url = (e) => {
+    const file = e.target.files[0];
+    setMedia_url(file);
+  }
 
   return (
     <div>
@@ -54,10 +78,10 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
         <FormInput name='Title' state={title} setState={setTitle} />
         <FormInput name='Description' state={description} setState={setDescription} />
         <FormInput name='Dependencies' state={dependencies} setState={setDependencies} />
-        <FormInput name='Image' state={media_url} setState={setMedia_url} />
+        <input name='media_url' type="file" accept="image/*" onChange={updateMedia_url}/>
         <button className='new-delete-button' type='submit'>{name}</button>
       </form>
-
+      {(imageLoading)&& <p>Publishing...</p>}
       <div className='errors'>
         {errors?.length > 0 && errors?.filter(error => error !== 'Invalid value')
           .map((error, id) => (

@@ -26,7 +26,7 @@ def create_cheatsheet():
   form['csrf_token'].data = request.cookies['csrf_token']
 
   url = 'no data provided'
-  if form.data['media_url'] != 'null':
+  if type(form.data['media_url']) is not str:
     image = form.data['media_url']
     
     if not allowed_file(image.filename):
@@ -84,9 +84,22 @@ def update_cheatsheet(cheatsheetId):
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  url = 'no data provided'
-  if form.data['media_url'] != 'null':
-    print('we have data!')
+
+  url = form.data['media_url']
+  if type(form.data['media_url']) is str:
+    print('debugger')
+    print('YES STRING!!!!')
+    print(form.data['media_url'])
+    print('WHICH MEANS IT IS AN UPDATE AND THE IMAGE HAS NOT BEEN CHANGED!!!!')
+    print('debugger')
+  if type(form.data['media_url']) is not str:
+    print('debugger')
+    print('HEY NOT STRING!!!!')
+    print(form.data['media_url'])
+    print('WHICH MEANS A NEW IMAGE HAS BEEN UPLOADED!!!!')
+    print('debugger')
+    
+  # if form.data['media_url'] != 'null' and not form.data['media_url'].startswith('http://'):
     image = form.data['media_url']
     if not allowed_file(image.filename):
       return {"errors": "file type not permitted"}, 400
@@ -108,7 +121,6 @@ def update_cheatsheet(cheatsheetId):
 
     return {**cheatsheet.to_dict()}
 
-  print({'errors': validation_errors_to_error_messages(form.errors)})
   return {'errors': validation_errors_to_error_messages(form.errors)}
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=['DELETE'])
