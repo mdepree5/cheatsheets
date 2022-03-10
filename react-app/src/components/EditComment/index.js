@@ -23,11 +23,9 @@ const EditComment = ({closeModal, comment}) => {
             content
         }));
 
-        if (updatedComment) {
-            await dispatch(getComment(cheatsheetId))
-            closeModal();
-            return history.push(`/cheatsheets/${cheatsheetId}`)
-        }
+        closeModal();
+        return history.push(`/cheatsheets/${cheatsheetId}`)
+        
     }
 
     return (
