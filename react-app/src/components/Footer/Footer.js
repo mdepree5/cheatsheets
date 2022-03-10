@@ -9,93 +9,95 @@ const Footer = () => {
 
 
     return (
-        <div classNme='footer-container'>
+        <>
             <div className='footer'>
-                <hr className='footer-bar-top' />
-                <section className='footer-about-us'>
-                    <h2>About Us</h2>
-                </section>
-                <section className='footer-info'>
-                    <section className='footer-info-tuttle'>James
-                        <section className='footer-github-tuttle'>
-                            <a href='https://github.com/jjtuttle'><img src={githubSquare} alt='github'
-                                style={{
-                                    width: '20px',
-                                    filter: 'brightness(0) invert(1)'
-                                }}
-                            />
-                            </a>
-                        </section>
-                        <section className='footer-linkedin-tuttle'>
-                            <a href='https://www.linkedin.com/in/jamesjtuttle/'><img src={linkedIn} alt='linked'
-                                style={{
-                                    width: '20px',
-                                    filter: 'brightness(0) invert(1)'
-                                }} />
-                            </a>
-                        </section>
+                <section className='footer-info-tuttle'><p>James</p>
+                    <section className='footer-github-tuttle'>
+                        <a href='https://github.com/jjtuttle' target='_blank' rel='noreferrer'><img src={githubSquare} alt='github'
+                            style={{
+                                paddingLeft: '15px',
+                                width: '20px',
+                                filter: 'brightness(0) invert(1)'
+                            }}
+                        />
+                        </a>
                     </section>
-                    <section className='footer-info-daniel'>
-                        <section className='footer-github-daniel'>Daniel
-                            <a href='https://github.com/Breadsandwich'><img src={githubSquare} alt='github'
-                                style={{
-                                    width: '20px',
-                                    filter: 'brightness(0) invert(1)'
-                                }} />
-                            </a>
-                        </section>
-                        <section className='footer-linkedin-daniel'>
-                            <a href='https://www.linkedin.com/in/daniel--thai/'><img src={linkedIn} alt='linked'
-                                style={{
-                                    width: '20px',
-                                    filter: 'brightness(0) invert(1)'
-                                }} />
-                            </a>
-                        </section>
-                    </section>
-                    <section className='footer-info-mitch'>
-                        <section className='footer-github-mitch'>Mitch
-                            <a href='https://www.linkedin.com/in/mitch-depree-4a5686155/'><img src={githubSquare} alt='github'
-                                style={{
-                                    width: '20px',
-                                    filter: 'brightness(0) invert(1)'
-                                }} />
-                            </a>
-                        </section>
-                        <section className='footer-linkedin-mitch'>
-                            <a href='https://github.com/mdepree5'><img src={linkedIn} alt='linked'
-                                style={{
-                                    width: '20px',
-                                    filter: 'brightness(0) invert(1)'
-                                }} />
-                            </a>
-                        </section>
-                    </section>
-                    <section className='footer-info-karl'>
-                        <section className='footer-github-karl'>Karl
-                            <a href='https://github.com/kbf12897'><img src={githubSquare} alt='github'
-                                style={{
-                                    width: '20px',
-                                    filter: 'brightness(0) invert(1)'
-                                }} />
-                            </a>
-                        </section>
-                        <section className='footer-linkedin-karl'>
-                            <a href='https://www.linkedin.com/in/karl-felter-678249215/'><img src={linkedIn} alt='linked'
-                                style={{
-                                    width: '20px',
-                                    filter: 'brightness(0) invert(1)'
-                                }} />
-                            </a>
-                        </section>
-                        <hr className='footer-bar-bottom' />
+                    <section className='footer-linkedin-tuttle'>
+                        <a href='https://www.linkedin.com/in/jamesjtuttle/' target='_blank' rel='noreferrer'><img src={linkedIn} alt='linked'
+                            style={{
+                                paddingLeft: '15px',
+                                width: '20px',
+                                filter: 'brightness(0) invert(1)'
+                            }} />
+                        </a>
                     </section>
                 </section>
-                <section className='footer-copy-right'>
-                    <h4>&copy; 2022 Group 8 WebDev</h4>
+                <section className='footer-info-daniel'>
+                    <section className='footer-github-daniel'><p>Daniel</p>
+                        <a href='https://github.com/Breadsandwich' target='_blank' rel='noreferrer'><img src={githubSquare} alt='github'
+                            style={{
+                                paddingLeft: '15px',
+                                width: '20px',
+                                filter: 'brightness(0) invert(1)'
+                            }} />
+                        </a>
+                    </section>
+                    <section className='footer-linkedin-daniel'>
+                        <a href='https://www.linkedin.com/in/daniel--thai/' target='_blank' rel='noreferrer'><img src={linkedIn} alt='linked'
+                            style={{
+                                paddingLeft: '15px',
+                                width: '20px',
+                                filter: 'brightness(0) invert(1)'
+                            }} />
+                        </a>
+                    </section>
                 </section>
+                <section className='footer-info-mitch'>
+                    <section className='footer-github-mitch'><p>Mitch</p>
+                        <a href='https://github.com/mdepree5' target='_blank' rel='noreferrer'><img src={githubSquare} alt='github'
+                            style={{
+                                paddingLeft: '15px',
+                                width: '20px',
+                                filter: 'brightness(0) invert(1)'
+                            }} />
+                        </a>
+                    </section>
+                    <section className='footer-linkedin-mitch'>
+                        <a href='https://www.linkedin.com/in/mitch-depree-4a5686155/' target='_blank' rel='noreferrer'><img src={linkedIn} alt='linked'
+                            style={{
+                                paddingLeft: '15px',
+                                width: '20px',
+                                filter: 'brightness(0) invert(1)'
+                            }} />
+                        </a>
+                    </section>
+                </section>
+                <section className='footer-info-karl'>
+                    <section className='footer-github-karl'><p>Karl</p>
+                        <a href='https://github.com/kbf12897' target='_blank' rel='noreferrer'><img src={githubSquare} alt='github'
+                            style={{
+                                paddingLeft: '15px',
+                                width: '20px',
+                                filter: 'brightness(0) invert(1)'
+                            }} />
+                        </a>
+                    </section>
+                    <section className='footer-linkedin-karl'>
+                        <a href='https://www.linkedin.com/in/karl-felter-678249215/' target='_blank' rel='noreferrer'><img src={linkedIn} alt='linked'
+                            style={{
+                                paddingLeft: '15px',
+                                width: '20px',
+                                filter: 'brightness(0) invert(1)'
+                            }} />
+                        </a>
+                    </section>
+                </section>
+
             </div>
-        </div>
+            <section className='footer-copy-right'>
+                <h4>&copy; 2022 Group 8 WebDev</h4>
+            </section>
+        </>
     );
 };
 
