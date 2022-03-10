@@ -75,7 +75,6 @@ def get_comments():
 # @login_required
 def update_comment(id):
   data = request.json
-  print(data)
 
   comment = Comment.query.get(id)
   comment.content = data['content']
