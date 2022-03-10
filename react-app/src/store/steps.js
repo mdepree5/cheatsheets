@@ -64,7 +64,6 @@ export const updateStep = (payload) => async (dispatch) => {
         body: JSON.stringify(payload)
     })
 
-    // console.log('PAYLOAD', response)
     if (response.ok) {
         const newStep = await response.json();
         dispatch(editStep(newStep));
@@ -94,7 +93,7 @@ const stepsReducer = (state = {}, action) => {
             // newState = { ...state };
             newState = {};
             action.steps[ 'all_steps' ].forEach((step) => newState[ step.id ] = step);
-            console.log(newState);
+            // console.log(newState);
             return newState;
         case ADD:
             newState = { ...state };

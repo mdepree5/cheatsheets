@@ -55,7 +55,6 @@ export const deleteComment = (commentId) => async (dispatch) => {
     const response = await fetch(`/api/comments/${commentId}`, {
         method: 'DELETE'
     })
-    // console.log('deletecomment thunk response@@@@@@@@', response)
     if (response.ok) {
         const data = await response.json();
         dispatch(remove(data));
@@ -73,7 +72,6 @@ export const editComment = (payload) => async (dispatch) => {
         body: JSON.stringify(payload)
     })
 
-    // console.log('editcomment thunk response@@@@@@@@', response)
     if (response.ok) {
         const data = await response.json();
         dispatch(edit(data));
@@ -102,8 +100,6 @@ const commentReducer = (state = {}, action) => {
             return newState;
         case EDIT:
             newState = { ...state };
-            console.log('%%%%%',newState)
-            console.log('action obj: ', action.comment.comment.id)
             newState[ action.comment.comment.id ] = action.comment;
             return newState;
         default:

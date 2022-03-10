@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react';
-import { addComment, getComment, editComment, deleteComment } from '../../store/comments';
+import { addComment, getComment } from '../../store/comments';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
-import './comments.css'
 import EditCommentsModal from '../EditComment/EditCommentModal';
 import DeleteCommentButton from './DeleteComment';
+import './comments.css'
 
 
 function CommentsComponent({ cheatsheetId }) {
-    const history = useHistory();
     const dispatch = useDispatch();
     const commentsObj = useSelector(state => state?.commentReducer);
     const comments = Object.values(commentsObj)
 
-    console.log('@@@@@@@',comments)
     const sessionUser = useSelector((state) => state?.session?.user)
 
 
@@ -27,30 +24,18 @@ function CommentsComponent({ cheatsheetId }) {
 
     const handleNewComment = async (e) => {
         e.preventDefault();
+        const postComment = await dispatch(addComment(payload));
         const payload = {
             writer_id: sessionUser.id ,
             cheatsheet_id: cheatsheetId ,
             content
         }
 
-        const postComment = await dispatch(addComment(payload));
-        // const updateComments = await dispatch(getComment(cheatsheetId))
-
         if (postComment) {
             await dispatch(getComment(cheatsheetId))
             setContent('')
         }
     }
-
-    const handleDelete = async (commentId) => {
-        await dispatch(deleteComment(commentId))
-        history.push(`/cheatsheets/${cheatsheetId}`)
-
-    }
-
-
-    // const sessionUser = useSelector((state) => state?.session?.user);
-    // const commentVals = Object.values(commentsObj)
 
 
     return (
@@ -81,7 +66,6 @@ function CommentsComponent({ cheatsheetId }) {
                             <div className='edit_delete_box'>
                                 <EditCommentsModal comment={comment} cheatsheetId={cheatsheetId}/>
                                 <DeleteCommentButton comment={comment}/>
-                                {/* <button onClick={() => handleDelete(comment?.id)}>Delete</button> */}
                             </div>
 
 
