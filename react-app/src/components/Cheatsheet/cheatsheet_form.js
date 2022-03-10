@@ -78,10 +78,13 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
         <FormInput name='Title' state={title} setState={setTitle} />
         <FormInput name='Description' state={description} setState={setDescription} />
         <FormInput name='Dependencies' state={dependencies} setState={setDependencies} />
-        <input name='media_url' type="file" accept="image/*" onChange={updateMedia_url}/>
+        <label htmlFor={'media_url'} id='media_url' >Upload an Image</label>
+        <input name='media_url' id='media_url_input' type="file" accept="image/*" onChange={updateMedia_url}/>
+
         <button className='new-delete-button' type='submit'>{name}</button>
       </form>
       {(imageLoading)&& <p>{edit ? 'Updating' : 'Publishing'}...</p>}
+      
       <div className='errors'>
         {errors?.length > 0 && errors?.filter(error => error !== 'Invalid value')
           .map((error, id) => (

@@ -83,8 +83,11 @@ def update_cheatsheet(cheatsheetId):
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-
   url = form.data['media_url']
+  
+  if type(form.data['media_url']) is str and form.data['media_url'] == 'remove-image':
+    url = 'no data provided'
+
   if type(form.data['media_url']) is not str:
     image = form.data['media_url']
     if not allowed_file(image.filename):
