@@ -51,19 +51,30 @@
     flex: 1 0 20%;
 }
 
+.cheatsheets_container a {
+    text-decoration: none;
+    color: black;
+    margin-left: 20px;
+}
+
 .cheatsheet_box{
     display: inline-block;
     width: 300px;
     height: 300px;
     background-color: white;
     margin: 10px;
-    box-shadow: 1px 1px 1px grey;
     border-radius: 5px;
+    /* box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px; */
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    /* box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px; */
 }
 
 .cheatsheet-img {
-    max-width: 300px;
-    max-height: 500px;
-    border-bottom: 1px solid gray;
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
 }
 
+.cheatsheet-title-author {
+    margin-left: 10px;
+}

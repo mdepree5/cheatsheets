@@ -51,9 +51,9 @@ const Homepage = () => {
                                 <div className={`cheatsheet_box`}>
                                     <div>
                                         <img className="cheatsheet-img" src={`${cheatsheet?.media_url}` ? `${cheatsheet?.media_url}` : no_image} alt='none' onError={(e) => e.target.style.display = 'none'}/>
-                                        <div>
+                                        <div className="cheatsheet-title-author">
                                             <h3>{cheatsheet.title}</h3>
-                                            <p>author name:</p>
+                                            <p>author:</p>
                                         </div>
                                     </div>
                                 </div>
