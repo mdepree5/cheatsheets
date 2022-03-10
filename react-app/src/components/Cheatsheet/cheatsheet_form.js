@@ -123,7 +123,7 @@ export default CheatsheetForm;
 
 //   const handleSubmit = async(event) => {
 //     event.preventDefault();    
-//     const cheatsheetData = {...cheatsheet, owner_id, title, description, dependencies, media_url};
+    // const cheatsheetData = {...cheatsheet, owner_id, title, description, dependencies, media_url};
 
 //     if(edit){
 //       const updated = await dispatch(updateCheatsheet(cheatsheetData))

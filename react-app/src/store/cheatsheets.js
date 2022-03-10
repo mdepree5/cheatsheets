@@ -15,7 +15,7 @@ export const createCheatsheet = cheatsheet => async (dispatch) => {
 
   const response = await fetch(`/api/cheatsheets/new`, {
     method: "POST",
-    headers: {"Content-Type": "multipart/form-data"},
+    // headers: {"Content-Type": "multipart/form-data"},
     body: cheatsheet
     // body: JSON.stringify(cheatsheet)
 

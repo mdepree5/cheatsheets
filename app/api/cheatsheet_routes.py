@@ -24,6 +24,10 @@ def create_cheatsheet():
   form['csrf_token'].data = request.cookies['csrf_token']
 
   print('debugger Print FORM DATA', form.data)
+  # image = request.files["media_url"]
+  image = form.data["media_url"]
+  print('debugger print image', image)
+  
   # print(f"debugger the header type is: {request.headers.get('Content-Type')}")  
   # print('debugger Printing the REQUEST', request)
   # thing = request.data # => b''
@@ -46,6 +50,7 @@ def create_cheatsheet():
       description = form.data['description'],
       dependencies = form.data['dependencies'],
       media_url = form.data['media_url'],
+      # media_url = form.data['media_url'],
       created_at = datetime.now(),
       updated_at = datetime.now()
     )
