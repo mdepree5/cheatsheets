@@ -6,10 +6,10 @@ const loadSearchResults = (cheatsheets) => ({
 })
 
 export const getSearch = (keyword) => async (dispatch) => {
-    const response = await fetch(`/api/search`, {
+    const response = await fetch(`/api/search/${keyword}`, {
         method: 'GET'
     });
-
+    // console.log('from search thunk', response)
     if (response.ok) {
         const data = await response.json();
         dispatch(getSearch(data));

@@ -54,6 +54,10 @@ function App() {
           <Homepage />
         </ProtectedRoute>
 
+        <Route path={'/search/:keyword'} exact={true}>
+          
+        </Route>
+
         <Route path='/cheatsheets/:cheatsheetId'>
           <CheatsheetPage/>
         </Route>

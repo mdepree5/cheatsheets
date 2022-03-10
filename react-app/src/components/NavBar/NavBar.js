@@ -5,6 +5,7 @@ import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css';
 import logo from '../../images/logo-no-bg .png';
 import CheatsheetFormModal from '../Cheatsheet/cheatsheet_modal';
+import SearchBar from '../searchBar/search';
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -53,7 +54,9 @@ const NavBar = () => {
         <li className='navbar_right'>
           <CheatsheetFormModal className='publish_btn' name='Publish' />
           {/* <button className='publish_btn'>publish</button> */}
-          <input className='search_bar' type="text" placeholder='search'></input>
+
+          <SearchBar />
+          {/* <input className='search_bar' type="text" placeholder='search'></input> */}
         </li>
 
       </ul>

@@ -1,0 +1,37 @@
+import React from 'react'
+import { getSearch } from '../../store/search'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
+const SearchBar = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const [keyword, setKeyword] = useState('')
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await dispatch(getSearch(keyword));
+        history.push(`/search/${keyword}`);
+        setKeyword('')
+    }
+
+
+    return (
+        <>
+            <form className='search_form'>
+                <input
+                    type="text"
+                    className='search_input'
+                    placeholder='what do you wanna know...'
+                    value={keyword}
+                    onChange={e => setKeyword(e.target.value)}
+                />
+                <button onClick={handleSubmit}>search</button>
+            </form>
+        </>
+    )
+}
+
+export default SearchBar;
