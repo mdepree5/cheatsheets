@@ -9,7 +9,7 @@ import match from '../../utils/match'
 function EditCommentsModal({ comment }) {
     const [ showModal, setShowModal ] = useState(false);
 
-    const sessionId = useSelector(state => state.session.user.id)
+    const sessionId = useSelector(state => state?.session?.user?.id)
     const writerId = comment.writer_id
     console.log('from comment modal', sessionId)
 
