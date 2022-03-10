@@ -51,6 +51,7 @@ const CheatsheetForm = ({name, edit, cheatsheet, closeModal}) => {
       if(updated?.errors) setErrors(updated?.errors);
       if(updated?.id) {
         setImageLoading(false);
+        history.push(`/`) //! => UPDATE REDUX STABLE BUT IMAGE DOES NOT VISUALLY RENDER IMMEDIATELY
         history.push(`/cheatsheets/${cheatsheet?.id}`) //! => UPDATE REDUX STABLE BUT IMAGE DOES NOT VISUALLY RENDER IMMEDIATELY
         return closeModal();
       }
