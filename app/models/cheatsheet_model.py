@@ -30,4 +30,5 @@ class Cheatsheet(db.Model):
       "updated_at": self.updated_at,
       'comments': {comment.id: comment.to_dict() for comment in self.comments},
       'steps': {step.id: step.to_dict() for step in self.steps},
+      'owner': self.users.username
     }

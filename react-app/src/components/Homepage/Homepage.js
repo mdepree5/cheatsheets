@@ -15,6 +15,7 @@ const Homepage = () => {
 
 
 
+
     useEffect(() => {
         dispatch(getCheatsheets());
     }, [ dispatch ]);
@@ -53,7 +54,7 @@ const Homepage = () => {
                                         <img className="cheatsheet-img" src={`${cheatsheet?.media_url}` ? `${cheatsheet?.media_url}` : no_image} alt='none' onError={(e) => e.target.style.display = 'none'}/>
                                         <div className="cheatsheet-title-author">
                                             <h3>{cheatsheet.title}</h3>
-                                            <p>author:</p>
+                                            <p>author: {cheatsheet?.owner}</p>
                                         </div>
                                     </div>
                                 </div>
