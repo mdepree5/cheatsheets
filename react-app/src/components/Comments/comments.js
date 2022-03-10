@@ -24,12 +24,12 @@ function CommentsComponent({ cheatsheetId }) {
 
     const handleNewComment = async (e) => {
         e.preventDefault();
-        const postComment = await dispatch(addComment(payload));
         const payload = {
             writer_id: sessionUser.id ,
             cheatsheet_id: cheatsheetId ,
             content
         }
+        const postComment = await dispatch(addComment(payload));
 
         if (postComment) {
             await dispatch(getComment(cheatsheetId))
