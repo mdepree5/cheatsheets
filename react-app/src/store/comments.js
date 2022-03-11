@@ -84,12 +84,11 @@ const commentReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
         case LOAD:
-            // newState = { ...state };
             newState = {};
             action.comments['cheetsheet_comments'].forEach((comment) => newState[comment.id] = comment);
             return newState;
         case ADD:
-            newState = { ...state};
+            newState = state;
             newState[action.comment.id] = action.comment;
             return newState;
         case DELETE:
@@ -97,7 +96,7 @@ const commentReducer = (state = {}, action) => {
             delete newState[ action.id.commentId ];
             return newState;
         case EDIT:
-            newState = { ...state };
+            newState = state;
             newState[ action.comment.comment.id ] = action.comment;
             return newState;
         default:
