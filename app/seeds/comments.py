@@ -37,6 +37,9 @@ def seed_comments():
     db.session.add(python_itself_comment_1)
     db.session.add(python_itself_comment_2)
     db.session.add(git_comment_1)
+    db.session.add(git_comment_2)
+    db.session.add(docker_comment_1)
+    db.session.add(docker_comment_2)
 
     db.session.commit()
 
