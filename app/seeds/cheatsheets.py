@@ -36,14 +36,14 @@ def seed_cheatsheets():
         title='Install Docker',
         description='We will install docker.',
         dependencies='Know what your operating system is.',
-        media_url='http://testbucket4561.s3.amazonaws.com/a90a04687b73454a8b9b54480d0ed1d8.jpg'
+        media_url='https://d1rytvr7gmk1sx.cloudfront.net/wp-content/uploads/2021/07/docker-with-waves.jpg?x54432'
         )
     pug = Cheatsheet(
         owner_id=2,
         title='Set up Pug',
         description='How to set up Pug templating engine',
         dependencies='Before going any further, ask yourself: "Do I really want to use Pug?"',
-        media_url='http://testbucket4561.s3.amazonaws.com/f9ea15503cba4dfcb669d682b8ee38e8.png'
+        media_url='https://cdn-images-1.medium.com/max/547/1*PmL3-GUNxYP26qTSlVrmzw.png'
         )
 
 
