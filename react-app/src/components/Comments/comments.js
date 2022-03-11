@@ -57,6 +57,7 @@ function CommentsComponent({ cheatsheetId }) {
                     </textarea>
                     <div className='new-comment-btn' style={{ width: '100px', margin: '10px', marginLeft: '250px' }}>
                         <button onClick={handleNewComment}
+                            className='new-comment-button'
                             style={{
                                 backgroundColor: '#FAAC18',
                                 color: '#fcfcfc'

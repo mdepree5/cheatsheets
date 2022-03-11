@@ -66,8 +66,7 @@
 
 .cheatsheet-page-img {
   margin-top: 10px;
-  box-shadow: 5px 5px 2px 1px rgba(0,0,12, 0.2);
-  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;  border-radius: 5px;
   width: 60%;
   height: 400px;
   position: absolute;
@@ -77,15 +76,18 @@
 button {
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
-  border: 1px solid #CCCCCC;
-  /* background-color: white; */
-  background-color: #faab1895;
+  /* border: 1px solid #CCCCCC; */
+  background-color: #faac18;
+  border: 1px solid #e5991e;
   color: white;
   margin-left: 5px;
   cursor: pointer;
   z-index: 66;
 }
 
+button:hover {
+  opacity: .5;
+}
 
 .errors{
   color: red;
@@ -140,4 +142,13 @@ div.form-input {
   margin-bottom: 2px;
   border-radius: 5px;
   border: 1px solid #CCCCCC;
+}
+
+.new-cheatsheet-button {
+  border: 1px solid #e5991e;
+  margin-top: 10px;
+}
+
+button.publish-modal-button:hover {
+  text-decoration: underline;
 }
