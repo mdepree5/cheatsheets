@@ -1,5 +1,11 @@
 # Cheatsheets Python Project
 
+## Live Site
+[Cheatsheets](https://cheatsheets-group-project.herokuapp.com/) was inspired by [instructables](https://www.instructables.com/) which is a platform for creating step-by-step instructions on how to create things.
+
+## Technologies Used
+Javascript | Python | Node.js | Flask | React | Redux | SQLAlchemy | PostgreSQL
+
 ## Getting started
 
 1. Clone this repository (main branch)
@@ -47,7 +53,7 @@
    cd ./react-app
    npm install
    ```
-   
+
 7. To run the React App in development run ```npm start``` from ```react-app``` directory
    ```
    cd ./react-app
