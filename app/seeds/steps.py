@@ -126,6 +126,25 @@ def seed_steps():
         content="Thats it, follow the on screen instructions tp push it to your new repo.",
         media_url=''
         )
+    
+    install_docker_step_1 = Step(
+        cheatsheet_id=5,
+        title='Step 1',
+        content="Download docker at https://www.docker.com/get-started. Be sure to download the correct version to match your operating system.",
+        media_url=''
+        )
+    install_docker_step_2 = Step(
+        cheatsheet_id=5,
+        title='Step 2',
+        content="Run the installation on your local machine and follow the optional tutorial.",
+        media_url=''
+        )
+    install_docker_step_3 = Step(
+        cheatsheet_id=5,
+        title='Step 3',
+        content="Verify successful installation by running this command in your terminal: docker run --rm hello-world",
+        media_url=''
+        )
 
 
     
@@ -146,6 +165,16 @@ def seed_steps():
     db.session.add(install_postgresql_12_mac_step_2)
     db.session.add(install_postgresql_12_mac_step_3)
     
+    db.session.add(simple_git_step_1)
+    db.session.add(simple_git_step_2)
+    db.session.add(simple_git_step_3)
+    db.session.add(simple_git_step_4)
+    db.session.add(simple_git_step_5)
+    db.session.add(simple_git_step_6)
+    
+    db.session.add(install_docker_step_1)
+    db.session.add(install_docker_step_2)
+    db.session.add(install_docker_step_3)
 
     db.session.commit()
 
