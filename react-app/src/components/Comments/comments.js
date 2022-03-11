@@ -74,8 +74,8 @@ function CommentsComponent({ cheatsheetId }) {
                                 style={{
                                     fontSize: '12px', fontWeight: '400',
                                     paddingBottom: '10px',
-                                    color:'grey'
-                                }}>Posted By: <span style={{fontWeight: 'bold'}}>{comment?.owner}</span> On: {comment?.created_at}</div>
+                                    color: 'grey'
+                                }}>Posted By: <span style={{ fontWeight: 'bold' }}>{comment?.owner}</span> On: {comment?.created_at}</div>
                             {comment?.content}
                             <div className='edit_delete_box'>
                                 <EditCommentsModal comment={comment} cheatsheetId={cheatsheetId} />
