@@ -16,26 +16,6 @@ def get_steps(cheatsheetId):
 
   return {"cheetsheet_comments": [comment.to_dict() for comment in all_steps]}
 
-# @comment_routes.route("/new_comment", methods=["GET", "POST"])
-# def new_comment():
-#   form = CommentForm()
-#   print(f'form: {form}')                                                         # * print
-#   if form.validate_on_submit():
-#     print(f'form data: {form.data}')
-#     new_comment = Comment(
-#       writer_id = form.data['writer_id'],                    #! => request Json userId????
-#       cheatsheet_id = form.data['cheatsheet_id'],
-#       content = form.data['content'],
-#     )
-
-#     db.session.add(new_comment)
-#     db.session.commit()
-
-#     return {new_comment.to_dict()}
-
-#   if form.errors:
-#     return form.errors
-
 @comment_routes.route('/new_comment', methods=['POST'])
 @login_required
 def get_comments():
@@ -55,22 +35,6 @@ def get_comments():
 
 
 # todo ——————————————————————————————————————————————————————————————————————————————————
-# @comment_routes.route("/<int:commentId>", methods=['PUT'])
-# def update_comment(commentId):
-#   form = CommentForm()
-
-#   if form.validate_on_submit():
-#     comment = Comment.query.get(commentId)
-#     comment.writer_id = form.data['writer_id']
-#     comment.cheatsheet_id = form.data['cheatsheet_id']
-#     comment.content = form.data['content']
-#     db.session.commit()
-
-#     print(f'updated comment: {comment}')                                      # * print
-#     return {comment.to_dict()}
-
-#   return form.errors
-
 @comment_routes.route("/<int:id>", methods=['PUT'])
 @login_required
 def update_comment(id):
@@ -86,13 +50,6 @@ def update_comment(id):
 
 
 # todo ——————————————————————————————————————————————————————————————————————————————————
-# @comment_routes.route("/<int:commentId>", methods=['DELETE'])
-# def delete_comment(commentId):
-#   comment = Comment.query.get(commentId)
-#   db.session.delete(comment)
-#   db.session.commit()
-
-#   return {'message': 'Deleted comment.'}
 @comment_routes.route("/<int:commentId>", methods=['DELETE'])
 @login_required
 def delete_comment(commentId):
