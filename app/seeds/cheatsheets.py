@@ -33,10 +33,17 @@ def seed_cheatsheets():
         )
     # simple_git = Cheatsheet(
     #     owner_id=3,
-    #     title='Simple Git',
-    #     description='Here is a simple Git',
-    #     dependencies='Have a GitHub account',
+    #     title='Install Docker',
+    #     description='We will install docker.',
+    #     dependencies='Know what your operating system is.',
     #     media_url='http://testbucket4561.s3.amazonaws.com/a90a04687b73454a8b9b54480d0ed1d8.jpg'
+    #     )
+    # pug = Cheatsheet(
+    #     owner_id=2,
+    #     title='Set up Pug',
+    #     description='How to set up Pug templating engine',
+    #     dependencies='Before going any further, ask yourself: "Do I really want to use Pug?"',
+    #     media_url='http://testbucket4561.s3.amazonaws.com/f9ea15503cba4dfcb669d682b8ee38e8.png'
     #     )
 
 
