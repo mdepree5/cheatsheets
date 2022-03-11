@@ -42,7 +42,7 @@
   text-align: center;
 }
 
-.cheatsheet-author {
+.cheatsheet-page-author {
   font-size: 12px;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   text-align: center;
@@ -61,7 +61,7 @@
   width: 100%;
   height: 400px;
   margin-bottom: 50px;
-  
+
 }
 
 .cheatsheet-page-img {
@@ -141,4 +141,3 @@ div.form-input {
   border-radius: 5px;
   border: 1px solid #CCCCCC;
 }
-

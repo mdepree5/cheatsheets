@@ -28,7 +28,7 @@ const CheatsheetPage = () => {
       </>)}
 
       <h1 className='cheatsheet-title'>{cheatsheet?.title}</h1>
-      {cheatsheet?.media_url !== 'no data provided' && 
+      {cheatsheet?.media_url !== 'no data provided' &&
         <div className='img-container'>
           <img className='cheatsheet-page-img' src={cheatsheet?.media_url} alt="cheatsheet"
             onError={(e) => e.target.style.display = 'none'}
@@ -36,7 +36,7 @@ const CheatsheetPage = () => {
         </div>
       }
       <div className='cheatsheet-description'>Description: {cheatsheet?.description}</div>
-      <div className='cheatsheet-author'>By: <span style={{ fontWeight: '600' }}>{cheatsheet?.owner}</span>
+      <div className='cheatsheet-page-author'>By: <span style={{ fontWeight: '600' }}>{cheatsheet?.owner}</span>
         <span style={{ paddingLeft: '15px' }}> Published:</span> {cheatsheet?.created_at}
       </div>
 
@@ -44,7 +44,7 @@ const CheatsheetPage = () => {
 
       <div>
         <Steps cheatsheetId={cheatsheetId} />
-        
+
         {sessionUser?.id === Number(cheatsheet?.owner_id) && <StepsFormModal cheatsheetId={cheatsheetId} />}
 
         <CommentsComponent cheatsheetId={cheatsheetId} />
