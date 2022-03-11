@@ -20,3 +20,12 @@ input#title, textarea#content, input#media_url {
 .edit-step-submit {
     float: right;
 }
+
+.edit-step-modal-btn {
+    background-color: #faac18;
+    border: 1px solid #e5991e;
+}
+
+.edit-step-modal-btn:hover {
+    opacity: .5;
+}

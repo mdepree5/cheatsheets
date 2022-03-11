@@ -8,7 +8,7 @@ function CheatsheetFormModal({name='Create', edit=false, cheatsheet=null}) {
 
   return (
     <>
-      <button onClick={e => setShowModal(true)}>{name}</button>
+      <button className='publish-modal-button' onClick={e => setShowModal(true)}>{name}</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <CheatsheetForm name={name} edit={edit} cheatsheet={cheatsheet} closeModal={() => setShowModal(false)} />

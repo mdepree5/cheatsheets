@@ -2,24 +2,22 @@ button{
   color: white;
 }
 
-button:hover {
-   background-color: #faab18;
-  color: white;
-}
+/* button:hover {
+    color: white;
+} */
 
 .delete:hover{
-  background-color: #ff7676d2;
-  color:white;
-  border-bottom: solid 2px #d1cece;
+  opacity: .5;
 }
 
 
 .delete{
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
-  border: 1px solid #CCCCCC;
-  background-color: #ff76763d;
+  background-color: red;
   color: #fcfcfc;
+  border: 1px solid #ff7676d2;
+  z-index: 0;
   margin-left: 5px;
   cursor: pointer;
 }

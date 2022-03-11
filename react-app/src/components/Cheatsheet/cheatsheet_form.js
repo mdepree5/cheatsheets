@@ -75,7 +75,7 @@ const CheatsheetForm = ({ name, edit, cheatsheet, closeModal }) => {
         <label htmlFor={'media_url'} id='media_url' >Upload an Image</label>
         <input name='media_url' id='media_url_input' type="file" accept="image/*" onChange={updateMedia_url} />
 
-        <button className='new-delete-button' type='submit'
+        <button className='new-cheatsheet-button' type='submit'
           style={{
             backgroundColor: '#FAAC18',
             color: '#fcfcfc'

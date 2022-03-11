@@ -12,6 +12,7 @@
 button.search-btn {
     background-color: #FAAC18;
     color: #fcfcfc;
+    padding: 5px 10px;
 }
 
 .search-btn:hover {
