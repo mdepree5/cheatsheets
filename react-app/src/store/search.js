@@ -9,7 +9,6 @@ export const getSearchResults = (keyword) => async (dispatch) => {
     const response = await fetch(`/api/search/${keyword}`, {
         method: 'GET'
     });
-    console.log('from search thunk', response)
     if (response.ok) {
         const data = await response.json();
         dispatch(loadSearch(data));

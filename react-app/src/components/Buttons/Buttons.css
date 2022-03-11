@@ -1,5 +1,10 @@
 button{
-  color: black;
+  color: white;
+}
+
+button:hover {
+   background-color: #faab18;
+  color: white;
 }
 
 .delete:hover{
@@ -14,7 +19,7 @@ button{
   border-radius: 5px;
   border: 1px solid #CCCCCC;
   background-color: #ff76763d;
-  color: #666666;
+  color: #fcfcfc;
   margin-left: 5px;
   cursor: pointer;
 }
