@@ -1,6 +1,17 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .homepage_body {
     margin-top: 100px;
-    /* min-height: calc(100vh - 200px); */
+    height: 200vh;
 }
 
 .carousel{
