@@ -21,5 +21,5 @@ export const DeleteButton = ({ thisId, deleteThunk, config }) => {
 
 
 export const CheatsheetDeleteButton = ({ cheatsheetId }) => (
-  <DeleteButton thisId={cheatsheetId} deleteThunk={deleteCheatsheet} config={{ buttonName: 'Delete Cheatsheet', newRoute: '/' }} />
+  <DeleteButton thisId={cheatsheetId} deleteThunk={deleteCheatsheet} config={{  buttonName: 'Delete Cheatsheet', newRoute: '/' }} />
 )

@@ -18,9 +18,6 @@
     position: relative;
     flex-direction: column-reverse;
     justify-content: space-between;
-
-
-
 }
 
 .posted_comments {
@@ -37,5 +34,16 @@
     display: flex;
     position: relative;
     flex-direction: row;
-
+    padding-top: 15px;
 }
+
+.comment-delete-btn{
+    background-color: #ff767666;
+    color: #fcfcfc;
+}
+
+.comment-delete-btn:hover {
+    background-color: #ff7676d2;
+    color:white;
+}
+

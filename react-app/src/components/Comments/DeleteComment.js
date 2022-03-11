@@ -1,8 +1,10 @@
 import { deleteComment } from "../../store/comments"
 import { useDispatch, useSelector } from "react-redux"
 import match from "../../utils/match"
+import './comments.css'
 
-const DeleteCommentButton = ({comment, cheatsheetId}) => {
+
+const DeleteCommentButton = ({ comment, cheatsheetId }) => {
     const dispatch = useDispatch();
 
     const sessionId = useSelector(state => state?.session?.user?.id)
@@ -17,7 +19,8 @@ const DeleteCommentButton = ({comment, cheatsheetId}) => {
 
     return (
         matchingToSessionUser && (
-            <button onClick={() => handleDelete(comment?.id)}>Delete</button>
+            <button className='comment-delete-btn' onClick={() => handleDelete(comment?.id)}
+            >Delete</button>
         )
     )
 }

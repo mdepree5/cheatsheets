@@ -29,7 +29,7 @@ const CheatsheetPage = () => {
 
   return (
     <div>
-      <div style={{ height: '200px' }}></div>
+      <div style={{ height: '200px' }}></div> {/*bring under header and nav. */}
       {sessionUser?.id === cheatsheet?.owner_id && (<>
         <CheatsheetFormModal name='Edit Cheatsheet' edit={true} cheatsheet={cheatsheet} />
         <CheatsheetDeleteButton cheatsheetId={cheatsheet?.id} />
@@ -42,13 +42,16 @@ const CheatsheetPage = () => {
         />
       </div>
       <div className='cheatsheet-description'>Description: {cheatsheet?.description}</div>
+      <div className='cheatsheet-author'>By: <span style={{ fontWeight: '600' }}>{cheatsheet?.owner}</span>
+        <span style={{ paddingLeft: '15px' }}> Published:</span> {cheatsheet?.created_at}
+      </div>
 
       <div className='cheatsheet-dependencies'>Dependencies: {cheatsheet?.dependencies}</div>
 
       <div>
         <Steps cheatsheetId={cheatsheetId} />
         <div>{modal}</div>
-        
+
         <CommentsComponent cheatsheetId={cheatsheetId} />
       </div>
     </div>
