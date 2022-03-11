@@ -23,13 +23,10 @@ const CheatsheetForm = ({ name, edit, cheatsheet, closeModal }) => {
 
   const owner_id = useSelector(state => state?.session?.user?.id);
 
-
   const [ title, setTitle ] = useState(edit ? cheatsheet?.title : '');
   const [ description, setDescription ] = useState(edit ? cheatsheet?.description : '');
   const [ dependencies, setDependencies ] = useState(edit ? cheatsheet?.dependencies : '');
   const [ media_url, setMedia_url ] = useState(edit ? cheatsheet?.media_url : '');
-  // const [media_url, setMedia_url] = useState(null);
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,18 +38,14 @@ const CheatsheetForm = ({ name, edit, cheatsheet, closeModal }) => {
     formData.append('dependencies', dependencies);
     formData.append('media_url', media_url);
 
-    // console.log('********** PRINT ALL FORM DATA **********')
-    // for (const pair of formData.entries()) console.log(`${pair[0]}: ${pair[1]}`);
-    // console.log('*****************************************')
-
     setImageLoading(true);
     if (edit) {
       const updated = await dispatch(updateCheatsheet(formData, cheatsheet?.id))
       if (updated?.errors) setErrors(updated?.errors);
       if (updated?.id) {
         setImageLoading(false);
-        history.push(`/`) //! => UPDATE REDUX STABLE BUT IMAGE DOES NOT VISUALLY RENDER IMMEDIATELY
-        history.push(`/cheatsheets/${cheatsheet?.id}`) //! => UPDATE REDUX STABLE BUT IMAGE DOES NOT VISUALLY RENDER IMMEDIATELY
+        history.push(`/`) // => data loads but visual render not immediate
+        history.push(`/cheatsheets/${cheatsheet?.id}`)
         return closeModal();
       }
       return 'Failed to update';

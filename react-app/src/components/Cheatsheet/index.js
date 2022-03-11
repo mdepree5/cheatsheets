@@ -19,28 +19,22 @@ const CheatsheetPage = () => {
   const cheatsheet = useSelector(state => state?.cheatsheet[ cheatsheetId ]);
   useEffect(() => { dispatch(getCheatsheet(cheatsheetId)) }, [ dispatch, cheatsheetId ])
 
-  let modal;
-  if (sessionUser?.id === Number(cheatsheet?.owner_id)) {
-    modal = <StepsFormModal cheatsheetId={cheatsheetId} />
-  } else {
-    modal = null;
-  }
-
-
   return (
     <div>
-      <div style={{ height: '200px' }}></div> {/*bring under header and nav. */}
+      <div style={{ height: '200px' }}></div>
       {sessionUser?.id === cheatsheet?.owner_id && (<>
         <CheatsheetFormModal name='Edit Cheatsheet' edit={true} cheatsheet={cheatsheet} />
         <CheatsheetDeleteButton cheatsheetId={cheatsheet?.id} />
       </>)}
 
       <h1 className='cheatsheet-title'>{cheatsheet?.title}</h1>
-      <div className='img-container'>
-        <img className='cheatsheet-page-img' src={cheatsheet?.media_url} alt="cheatsheet"
-          onError={(e) => e.target.style.display = 'none'}
-        />
-      </div>
+      {cheatsheet?.media_url !== 'no data provided' && 
+        <div className='img-container'>
+          <img className='cheatsheet-page-img' src={cheatsheet?.media_url} alt="cheatsheet"
+            onError={(e) => e.target.style.display = 'none'}
+          />
+        </div>
+      }
       <div className='cheatsheet-description'>Description: {cheatsheet?.description}</div>
       <div className='cheatsheet-author'>By: <span style={{ fontWeight: '600' }}>{cheatsheet?.owner}</span>
         <span style={{ paddingLeft: '15px' }}> Published:</span> {cheatsheet?.created_at}
@@ -50,7 +44,8 @@ const CheatsheetPage = () => {
 
       <div>
         <Steps cheatsheetId={cheatsheetId} />
-        <div>{modal}</div>
+        
+        {sessionUser?.id === Number(cheatsheet?.owner_id) && <StepsFormModal cheatsheetId={cheatsheetId} />}
 
         <CommentsComponent cheatsheetId={cheatsheetId} />
       </div>
