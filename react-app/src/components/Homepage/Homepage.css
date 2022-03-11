@@ -11,7 +11,10 @@ body {
 
 .homepage_body {
     margin-top: 100px;
-    height: 200vh;
+    /* min-height: 200vh; */
+    /* display: flex;
+    flex-direction: column; */
+    overflow: scroll;
 }
 
 .carousel{
