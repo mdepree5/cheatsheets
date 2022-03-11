@@ -37,7 +37,7 @@ def get_steps(cheatsheetId):
 #     return form.errors
 
 @comment_routes.route('/new_comment', methods=['POST'])
-# @login_required
+@login_required
 def get_comments():
   data = request.json
 
@@ -72,7 +72,7 @@ def get_comments():
 #   return form.errors
 
 @comment_routes.route("/<int:id>", methods=['PUT'])
-# @login_required
+@login_required
 def update_comment(id):
   data = request.json
 
@@ -94,7 +94,7 @@ def update_comment(id):
 
 #   return {'message': 'Deleted comment.'}
 @comment_routes.route("/<int:commentId>", methods=['DELETE'])
-# @login_required
+@login_required
 def delete_comment(commentId):
   comment = Comment.query.get(commentId)
   db.session.delete(comment)
