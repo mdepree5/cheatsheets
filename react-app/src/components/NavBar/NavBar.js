@@ -19,7 +19,7 @@ const NavBar = () => {
     sessionLinks = <LogoutButton />;
     publishAndSearch = (
       <>
-        <CheatsheetFormModal className='publish_btn' name='Publish' />
+        <CheatsheetFormModal className='publish_btn' name='Publish'  />
         <SearchBar />
       </>
     )
@@ -56,7 +56,7 @@ const NavBar = () => {
               height: '40px',
               marginRight: '10px'
             }}
-          /><span>Cheatsheets</span></NavLink>
+          /><span>cheatsheets</span></NavLink>
         </li>
         <li className='navbar_right'>
           {publishAndSearch}

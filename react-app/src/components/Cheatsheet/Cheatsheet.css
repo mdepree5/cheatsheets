@@ -78,11 +78,14 @@ button {
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
   border: 1px solid #CCCCCC;
-  background-color: white;
+  /* background-color: white; */
+  background-color: #faab1895;
+  color: white;
   margin-left: 5px;
   cursor: pointer;
   z-index: 66;
 }
+
 
 .errors{
   color: red;
