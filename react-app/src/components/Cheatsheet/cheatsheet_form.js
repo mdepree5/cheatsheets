@@ -41,9 +41,9 @@ const CheatsheetForm = ({ name, edit, cheatsheet, closeModal }) => {
     setImageLoading(true);
     if (edit) {
       const updated = await dispatch(updateCheatsheet(formData, cheatsheet?.id))
+      setImageLoading(false);
       if (updated?.errors) setErrors(updated?.errors);
       if (updated?.id) {
-        setImageLoading(false);
         history.push(`/`) // => data loads but visual render not immediate
         history.push(`/cheatsheets/${cheatsheet?.id}`)
         return closeModal();
@@ -52,9 +52,9 @@ const CheatsheetForm = ({ name, edit, cheatsheet, closeModal }) => {
     }
 
     const created = await dispatch(createCheatsheet(formData))
+    setImageLoading(false);
     if (created?.errors) setErrors(created?.errors)
     if (created?.id) {
-      setImageLoading(false);
       history.push(`/cheatsheets/${created?.id}`);
       return closeModal();
     }

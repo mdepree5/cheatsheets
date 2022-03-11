@@ -70,7 +70,7 @@ export const deleteCheatsheet = cheatsheetId => async (dispatch) => {
 const cheatsheetReducer = (state = {}, action) => {
   switch (action.type) {
     case CREATE: {
-      const newState = {}; //* => reset state to one cheatsheet
+      const newState = state; //* => persist state for error handling
       newState[action.cheatsheet.id] = action.cheatsheet;
       return newState;
     };
