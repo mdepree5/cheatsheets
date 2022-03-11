@@ -14,8 +14,15 @@ const NavBar = () => {
 
 
   let sessionLinks;
+  let publishAndSearch;
   if (sessionUser) {
     sessionLinks = <LogoutButton />;
+    publishAndSearch = (
+      <>
+        <CheatsheetFormModal className='publish_btn' name='Publish' />
+        <SearchBar />
+      </>
+    )
   } else {
     sessionLinks = (
       <div className='login-signup-links'>
@@ -27,7 +34,7 @@ const NavBar = () => {
         </NavLink>
       </div>
     )
-
+    publishAndSearch = null;
   }
   return (
     <nav className='nav-container'>
@@ -52,11 +59,7 @@ const NavBar = () => {
           /><span>Cheatsheets</span></NavLink>
         </li>
         <li className='navbar_right'>
-          <CheatsheetFormModal className='publish_btn' name='Publish' />
-          {/* <button className='publish_btn'>publish</button> */}
-
-          <SearchBar />
-          {/* <input className='search_bar' type="text" placeholder='search'></input> */}
+          {publishAndSearch}
         </li>
 
       </ul>

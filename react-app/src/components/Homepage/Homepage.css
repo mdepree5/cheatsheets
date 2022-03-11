@@ -94,9 +94,13 @@ body {
 .cheatsheet-img:hover {
     transform:scale(1.1);
     transition: all 0.3s;
-    border-radius: 15px;;
+    border-radius: 15px;
 }
 
 .cheatsheet-title-author {
     margin-left: 10px;
+}
+
+.cheatsheet-author {
+    margin-left: -140px;
 }

@@ -58,7 +58,7 @@ const Homepage = () => {
                                         />
                                         <div className="cheatsheet-title-author">
                                             <h3>{cheatsheet?.title}</h3>
-                                            <p>author: {cheatsheet?.owner}</p>
+                                            <p className="cheatsheet-author">author: {cheatsheet?.owner}</p>
                                         </div>
                                     </div>
                                 </div>
