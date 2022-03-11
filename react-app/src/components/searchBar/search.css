@@ -3,7 +3,7 @@
     height:25px;
     border-radius: 5px;
     border: .5px solid;
-    cursor:pointer;
+
 }
 .search_input::placeholder {
     color: #bbb9b9;
