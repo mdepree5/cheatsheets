@@ -58,7 +58,6 @@ def create_cheatsheet():
 @cheatsheet_routes.route("/all", methods=["GET"])
 def get_all_cheatsheets():
   all_cheatsheets = Cheatsheet.query.all()
-  print(f'all cheatsheets: {all_cheatsheets}')                                   # * print
   # * ———————————————————————————————
   # ? my_cheatsheets = Cheatsheet.query.filter(Cheatsheet.owner_id == current_user.id).all()
   # * ———————————————————————————————

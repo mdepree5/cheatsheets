@@ -12,6 +12,7 @@ from .api.cheatsheet_routes import cheatsheet_routes
 from .api.comment_routes import comment_routes
 from .api.step_routes import step_routes
 from .api.image_routes import image_routes
+from .api.search_routes import search_route
 
 from .seeds import seed_commands
 
@@ -39,6 +40,7 @@ app.register_blueprint(cheatsheet_routes, url_prefix='/api/cheatsheets')
 app.register_blueprint(comment_routes, url_prefix='/api/comments')
 app.register_blueprint(step_routes, url_prefix='/api/steps')
 app.register_blueprint(image_routes, url_prefix='/api/images')
+app.register_blueprint(search_route, url_prefix='/api/search')
 db.init_app(app)
 Migrate(app, db)
 
