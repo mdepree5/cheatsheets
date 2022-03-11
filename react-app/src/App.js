@@ -9,7 +9,6 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Homepage from './components/Homepage/Homepage.js';
-import UploadPicture from './components/test_uploadPicture/test_uploadPicture.js';
 import Footer from './components/Footer/Footer';
 import PageNotFound from './components/PageNotFound/notFound.js';
 
@@ -65,13 +64,10 @@ function App() {
           <CheatsheetPage />
         </Route>
 
-        {/* test route to check if we are able to upload to aws */}
-        <Route path='/upload' >
-          <UploadPicture />
-        </Route>
         <Route path='*'>
           <PageNotFound />
         </Route>
+
       </Switch>
       <Footer />
     </BrowserRouter>
