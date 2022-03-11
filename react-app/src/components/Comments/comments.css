@@ -40,10 +40,10 @@
 .comment-delete-btn{
     background-color: #ff767666;
     color: #fcfcfc;
+    z-index: 0;
 }
 
 .comment-delete-btn:hover {
     background-color: #ff7676d2;
     color:white;
 }
-
