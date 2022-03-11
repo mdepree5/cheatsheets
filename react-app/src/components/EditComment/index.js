@@ -3,14 +3,14 @@ import { useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { editComment, getComment } from '../../store/comments';
 
-const EditComment = ({closeModal, comment}) => {
+const EditComment = ({ closeModal, comment }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { cheatsheetId } = useParams();
     const id = comment.id
 
 
-    const [content, setContent] = useState(comment.content);
+    const [ content, setContent ] = useState(comment.content);
 
 
     const handleSubmit = async (e) => {
@@ -30,13 +30,22 @@ const EditComment = ({closeModal, comment}) => {
         <div>
             <form className='edit_comment_form' onSubmit={handleSubmit}>
                 <textarea className='edit_comment_textarea'
-                cols="50"
-                rows="5"
-                value={content}
-                onChange={e => setContent(e.target.value)}
-                    >
+                    cols="50"
+                    rows="5"
+                    value={content}
+                    onChange={e => setContent(e.target.value)}
+                    style={{ borderRadius: '5px' }}
+                >
                 </textarea>
-                <button type='submit' className='update_btn'>update comment</button>
+                <div>
+                    <button type='submit' className='update_btn'
+                        style={{
+                            marginLeft: '120px',
+                            backgroundColor: '#FAAC18',
+                            color: '#fcfcfc'
+                        }}>
+                        Update Comment</button>
+                </div>
             </form>
         </div>
     )

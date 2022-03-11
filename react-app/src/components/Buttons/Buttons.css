@@ -2,8 +2,9 @@ button{
   color: black;
 }
 
-button:hover{
-  background-color: #ebe9e9;
+.delete:hover{
+  background-color: #ff7676d2;
+  color:white;
   border-bottom: solid 2px #d1cece;
 }
 
@@ -12,7 +13,8 @@ button:hover{
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
   border: 1px solid #CCCCCC;
-  background-color: white;
+  background-color: #ff76763d;
+  color: #666666;
   margin-left: 5px;
   cursor: pointer;
 }

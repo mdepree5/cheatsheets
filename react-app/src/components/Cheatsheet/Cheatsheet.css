@@ -42,6 +42,13 @@
   text-align: center;
 }
 
+.cheatsheet-author {
+  font-size: 12px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  text-align: center;
+  color: grey;
+}
+
 .cheatsheet-dependencies {
   font-size: 20px;
   text-align: center;
@@ -52,13 +59,17 @@
 
 .img-container {
   width: 100%;
-  height: 600px;
+  height: 400px;
   margin-bottom: 50px;
+  
 }
 
 .cheatsheet-page-img {
+  margin-top: 10px;
+  box-shadow: 5px 5px 2px 1px rgba(0,0,12, 0.2);
+  border-radius: 5px;
   width: 60%;
-  height: 600px;
+  height: 400px;
   position: absolute;
   left: 20%;
 }

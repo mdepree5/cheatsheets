@@ -43,10 +43,12 @@ const Steps = ({ cheatsheetId }) => {
                                 {step?.content}
                                 {sessionUser?.id === cheatsheet?.owner_id && (
                                     <div className="step-buttons-div">
-                                        <div>
-                                            <button onClick={() => handleDelete(step?.id)}>Delete</button>
-                                        </div>
                                         <EditStepsFormModal step={step} />
+                                        <div>
+                                            <button onClick={() => handleDelete(step?.id)}
+                                                className='delete-step-btn'
+                                            >Delete</button>
+                                        </div>
                                     </div>
                                 )}
                             </li>

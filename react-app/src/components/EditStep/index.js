@@ -9,7 +9,7 @@ export const FormInput = ({ name, state, setState, isRequired }) => {
 
     return (
         <div className='form-input'>
-            <input id={formatName} placeholder={name} value={state} onChange={e => setState(e.target.value)} required={isRequired}/>
+            <input id={formatName} placeholder={name} value={state} onChange={e => setState(e.target.value)} required={isRequired} />
         </div>
     )
 }
@@ -64,10 +64,17 @@ const EditStep = ({ closeModal, step }) => {
         <div className='edit-step-form-container'>
             <h4 className='edit-step-header'>Edit step</h4>
             <form className='edit-step-form' onSubmit={handleSubmit}>
-                <FormInput name='Title' state={title} setState={setTitle} isRequired={true}/>
+                <FormInput name='Title' state={title} setState={setTitle} isRequired={true} />
                 <FormTextarea name='Content' state={content} setState={setContent} />
-                <FormInput name='Media_url' state={media_url} setState={setMedia_url} isRequired={false}/>
-                <button className='edit-step-submit' type='submit'>Edit step</button>
+                <FormInput name='Media_url' state={media_url} setState={setMedia_url} isRequired={false} />
+                <button className='edit-step-submit' type='submit'
+                    style={{
+                        backgroundColor: '#FAAC18',
+                        color: '#fcfcfc',
+                        marginRight: '40px'
+                    }}
+
+                >Edit step</button>
             </form>
             <div className='errors'>
                 {errors.length > 0 && errors.filter(error => error !== 'Invalid value')
