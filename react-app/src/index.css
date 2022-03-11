@@ -9,3 +9,7 @@ body, html{
     margin: 0;
     background-color: #F5F5F5;
 }
+
+button:hover {
+    border: white 0.5px solid;
+}
