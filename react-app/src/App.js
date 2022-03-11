@@ -16,6 +16,7 @@ import PageNotFound from './components/PageNotFound/notFound.js';
 
 
 import CheatsheetPage from './components/Cheatsheet';
+import SearchResults from './components/searchResults/SearchResults.js';
 
 function App() {
   const [ loaded, setLoaded ] = useState(false);
@@ -57,7 +58,7 @@ function App() {
         </ProtectedRoute>
 
         <Route path={'/search/:keyword'} exact={true}>
-          
+          <SearchResults />
         </Route>
 
         <Route path='/cheatsheets/:cheatsheetId'>

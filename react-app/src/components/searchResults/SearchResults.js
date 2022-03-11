@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSearch } from "../../store/search";
+import { getSearchResults } from "../../store/search";
+import no_image from '../../images/no_image_found.png';
+
 
 const SearchResults = () => {
     const dispatch = useDispatch();
@@ -10,12 +12,12 @@ const SearchResults = () => {
     console.log('from search page:', cheatsheetsObj)
 
     useEffect(() => {
-        dispatch(getSearch());
+        dispatch(getSearchResults());
     }, [dispatch])
 
     return (
         <div>
-            <div id="search_results_container">
+            <div id="explore_container">
                 <h2>search results</h2>
                 <div className="cheatsheets_container">
                     {cheatsheets.map((cheatsheet) => {

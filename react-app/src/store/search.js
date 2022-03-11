@@ -1,18 +1,18 @@
 const LOAD_SEARCH_RESULTS = 'search/LOAD_SEARCH_RESULTS';
 
-const loadSearchResults = (cheatsheets) => ({
+const loadSearch = (cheatsheets) => ({
     type: LOAD_SEARCH_RESULTS,
     cheatsheets
 })
 
-export const getSearch = (keyword) => async (dispatch) => {
+export const getSearchResults = (keyword) => async (dispatch) => {
     const response = await fetch(`/api/search/${keyword}`, {
         method: 'GET'
     });
-    // console.log('from search thunk', response)
+    console.log('from search thunk', response)
     if (response.ok) {
         const data = await response.json();
-        dispatch(getSearch(data));
+        dispatch(loadSearch(data));
         return data;
     }
     return response

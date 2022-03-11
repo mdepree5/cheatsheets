@@ -1,8 +1,9 @@
 import React from 'react'
-import { getSearch } from '../../store/search'
+import { getSearchResults } from '../../store/search'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const SearchBar = () => {
     const dispatch = useDispatch();
@@ -12,8 +13,9 @@ const SearchBar = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await dispatch(getSearch(keyword));
+        await dispatch(getSearchResults(keyword));
         history.push(`/search/${keyword}`);
+
         setKeyword('')
     }
 
