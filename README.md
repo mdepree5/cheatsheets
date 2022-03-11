@@ -59,3 +59,16 @@ Javascript | Python | Node.js | Flask | React | Redux | SQLAlchemy | PostgreSQL
    cd ./react-app
    npm start
    ```
+
+# Cheatsheets quick overview
+
+## splashpage/Login page
+![Login Page](./images/login.PNG)
+![Homepage](./images/homepage.PNG)
+![Publish](./images/publish_modal.PNG)
+
+![editCheatSheet](./images/edit_modal.PNG)
+
+![addStep](./images/addstep_modal.PNG)
+![Comments](./images/comments.PNG)
+![search](./images/search.PNG)
