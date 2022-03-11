@@ -19,7 +19,7 @@ const NavBar = () => {
     sessionLinks = <LogoutButton />;
     publishAndSearch = (
       <>
-        <CheatsheetFormModal style={{ backgroundColor: '#FAAC18' }} className='publish_btn' name='Publish'  />
+        <CheatsheetFormModal className='publish_btn' name='Publish'  />
         <SearchBar />
       </>
     )
