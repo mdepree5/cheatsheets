@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp, login } from '../../../store/session';
@@ -24,31 +24,23 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data)
-      }
-    } else {
-      setErrors(['Passwords do not match'])
-    }
+    const data = await dispatch(signUp(username, email, password));
+    if (data) setErrors(data)
+    return;
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
-  };
+  useEffect(()=> {
+    const errors = [];
+    const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    if(!username) errors.push('Please provide a username');
+    if(username.length > 40) errors.push('Please provide a shorter username (40 chars or less).');
+    if(emailRegex.exec(email) === null) errors.push('Please provide a valid email.');
+    if(password.length < 8) errors.push('Please provide a password with 8 characters or more.');
+    if(password !== repeatPassword ) errors.push('Passwords do not match');
+  
+    setErrors(errors);
+  }, [username, email, password, repeatPassword])
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
 
   if (user) {
     return <Redirect to='/' />;
@@ -64,17 +56,12 @@ const SignUpForm = () => {
       </div>
       <div className='form-container'>
         <form className='signup-form' onSubmit={onSignUp}>
-          <div className='errors-div'>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
             <input
               className='username-input'
               type='text'
               name='username'
               placeholder='Username'
-              onChange={updateUsername}
+              onChange={(e) => setUsername(e.target.value)}
               value={username}
             ></input>
             <input
@@ -82,7 +69,7 @@ const SignUpForm = () => {
               type='text'
               name='email'
               placeholder='Email'
-              onChange={updateEmail}
+              onChange={(e) => setEmail(e.target.value)}
               value={email}
             ></input>
             <input
@@ -90,7 +77,7 @@ const SignUpForm = () => {
               type='password'
               name='password'
               placeholder='Password'
-              onChange={updatePassword}
+              onChange={(e) => setPassword(e.target.value)}
               value={password}
             ></input>
             <input
@@ -98,13 +85,18 @@ const SignUpForm = () => {
               type='password'
               name='repeat_password'
               placeholder='Confirm Password'
-              onChange={updateRepeatPassword}
+              onChange={(e) => setRepeatPassword(e.target.value)}
               value={repeatPassword}
               required={true}
             ></input>
-          <button className='submit-button' type='submit'>Sign Up</button>
+          <button className='submit-button' type='submit' disabled={errors.length > 0} >Sign Up</button>
           <button className='signup-demo-button' onClick={() => handleDemo(demoUser)}>Demo</button>
         </form>
+        <div className='errors-div'>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
       </div>
     </div>
   );
