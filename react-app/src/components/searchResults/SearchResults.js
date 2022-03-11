@@ -1,19 +1,14 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getSearchResults } from "../../store/search";
+import React from "react";
+import { useSelector } from "react-redux";
 import no_image from '../../images/no_image_found.png';
 
 
 const SearchResults = () => {
-    const dispatch = useDispatch();
     const cheatsheetsObj = useSelector(state => state?.searchReducer)
     const cheatsheets = cheatsheetsObj && Object.values(cheatsheetsObj)
 
-    console.log('from search page:', cheatsheetsObj)
 
-    useEffect(() => {
-        dispatch(getSearchResults());
-    }, [dispatch])
+
 
     return (
         <div>
