@@ -13,6 +13,8 @@ const Homepage = () => {
     const cheatsheetsObj = useSelector((state) => state?.cheatsheet);
     const cheatsheets = cheatsheetsObj && Object.values(cheatsheetsObj);
 
+    
+
     useEffect(() => {
         dispatch(getCheatsheets());
     }, [ dispatch ]);
@@ -48,7 +50,7 @@ const Homepage = () => {
                             <a key={cheatsheet?.id} href={`/cheatsheets/${cheatsheet?.id}`} >
                                 <div className={`cheatsheet_box`}>
                                     <div>
-                                        <img className="cheatsheet-img" src={`${cheatsheet?.media_url}` ? `${cheatsheet?.media_url}` : no_image}
+                                        <img className="cheatsheet-img" src={cheatsheet?.media_url !== 'no data provided' ? cheatsheet?.media_url : no_image}
                                             alt='none'
                                             onError={(e) => e.target.style.display = 'none'}
                                         />
