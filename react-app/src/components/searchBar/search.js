@@ -19,6 +19,7 @@ const SearchBar = () => {
     }
 
 
+
     return (
         <>
             <form className='search_form'>

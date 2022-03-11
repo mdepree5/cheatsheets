@@ -1,12 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import no_image from '../../images/no_image_found.png';
+import { useHistory } from "react-router-dom";
 
 
 const SearchResults = () => {
+    const history = useHistory();
     const cheatsheetsObj = useSelector(state => state?.searchReducer)
     const cheatsheets = cheatsheetsObj && Object.values(cheatsheetsObj)
 
+    console.log('length $$$$$$$$$$$$',cheatsheets.length)
+
+    if (cheatsheets.length < 1) {
+        history.push('/notFound')
+    }
 
 
 
