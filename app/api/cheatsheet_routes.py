@@ -58,23 +58,14 @@ def create_cheatsheet():
 @cheatsheet_routes.route("/all", methods=["GET"])
 def get_all_cheatsheets():
   all_cheatsheets = Cheatsheet.query.all()
-  # * ———————————————————————————————
-  # ? my_cheatsheets = Cheatsheet.query.filter(Cheatsheet.owner_id == current_user.id).all()
-  # * ———————————————————————————————
 
   return {"all_cheatsheets": [cheatsheet.to_dict() for cheatsheet in all_cheatsheets]}
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=["GET"])
 def get_one_cheatsheet(cheatsheetId):
   one_cheatsheet = Cheatsheet.query.get(cheatsheetId)
-  comments = Comment.query.filter(Comment.cheatsheet_id == cheatsheetId).all()
-
-
-  return {**one_cheatsheet.to_dict(),
-          'comments': [comment.to_dict() for comment in comments]
-          }
-
-
+  
+  return {**one_cheatsheet.to_dict()}
 # todo ——————————————————————————————————————————————————————————————————————————————————
 @cheatsheet_routes.route("/<int:cheatsheetId>", methods=['PUT'])
 @login_required

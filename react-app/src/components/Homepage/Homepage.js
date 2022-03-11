@@ -3,19 +3,17 @@ import ImageCarousel from "./Carousel";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getCheatsheets } from "../../store/cheatsheets";
-import Footer from "../Footer/Footer";
+
 import './Homepage.css'
 import no_image from '../../images/no_image_found.png';
-// import Image from 'react'
+
 
 const Homepage = () => {
-    // const sessionUser = useSelector((state) => state?.session?.user)
     const dispatch = useDispatch();
-    const cheatsheetsObj = useSelector((state) => state?.cheatsheet)
-    const cheatsheets = cheatsheetsObj && Object.values(cheatsheetsObj)
+    const cheatsheetsObj = useSelector((state) => state?.cheatsheet);
+    const cheatsheets = cheatsheetsObj && Object.values(cheatsheetsObj);
 
-
-
+    
 
     useEffect(() => {
         dispatch(getCheatsheets());
@@ -52,7 +50,7 @@ const Homepage = () => {
                             <a key={cheatsheet?.id} href={`/cheatsheets/${cheatsheet?.id}`} >
                                 <div className={`cheatsheet_box`}>
                                     <div>
-                                        <img className="cheatsheet-img" src={`${cheatsheet?.media_url}` ? `${cheatsheet?.media_url}` : no_image}
+                                        <img className="cheatsheet-img" src={cheatsheet?.media_url !== 'no data provided' ? cheatsheet?.media_url : no_image}
                                             alt='none'
                                             onError={(e) => e.target.style.display = 'none'}
                                         />

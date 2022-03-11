@@ -31,6 +31,13 @@ def seed_cheatsheets():
         dependencies='Have a GitHub account',
         media_url='https://miro.medium.com/max/1400/1*jxvFpD7E00qsfY7PQzd5aA.png'
         )
+    # simple_git = Cheatsheet(
+    #     owner_id=3,
+    #     title='Simple Git',
+    #     description='Here is a simple Git',
+    #     dependencies='Have a GitHub account',
+    #     media_url='http://testbucket4561.s3.amazonaws.com/a90a04687b73454a8b9b54480d0ed1d8.jpg'
+    #     )
 
 
     db.session.add(python_itself)
