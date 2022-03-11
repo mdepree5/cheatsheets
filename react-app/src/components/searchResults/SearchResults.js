@@ -9,7 +9,7 @@ const SearchResults = () => {
     const cheatsheetsObj = useSelector(state => state?.searchReducer)
     const cheatsheets = cheatsheetsObj && Object.values(cheatsheetsObj)
 
-    if (cheatsheets.length > 1) {
+    if (cheatsheets.length < 1) {
         history.push('/notFound')
     }
 
