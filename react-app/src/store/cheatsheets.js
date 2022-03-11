@@ -67,43 +67,35 @@ export const deleteCheatsheet = cheatsheetId => async (dispatch) => {
 // todo ——————————————————————————————————————————————————————————————————————————————————
 // todo                                 Reducer
 // todo ——————————————————————————————————————————————————————————————————————————————————
-const initialState = {};
-
-const cheatsheetReducer = (state = initialState, action) => {
+const cheatsheetReducer = (state = {}, action) => {
   switch (action.type) {
     case CREATE: {
-      const newState = {}; //* => empty object to reset state to only have access to one cheatsheet
+      const newState = state; //* => persist state for error handling
       newState[action.cheatsheet.id] = action.cheatsheet;
-      // console.log('CREATE ONE NEWSTATE', newState);
       return newState;
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case GET_ALL: {
-      const newState = {}; //* => empty object to reset state and populate with fresh query
+      const newState = {}; //* => reset state to populate fresh query
       action.cheatsheets['all_cheatsheets'].forEach(cheatsheet => newState[cheatsheet.id] = cheatsheet);
-      // console.log('GET ALL NEWSTATE', newState);
       return newState;
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case GET_ONE: {
       const newState = state;
       newState[action.cheatsheet.id] = action.cheatsheet;
-      // console.log('GET ONE NEW STATE', newState);
       return newState;
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case UPDATE: {
       const newState = state;
       newState[action.cheatsheet.id] = action.cheatsheet;
-      // console.log('UPDATE', newState);
       return newState;
     };
 // todo ——————————————————————————————————————————————————————————————————————————————————
     case DELETE: {
       const newState = state;
       delete newState[action.cheatsheetId.id];
-      // console.log('ID OF THE DELETED ONE', action.cheatsheetId.id);
-      // console.log('NEWSTATE AFTER DELETE', newState);
       return newState;
     }
 // todo ——————————————————————————————————————————————————————————————————————————————————
