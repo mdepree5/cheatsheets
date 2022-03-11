@@ -3,6 +3,7 @@ import ImageCarousel from "./Carousel";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getCheatsheets } from "../../store/cheatsheets";
+import Footer from "../Footer/Footer";
 import './Homepage.css'
 import no_image from '../../images/no_image_found.png';
 // import Image from 'react'
