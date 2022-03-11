@@ -45,26 +45,25 @@ const Homepage = () => {
             <div id="explore_container">
                 <h2>Explore Cheatsheets</h2>
                 <div className="cheatsheets_container">
-                    {cheatsheets.map((cheatsheet) => {
-                        return (
-                            <a key={cheatsheet?.id} href={`/cheatsheets/${cheatsheet?.id}`} >
-                                <div className={`cheatsheet_box`}>
-                                    <div>
-                                        <img className="cheatsheet-img" src={cheatsheet?.media_url !== 'no data provided' ? cheatsheet?.media_url : no_image}
-                                            alt='none'
-                                            onError={(e) => e.target.style.display = 'none'}
-                                        />
-                                        <div className="cheatsheet-title-author">
-                                            <h3>{cheatsheet?.title}</h3>
-                                            <p className="cheatsheet-author">author: {cheatsheet?.owner}</p>
-                                        </div>
+                    {cheatsheets.map((cheatsheet) => (
+                        <a key={cheatsheet?.id} href={`/cheatsheets/${cheatsheet?.id}`} >
+                            <div className={`cheatsheet_box`}>
+                                <div>
+                                    <img className="cheatsheet-img" src={cheatsheet?.media_url !== 'no data provided' ? cheatsheet?.media_url : no_image}
+                                        alt='none'
+                                        onError={(e) => e.target.style.display = 'none'}
+                                    />
+                                    <div className="cheatsheet-title-author">
+                                        <h3>{cheatsheet?.title}</h3>
+                                        <p className="cheatsheet-author">author: {cheatsheet?.owner}</p>
                                     </div>
                                 </div>
-                            </a>
-                        )
-                    })}
+                            </div>
+                        </a>
+                    ))}
                 </div>
             </div>
+            <div style={{height: '150px'}}></div>
         </div>
     )
 }

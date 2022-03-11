@@ -69,6 +69,7 @@ function App() {
         </Route>
 
       </Switch>
+      <div style={{height: '100px'}}></div>
       <Footer />
     </BrowserRouter>
   );
