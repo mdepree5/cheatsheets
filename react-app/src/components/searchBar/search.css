@@ -1,0 +1,20 @@
+.search_input {
+    width: 250px;
+    height:25px;
+    border-radius: 5px;
+    border: .5px solid;
+    cursor:pointer;
+}
+.search_input::placeholder {
+    color: #FAAC18;
+}
+
+.search-btn {
+    background-color: #FAAC18;
+    color: #fcfcfc;
+}
+
+.search-btn:hover {
+    background-color: #da9618;
+    color: white;
+}

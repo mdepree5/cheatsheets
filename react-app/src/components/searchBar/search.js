@@ -3,13 +3,14 @@ import { getSearchResults } from '../../store/search'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
+import './search.css';
 
 const SearchBar = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [keyword, setKeyword] = useState('')
+    const [ keyword, setKeyword ] = useState('')
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,7 +31,7 @@ const SearchBar = () => {
                     value={keyword}
                     onChange={e => setKeyword(e.target.value)}
                 />
-                <button onClick={handleSubmit}>search</button>
+                <button className='search-btn' onClick={handleSubmit}>search</button>
             </form>
         </>
     )
