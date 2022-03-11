@@ -25,7 +25,7 @@ const SearchBar = () => {
                 <input
                     type="text"
                     className='search_input'
-                    placeholder='what do you wanna know...'
+                    placeholder='search something'
                     value={keyword}
                     onChange={e => setKeyword(e.target.value)}
                 />

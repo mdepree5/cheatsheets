@@ -3,11 +3,9 @@
     height:25px;
     border-radius: 5px;
     border: .5px solid;
-    cursor:pointer;
+    margin-left: 10px;
 }
-.search_input::placeholder {
-    color: #FAAC18;
-}
+
 
 .search-btn {
     background-color: #FAAC18;
