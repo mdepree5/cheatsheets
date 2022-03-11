@@ -3,9 +3,8 @@
     position: relative;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
     flex-direction: column;
-
-
 }
 
 .view_comments {
@@ -38,12 +37,30 @@
 }
 
 .comment-delete-btn{
-    background-color: #ff767666;
+    background-color: red;
     color: #fcfcfc;
+    border: 1px solid #ff7676d2;
     z-index: 0;
 }
 
 .comment-delete-btn:hover {
     background-color: #ff7676d2;
     color:white;
+}
+
+
+.new-comment-button {
+    background-color: #faac18;
+    border-radius: 5px;
+    border: 1px solid #e5991e;
+}
+
+.edit-comment-modal {
+    background-color: #faac18;
+    border: 1px solid #e5991e;
+}
+
+.update_btn {
+    border: 1px solid #e5991e;
+    margin-top: 10px;
 }

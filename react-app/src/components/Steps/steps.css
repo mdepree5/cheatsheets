@@ -80,7 +80,8 @@
 }
 
 .delete-step-btn {
-    background-color: #ff767666;
+    background-color: red;
+    border: 1px solid #ff7676d2;
     color: #fcfcfc;
 }
 

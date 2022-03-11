@@ -6,15 +6,21 @@
     cursor:pointer;
 }
 .search_input::placeholder {
-    color: #FAAC18;
+    color: #bbb9b9;
 }
 
-.search-btn {
+button.search-btn {
     background-color: #FAAC18;
     color: #fcfcfc;
+    padding: 5px 10px;
 }
 
 .search-btn:hover {
     background-color: #da9618;
     color: white;
+}
+
+.logout-button {
+    background-color: #bbb9b9;
+    color: black;
 }

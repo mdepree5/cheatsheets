@@ -17,7 +17,7 @@ function EditCommentsModal({ comment }) {
     return (
         matchingToSessionUser &&(
             <div className='edit-comment-modal-button-container'>
-                <button className='edit-step-modal' onClick={e => setShowModal(true)}>Edit</button>
+                <button className='edit-comment-modal' onClick={e => setShowModal(true)}>Edit</button>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <EditComment closeModal={() => setShowModal(false)} comment={comment} />
