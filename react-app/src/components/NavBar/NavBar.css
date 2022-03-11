@@ -74,14 +74,13 @@
     margin-right: 40px;
 }
 
-.publish_btn{
-    padding: 5px 10px 5px 10px;
-    border-radius: 5px;
-    border: 1px solid #CCCCCC;
-    background-color: #FAAC18;
+.navbar_right button {
     margin-right: 5px;
-    cursor: pointer;
-
+    background-color: #DDDDDD;
+    opacity: 1;
+    color: black;
+    border: 1px solid white;
+    padding: 5px 10px 5px 10px;
 }
 
 .logo a {
@@ -91,8 +90,13 @@
     font-size: 25px;
 }
 
-.search_bar {
+.search_input {
     border: 1px solid #CCCCCC;
     padding: 5px 10px 5px 10px;
     border-radius: 5px;
+    color: black;
+}
+
+.search_input::placeholder {
+    color: black;
 }
