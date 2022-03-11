@@ -4,12 +4,14 @@ import session from './session'
 import cheatsheet from './cheatsheets'
 import commentReducer from './comments';
 import stepsReducer from './steps';
+import searchReducer from './search'
 
 const rootReducer = combineReducers({
   session,
   commentReducer,
   cheatsheet,
-  stepsReducer
+  stepsReducer,
+  searchReducer
 });
 
 let enhancer;
