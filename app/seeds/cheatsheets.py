@@ -5,7 +5,7 @@ from app.models import db, Cheatsheet
 def seed_cheatsheets():
     python_itself = Cheatsheet(
         owner_id=1,
-        title='Install Python itself',
+        title='Install Python',
         description='We will be installing Python version 3.9.4.',
         dependencies='Have pyenv pre-installed.',
         media_url='https://i.pinimg.com/564x/0f/60/19/0f6019e15f1d8ae07e7e8ea16d242676.jpg'
@@ -31,26 +31,28 @@ def seed_cheatsheets():
         dependencies='Have a GitHub account',
         media_url='https://miro.medium.com/max/1400/1*jxvFpD7E00qsfY7PQzd5aA.png'
         )
-    # simple_git = Cheatsheet(
-    #     owner_id=3,
-    #     title='Install Docker',
-    #     description='We will install docker.',
-    #     dependencies='Know what your operating system is.',
-    #     media_url='http://testbucket4561.s3.amazonaws.com/a90a04687b73454a8b9b54480d0ed1d8.jpg'
-    #     )
-    # pug = Cheatsheet(
-    #     owner_id=2,
-    #     title='Set up Pug',
-    #     description='How to set up Pug templating engine',
-    #     dependencies='Before going any further, ask yourself: "Do I really want to use Pug?"',
-    #     media_url='http://testbucket4561.s3.amazonaws.com/f9ea15503cba4dfcb669d682b8ee38e8.png'
-    #     )
+    install_docker = Cheatsheet(
+        owner_id=1,
+        title='Install Docker',
+        description='We will install docker.',
+        dependencies='Know what your operating system is.',
+        media_url='http://testbucket4561.s3.amazonaws.com/a90a04687b73454a8b9b54480d0ed1d8.jpg'
+        )
+    pug = Cheatsheet(
+        owner_id=2,
+        title='Set up Pug',
+        description='How to set up Pug templating engine',
+        dependencies='Before going any further, ask yourself: "Do I really want to use Pug?"',
+        media_url='http://testbucket4561.s3.amazonaws.com/f9ea15503cba4dfcb669d682b8ee38e8.png'
+        )
 
 
     db.session.add(python_itself)
     db.session.add(deploy_heroku)
     db.session.add(install_postgresql_12_mac)
     db.session.add(simple_git)
+    db.session.add(install_docker)
+    db.session.add(pug)
     db.session.commit()
 
 

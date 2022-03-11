@@ -13,11 +13,25 @@ def seed_comments():
         cheatsheet_id=1,
         content='Now I know how to set up python.',
         )
-
     git_comment_1 = Comment(
         writer_id=1,
         cheatsheet_id=4,
-        content='THat helped me to get started, thank you!',
+        content='That helped me to get started, thank you!',
+        )
+    git_comment_2 = Comment(
+        writer_id=2,
+        cheatsheet_id=4,
+        content='A great cheatsheet. One might say it helped me to GIT started.',
+        )
+    docker_comment_1 = Comment(
+        writer_id=2,
+        cheatsheet_id=5,
+        content='A great picture indeed.',
+        )
+    docker_comment_2 = Comment(
+        writer_id=3,
+        cheatsheet_id=5,
+        content='Why did they choose a whale?',
         )
 
     db.session.add(python_itself_comment_1)
