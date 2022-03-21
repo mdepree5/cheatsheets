@@ -11,6 +11,7 @@ const update = cheatsheet => ({ type: UPDATE, cheatsheet });
 const destroy = cheatsheetId => ({ type: DELETE, cheatsheetId });
 // todo ——————————————————————————————————————————————————————————————————————————————————
 export const createCheatsheet = cheatsheet => async (dispatch) => {
+  // console.log(cheatsheet) //=> formData object 
   const response = await fetch(`/api/cheatsheets/new`, { method: "POST", body: cheatsheet });
 
   if (response.ok) {

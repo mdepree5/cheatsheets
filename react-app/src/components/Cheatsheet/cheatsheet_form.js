@@ -52,6 +52,7 @@ const CheatsheetForm = ({ name, edit, cheatsheet, closeModal }) => {
     }
 
     const created = await dispatch(createCheatsheet(formData))
+    console.log('CREATED', created)
     setImageLoading(false);
     if (created?.errors) setErrors(created?.errors)
     if (created?.id) {

@@ -24,11 +24,14 @@ def create_cheatsheet():
   form = CheatsheetForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
+  print(form.data['media_url']) # => [Object]
+  
   url = 'no data provided'
   if type(form.data['media_url']) is not str:
     image = form.data['media_url']
     
     if not allowed_file(image.filename):
+      # url = 'caseys default image from aws'
       return {"errors": "file type not permitted"}, 400
     
     image.filename = get_unique_filename(image.filename)
@@ -36,6 +39,7 @@ def create_cheatsheet():
     if "url" not in upload:
       return upload, 400
     url = upload["url"]
+  
 
   if form.validate_on_submit():
     new_cheatsheet = Cheatsheet(
@@ -74,10 +78,6 @@ def update_cheatsheet(cheatsheetId):
   form['csrf_token'].data = request.cookies['csrf_token']
 
   url = form.data['media_url']
-  
-  if type(form.data['media_url']) is str and form.data['media_url'] == 'remove-image':
-    url = 'no data provided'
-
   if type(form.data['media_url']) is not str:
     image = form.data['media_url']
     if not allowed_file(image.filename):

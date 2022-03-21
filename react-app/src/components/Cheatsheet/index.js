@@ -35,6 +35,7 @@ const CheatsheetPage = () => {
           />
         </div>
       }
+
       <div className='cheatsheet-description'>Description: {cheatsheet?.description}</div>
       <div className='cheatsheet-page-author'>By: <span style={{ fontWeight: '600' }}>{cheatsheet?.owner}</span>
         <span style={{ paddingLeft: '15px' }}> Published:</span> {cheatsheet?.created_at}
