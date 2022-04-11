@@ -64,3 +64,12 @@
     border: 1px solid #e5991e;
     margin-top: 10px;
 }
+
+.comment_errors{
+    color: red;
+}
+
+.comment_errors > ul > li{
+    color: red;
+    list-style: none;
+}

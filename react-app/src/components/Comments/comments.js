@@ -19,6 +19,14 @@ function CommentsComponent({ cheatsheetId }) {
     }, [ dispatch, cheatsheetId ])
 
     const [ content, setContent ] = useState('')
+    const [validationErrors, setValidationErrors] = useState([])
+
+    const validateComment = () => {
+        const validationErrors = []
+        if (content.length < 1) validationErrors.push('Error: Comment cannot be empty.')
+
+        return validationErrors;
+    }
 
 
 
@@ -29,6 +37,12 @@ function CommentsComponent({ cheatsheetId }) {
             cheatsheet_id: cheatsheetId,
             content
         }
+
+        let errors = validateComment();
+        if (errors && errors.length > 0) {
+            return setValidationErrors(errors);
+        }
+
         const postComment = await dispatch(addComment(payload));
 
         if (postComment) {
@@ -44,6 +58,13 @@ function CommentsComponent({ cheatsheetId }) {
                 <div className='view_comments'>
 
                 </div>
+                    {validationErrors.length > 0 && (
+                    <div className='comment_errors'>
+                        <ul>
+                            {validationErrors.map(error => <li key={error}>{error}</li>)}
+                        </ul>
+                    </div>
+                    )}
                 <form className='post_comment_form' >
                     <textarea
                         className='post_comment_textarea'
