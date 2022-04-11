@@ -11,6 +11,15 @@ const EditComment = ({ closeModal, comment }) => {
 
 
     const [ content, setContent ] = useState(comment.content);
+    const [validationErrors, setValidationErrors] = useState([])
+
+    const validateComment = () => {
+        const validationErrors = []
+        if (content.length < 1) validationErrors.push('Error: Comment cannot be empty.')
+
+        return validationErrors;
+    }
+
 
 
     const handleSubmit = async (e) => {
@@ -20,6 +29,12 @@ const EditComment = ({ closeModal, comment }) => {
             id,
             content
         }));
+
+        let errors = validateComment();
+        if (errors && errors.length > 0) {
+            return setValidationErrors(errors);
+        }
+
         await dispatch(getComment(cheatsheetId))
         closeModal();
         return history.push(`/cheatsheets/${cheatsheetId}`)
@@ -28,6 +43,13 @@ const EditComment = ({ closeModal, comment }) => {
 
     return (
         <div>
+                {validationErrors.length > 0 && (
+                <div className='comment_errors'>
+                    <ul>
+                        {validationErrors.map(error => <li key={error}>{error}</li>)}
+                    </ul>
+                </div>
+                )}
             <form className='edit_comment_form' onSubmit={handleSubmit}>
                 <textarea className='edit_comment_textarea'
                     cols="50"
