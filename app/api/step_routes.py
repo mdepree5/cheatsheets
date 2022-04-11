@@ -3,6 +3,7 @@ import psycopg2
 from app.forms.step_form import StepForm
 from flask_login import login_required, current_user
 from app.models import Step, User, db
+from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 step_routes = Blueprint('steps', __name__)
 
@@ -16,20 +17,32 @@ def get_steps(cheatsheetId):
   return {"all_steps": [step.to_dict() for step in all_steps]}
 
 
-
 @step_routes.route("/new", methods=["POST"])
 @login_required
 def create_step():
   form = StepForm()
   form['csrf_token'].data = request.cookies['csrf_token']
   # print(f'form: {form}')                                                         # * print
+  
+  url = 'no data provided'
+  if type(form.data['media_url']) is not str:
+    image = form.data['media_url']
+    
+    if not allowed_file(image.filename):
+      return {"errors": "file type not permitted"}, 400
+    
+    image.filename = get_unique_filename(image.filename)
+    upload = upload_file_to_s3(image)
+    if "url" not in upload:
+      return upload, 400
+    url = upload["url"]
+  
   if form.validate_on_submit():
     new_step = Step(
       cheatsheet_id = form.data['cheatsheet_id'],
       title = form.data['title'],
       content = form.data['content'],
-      media_url = form.data['media_url']
-
+      media_url = url
       )
 
 
@@ -49,13 +62,28 @@ def update_step(id):
   form = StepForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
+  url = form.data['media_url']
+  
+  if type(form.data['media_url']) is str and form.data['media_url'] == 'remove-image':
+    url = 'no data provided'
 
+  if type(form.data['media_url']) is not str:
+    image = form.data['media_url']
+    if not allowed_file(image.filename):
+      return {"errors": "file type not permitted"}, 400
+
+    image.filename = get_unique_filename(image.filename)
+    upload = upload_file_to_s3(image)
+    if "url" not in upload:
+      return upload, 400
+    url = upload["url"]
+    
   if form.validate_on_submit():
     step = Step.query.get(id)
     step.cheatsheet_id = form.data['cheatsheet_id']
     step.title = form.data['title']
     step.content = form.data['content']
-    step.media_url = form.data['media_url']
+    step.media_url = url
     db.session.commit()
     return {'step': step.to_dict()}
 
