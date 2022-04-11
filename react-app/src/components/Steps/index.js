@@ -32,7 +32,7 @@ const Steps = ({ cheatsheetId }) => {
                             <li className="step-content" style={{ borderLeft: '4px solid lightGrey', padding: '10px' }}>
                                 {/* {step?.content} */}
 
-                                {typeof step?.media_url === 'string' && (
+                                {step?.media_url !== 'no data provided' && (
                                     <div className="image-wrapper">
                                         <img id='step_image_render'
                                             src={step?.media_url} onError={(e) => e.target.style.display = 'none'}
