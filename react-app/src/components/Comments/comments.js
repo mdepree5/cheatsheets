@@ -47,6 +47,7 @@ function CommentsComponent({ cheatsheetId }) {
 
         if (postComment) {
             await dispatch(getComment(cheatsheetId))
+            setValidationErrors([])
             setContent('')
         }
     }
