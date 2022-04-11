@@ -46,8 +46,7 @@ export const getStep = (cheatsheetId) => async (dispatch) => {
 export const newStep = (payload) => async (dispatch) => {
     const response = await fetch(`/api/steps/new`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: payload
     })
     let data;
     if (response.ok) {
@@ -60,8 +59,7 @@ export const newStep = (payload) => async (dispatch) => {
 export const updateStep = (payload) => async (dispatch) => {
     const response = await fetch(`/api/steps/${payload.id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: payload
     })
 
     if (response.ok) {
