@@ -4,7 +4,9 @@ import './Footer.css';
 import githubSquare from '../../images/github-square-brands.svg';
 import linkedIn from '../../images/linkedin-brands.svg';
 
-const Footer = () => {
+const Footer = ({ path }) => {
+
+
     return (
         <footer className='footer'>
             <div className="footer-container">
