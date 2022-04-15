@@ -30,8 +30,6 @@ const EditStep = ({ closeModal, step }) => {
     const history = useHistory();
     // const sessionUser = useSelector(state => state.session.user);
     const { cheatsheetId } = useParams();
-    const id = step.id;
-
 
     const [ title, setTitle ] = useState(step.title);
     const [ content, setContent ] = useState(step.content);
@@ -49,7 +47,7 @@ const EditStep = ({ closeModal, step }) => {
         formData.append('content', content);
         formData.append('media_url', media_url);
 
-        const updatedStep = await dispatch(updateStep(formData)).catch(async (res) => {
+        const updatedStep = await dispatch(updateStep(formData, step?.id)).catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors)
         });

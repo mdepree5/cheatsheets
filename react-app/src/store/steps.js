@@ -56,8 +56,8 @@ export const newStep = (payload) => async (dispatch) => {
     }
 }
 
-export const updateStep = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/steps/${payload.id}`, {
+export const updateStep = (payload, id) => async (dispatch) => {
+    const response = await fetch(`/api/steps/${id}`, {
         method: 'PUT',
         body: payload
     })
