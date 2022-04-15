@@ -61,11 +61,6 @@ const CheatsheetForm = ({ name, edit, cheatsheet, closeModal }) => {
     return 'Failed to Create';
   }
 
-  const updateMedia_url = (e) => {
-    const file = e.target.files[ 0 ];
-    setMedia_url(file);
-  }
-
   return (
     <div>
       <form className='cheatsheet-form-container' onSubmit={handleSubmit}>
@@ -73,7 +68,7 @@ const CheatsheetForm = ({ name, edit, cheatsheet, closeModal }) => {
         <FormInput name='Description' state={description} setState={setDescription} />
         <FormInput name='Dependencies' state={dependencies} setState={setDependencies} />
         <label htmlFor={'media_url'} id='media_url' >Upload an Image</label>
-        <input name='media_url' id='media_url_input' type="file" accept="image/*" onChange={updateMedia_url} />
+        <input name='media_url' id='media_url_input' type="file" accept="image/*" onChange={e => setMedia_url(e.target.files[0])} />
 
         <button className='new-cheatsheet-button' type='submit'
           style={{
