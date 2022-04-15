@@ -70,7 +70,11 @@ function App() {
 
       </Switch>
       <div style={{height: '100px'}}></div>
-      <Footer />
+      <Route render={(
+        {location}
+        ) => (location.pathname === '/') && <Footer />}
+        />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
