@@ -10,30 +10,19 @@ import SearchBar from '../searchBar/search';
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
-
-
-
   let sessionLinks;
   let publishAndSearch;
   if (sessionUser) {
     sessionLinks = <LogoutButton />;
-    publishAndSearch = (
-      <>
-        <CheatsheetFormModal name='Publish'  />
-        <SearchBar />
-      </>
-    )
+    publishAndSearch = (<>
+      <CheatsheetFormModal name='Publish'  />
+      <SearchBar />
+    </>)
   } else {
-    sessionLinks = (
-      <div className='login-signup-links'>
-        <NavLink to='/login' exact={true} activeClassName='active'>
-          Login
-        </NavLink>
-        <NavLink to='/sign-up' exact={true} activeClassName='active'>
-          Sign Up
-        </NavLink>
-      </div>
-    )
+    sessionLinks = (<div className='login-signup-links'>
+      <NavLink to='/login' exact={true} activeClassName='active'>Login</NavLink>
+      <NavLink to='/sign-up' exact={true} activeClassName='active'>Sign Up</NavLink>
+    </div>)
     publishAndSearch = null;
   }
   return (

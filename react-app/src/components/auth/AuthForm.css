@@ -1,0 +1,100 @@
+.auth-page {
+  width: 100%;
+  
+  display: flex; flex-direction: column;
+}
+/* todo ——————————————————————————————————————————————————————————————————————————————— */
+/* todo             Form                  */
+/* todo ——————————————————————————————————————————————————————————————————————————————— */
+.form-container {
+  background: rgba(34, 34, 34, .25);
+  /* position: fixed; */
+  /* min-height: 100%; */
+  /* width: 50%; */
+  width: 100%;
+  top: 105px;
+  left: 50px;
+  display: flex; flex-direction: column; align-items: center;
+  padding-top: 180px;
+}
+
+.form-container {
+  background: rgba(34, 34, 34, .25);
+  min-height: 100%;
+  max-width: 30%;
+  position: fixed;
+  top: 105px;
+  left: 50px;
+}
+
+
+.form-container form input {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 400; 
+  color: grey; 
+  
+  background-color: white;
+  border-radius: 5px;
+  width: 350px;
+  height: 30px;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+
+.auth-button{
+  background-color: #faac18; color: white;
+  border-radius: 5px;
+  border: 1px solid #e5991e;
+  /* width: 90%; margin-left: auto; margin-right: auto; */
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  /* font-size: 18px; */
+  /* cursor: pointer; */
+}
+
+
+/* todo ——————————————————————————————————————————————————————————————————————————————— */
+/* todo             Errors                  */
+/* todo ——————————————————————————————————————————————————————————————————————————————— */
+
+.errors-container { padding: 30px; width: 50%; margin: 0 auto; }
+.errors-container > * { margin-top: 10px; color: red; }
+
+.background-img {
+  /* background-color: black; */
+  height: 100%;
+  width: 100%;
+  /* position: fixed; */
+  object-fit: contain;
+}
+
+
+/* todo ——————————————————————————————————————————————————————————————————————————————— */
+/* todo             Media                  */
+/* todo ——————————————————————————————————————————————————————————————————————————————— */
+/* @media (max-width: 700px){
+  .background-img{
+    width: 90%;
+    height: 100%;
+  }
+}
+@media (max-width: 950px){
+  .main-container{
+    align-items: center;
+    justify-content: center;
+  }
+  .form-container{
+    margin-left: auto;
+    margin-right: auto;
+    position: none;
+  }
+}
+@media (min-width: 561px) and (max-width: 1120px){
+  #splash-image{ height: 95%; width: 95%; }
+}
+@media (min-width: 1121px) and (max-width: 1680px){
+  #splash-image{ height: 85%; width: 85%; }
+} */
