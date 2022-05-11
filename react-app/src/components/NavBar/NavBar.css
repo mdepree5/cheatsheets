@@ -10,9 +10,12 @@
 
   list-style: none;
   background-color: #e3e3e3;
+  border-top: 30px solid #555555;
   border-bottom: 1px solid #9e9e9e;
   
-  top: 0; height: 4em; width: 100%;
+  height: 110px;
+  top: 0; width: 100%;
+
   z-index: 10; flex-shrink: 0;
   padding-left: 2em; padding-right: 2em;
 }
