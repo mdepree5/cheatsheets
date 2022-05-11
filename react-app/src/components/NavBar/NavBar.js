@@ -10,48 +10,31 @@ import SearchBar from '../searchBar/search';
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
-  let sessionLinks;
-  let publishAndSearch;
-  if (sessionUser) {
-    sessionLinks = <LogoutButton />;
-    publishAndSearch = (<>
-      <CheatsheetFormModal name='Publish'  />
-      <SearchBar />
-    </>)
-  } else {
-    sessionLinks = (<div className='login-signup-links'>
-      <NavLink to='/login' exact={true} activeClassName='active'>Login</NavLink>
-      <NavLink to='/sign-up' exact={true} activeClassName='active'>Sign Up</NavLink>
-    </div>)
-    publishAndSearch = null;
-  }
   return (
-    <nav className='nav-container'>
-      <ul className='navbar'>
-        <li className='home'>
-          <NavLink to='/' exact={true} activeClassName='active' >
-            Home
-          </NavLink>
-        </li>
-        <li className='session-links'>
-          {sessionLinks}
-        </li>
-      </ul>
+    <nav className='navbar'>
+      <div id='left-nav'>
+        <NavLink className='home-button' to='/'>
+          <img src={logo} alt='logo' style={{height: '40px', marginRight: '10px'}}/>
+          <div>Cheatsheets</div>
+        </NavLink>
+      </div>
 
-      <ul className='navbar_bottom'>
-        <li className='logo'>
-          <NavLink to='/'><img src={logo} alt='logo'
-            style={{
-              height: '40px',
-              marginRight: '10px'
-            }}
-          /><span>cheatsheets</span></NavLink>
-        </li>
-        <li className='navbar_right'>
-          {publishAndSearch}
-        </li>
+      <div id='middle-nav'>
+        {sessionUser && <SearchBar />}
+      </div>
 
-      </ul>
+      <div id='right-nav'>
+        {sessionUser ? 
+        <>
+          <CheatsheetFormModal name='Publish'  />
+          <LogoutButton />
+        </> :
+        <>  
+          <NavLink to='/login' exact={true} activeClassName='active'>Login</NavLink>
+          <NavLink to='/sign-up' exact={true} activeClassName='active'>Sign Up</NavLink>
+        </>
+        }
+      </div>
     </nav>
 
   );
